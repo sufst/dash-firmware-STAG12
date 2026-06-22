@@ -1,0 +1,7 @@
+../Core/Src/freertos.c:100:6:vApplicationStackOverflowHook	16	static
+../Core/Src/freertos.c:113:6:MX_FREERTOS_Init	8	static
+../Core/Src/freertos.c:169:6:StartGUITask	64	static
+../Core/Src/freertos.c:233:6:StartCANRxTask	32	static
+../Core/Src/freertos.c:286:6:StartCANTxTask	32	static
+../Core/Src/freertos.c:309:6:StartHeartbeat	64	static
+../Core/Src/freertos.c:334:17:decode16	16	static

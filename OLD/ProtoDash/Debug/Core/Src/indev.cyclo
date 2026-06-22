@@ -1,0 +1,4 @@
+../Core/Src/indev.c:16:13:ConvXPTtoILI	1
+../Core/Src/indev.c:41:6:touch_init	1
+../Core/Src/indev.c:50:6:touch_read_cb	2
+../Core/Src/indev.c:82:6:touchpad_is_pressed	4

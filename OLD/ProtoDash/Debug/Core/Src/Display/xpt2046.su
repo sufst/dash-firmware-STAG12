@@ -1,0 +1,11 @@
+../Core/Src/Display/xpt2046.c:42:13:XPT2046_SetCS	8	static
+../Core/Src/Display/xpt2046.c:47:13:XPT2046_ResetCS	8	static
+../Core/Src/Display/xpt2046.c:52:6:writeSPI	16	static
+../Core/Src/Display/xpt2046.c:57:6:readSPI	16	static
+../Core/Src/Display/xpt2046.c:62:6:T_Delay	16	static
+../Core/Src/Display/xpt2046.c:82:13:XPT2046_Write_Byte	16	static
+../Core/Src/Display/xpt2046.c:87:17:XPT2046_Read_AD	24	static
+../Core/Src/Display/xpt2046.c:106:16:besttwoavg	24	static
+../Core/Src/Display/xpt2046.c:120:6:XPT2046_Init	4	static
+../Core/Src/Display/xpt2046.c:125:6:XPT2046_Update	72	static
+../Core/Src/Display/xpt2046.c:166:9:XPT2046_IsReasonable	16	static
