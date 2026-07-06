@@ -71,6 +71,8 @@ add_subdirectory(cmake/stm32cubemx)
 # Source directories
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     SUFST/Src/bsp_sd_override.c
+    SUFST/Middlewares/rtcan/src/rtcan.c
+    SUFST/Middlewares/rtcan/src/rtcan_osal_freertos.c
     Middlewares/TinyUSB/Src/usb_descriptors.c
     Middlewares/TinyUSB/Src/msc_diskio_bridge.c
     Middlewares/TinyUSB/Src/usb_irq.c
@@ -81,6 +83,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Include directories
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     SUFST/Inc
+    SUFST/Middlewares/rtcan/inc
     Middlewares/TinyUSB/Inc
     ${TINYUSB_INC}
 )
@@ -88,6 +91,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined compile definitions
     CFG_TUSB_MCU=OPT_MCU_STM32F7
+    RTCAN_RX_MSG_POOL_SIZE=1000U
 )
 
 # Remove wrong libob.a library dependency when using cpp files

@@ -25,7 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "can.h"
+#include "rtcan.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,6 +58,9 @@ const osThreadAttr_t defaultTask_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
+
+/* Implemented in can.c; not declared in can.h to avoid a circular include with rtcan.h */
+rtcan_status_t can_bus_init(CAN_HandleTypeDef *can_s_h, CAN_HandleTypeDef *can_t_h);
 
 /* USER CODE END FunctionPrototypes */
 
@@ -114,6 +118,13 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+
+  if (can_bus_init(&hcan1, &hcan2) != RTCAN_OK)
+  {
+    /* Do not call Error_Handler() -- losing a CAN bus shouldn't halt the
+       whole dashboard. Inspect can_bus_get_error() to diagnose. */
+  }
+
   /* Infinite loop */
   for(;;)
   {
