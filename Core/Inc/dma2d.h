@@ -1,9 +1,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    can.h
+  * @file    dma2d.h
   * @brief   This file contains all the function prototypes for
-  *          the can.c file
+  *          the dma2d.c file
   ******************************************************************************
   * @attention
   *
@@ -18,8 +18,8 @@
   */
 /* USER CODE END Header */
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __CAN_H__
-#define __CAN_H__
+#ifndef __DMA2D_H__
+#define __DMA2D_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,18 +32,13 @@ extern "C" {
 
 /* USER CODE END Includes */
 
-extern CAN_HandleTypeDef hcan1;
-
-extern CAN_HandleTypeDef hcan2;
+extern DMA2D_HandleTypeDef hdma2d;
 
 /* USER CODE BEGIN Private defines */
 
-uint32_t can_bus_get_error(void);
-
 /* USER CODE END Private defines */
 
-void MX_CAN1_Init(void);
-void MX_CAN2_Init(void);
+void MX_DMA2D_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 
@@ -53,5 +48,5 @@ void MX_CAN2_Init(void);
 }
 #endif
 
-#endif /* __CAN_H__ */
+#endif /* __DMA2D_H__ */
 

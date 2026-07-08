@@ -9,6 +9,9 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -25,8 +28,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
-# Enable CMake support for ASM and C languages
-enable_language(C ASM)
+# Enable CMake support for ASM, C and C++ languages
+enable_language(C CXX ASM)
 
 # --- TinyUSB ----------------------------------------------------
 
@@ -68,24 +71,39 @@ add_executable(${CMAKE_PROJECT_NAME})
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
 
+set(LV_CONF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/SUFST/Inc/lv_conf.h CACHE STRING "" FORCE)
+add_subdirectory(SUFST/Middlewares/lvgl)
+
+set_target_properties(lvgl_examples lvgl_demos PROPERTIES EXCLUDE_FROM_ALL TRUE)
+
 # Source directories
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     SUFST/Src/bsp_sd_override.c
     SUFST/Middlewares/rtcan/src/rtcan.c
     SUFST/Middlewares/rtcan/src/rtcan_osal_freertos.c
+    SUFST/Middlewares/can-defs/out/can_t.c
+    SUFST/Middlewares/can-defs/out/can_s.c
     Middlewares/TinyUSB/Src/usb_descriptors.c
     Middlewares/TinyUSB/Src/msc_diskio_bridge.c
     Middlewares/TinyUSB/Src/usb_irq.c
     Middlewares/TinyUSB/Src/usb_init.c
     ${TINYUSB_SRC}
+    eez-Stag12/src/ui/screens.c
+    eez-Stag12/src/ui/styles.c
+    eez-Stag12/src/ui/images.c
+    eez-Stag12/src/ui/ui.c
+    SUFST/Src/can_rx_task.c
 )
 
 # Include directories
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     SUFST/Inc
+    SUFST/Middlewares
+    SUFST/Middlewares/can-defs/out
     SUFST/Middlewares/rtcan/inc
     Middlewares/TinyUSB/Inc
     ${TINYUSB_INC}
+    eez-Stag12/src/ui
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
@@ -100,4 +118,18 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
+    lvgl
+)
+
+# `cmake --build <dir> --target flash`
+# builds first if stale, then programs the resulting ELF over ST-Link via openocd
+add_custom_target(flash
+    COMMAND openocd
+        -f interface/stlink.cfg
+        -f target/stm32f7x.cfg
+        -c "program \"$<TARGET_FILE:${CMAKE_PROJECT_NAME}>\" verify reset exit"
+    DEPENDS ${CMAKE_PROJECT_NAME}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Flashing ${CMAKE_PROJECT_NAME} via OpenOCD/ST-Link"
+    USES_TERMINAL
 )

@@ -1,17 +1,18 @@
 .PHONY: all configure build flash clean
 
-BUILD_DIR = build
-TOOLCHAIN = cmake/gcc-arm-none-eabi.cmake
+# Defaults to the Debug preset, override with `make PRESET=Release ...`
+PRESET ?= Debug
+BUILD_DIR = build/$(PRESET)
 CMAKE := $(shell which cmake)
 
 all build: $(BUILD_DIR)/CMakeCache.txt
-	$(CMAKE) --build $(BUILD_DIR)
+	$(CMAKE) --build --preset $(PRESET)
 
 $(BUILD_DIR)/CMakeCache.txt:
-	$(CMAKE) -S . -B $(BUILD_DIR) -DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN)
+	$(CMAKE) --preset $(PRESET)
 
-flash:
-	$(CMAKE) --build $(BUILD_DIR) --target flash
+flash: $(BUILD_DIR)/CMakeCache.txt
+	$(CMAKE) --build --preset $(PRESET) --target flash
 
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf build
