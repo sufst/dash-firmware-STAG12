@@ -13,8 +13,7 @@ extern "C" {
 // Flow global variables
 
 enum FlowGlobalVariables {
-    FLOW_GLOBAL_VARIABLE_VCU_ROLLING_COUNTER = 0,
-    FLOW_GLOBAL_VARIABLE_CAN_STATE = 1
+    FLOW_GLOBAL_VARIABLE_NONE
 };
 
 // Native global variables
