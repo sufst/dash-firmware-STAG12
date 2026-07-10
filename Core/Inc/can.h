@@ -38,8 +38,6 @@ extern CAN_HandleTypeDef hcan2;
 
 /* USER CODE BEGIN Private defines */
 
-uint32_t can_bus_get_error(void);
-
 /* USER CODE END Private defines */
 
 void MX_CAN1_Init(void);

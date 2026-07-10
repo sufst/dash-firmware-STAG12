@@ -73,14 +73,13 @@ add_subdirectory(cmake/stm32cubemx)
 
 set(LV_CONF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/SUFST/Inc/lv_conf.h CACHE STRING "" FORCE)
 add_subdirectory(SUFST/Middlewares/lvgl)
+target_link_libraries(lvgl PUBLIC stm32cubemx)
 
 set_target_properties(lvgl_examples lvgl_demos PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
 # Source directories
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     SUFST/Src/bsp_sd_override.c
-    SUFST/Middlewares/rtcan/src/rtcan.c
-    SUFST/Middlewares/rtcan/src/rtcan_osal_freertos.c
     SUFST/Middlewares/can-defs/out/can_t.c
     SUFST/Middlewares/can-defs/out/can_s.c
     Middlewares/TinyUSB/Src/usb_descriptors.c
@@ -92,7 +91,9 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     eez-Stag12/src/ui/styles.c
     eez-Stag12/src/ui/images.c
     eez-Stag12/src/ui/ui.c
-    SUFST/Src/can_rx_task.c
+    eez-Stag12/src/ui/ui_image_stag.c
+    eez-Stag12/src/ui/eez-flow.cpp
+    SUFST/Src/can_rx_handlers.c
 )
 
 # Include directories
@@ -100,7 +101,6 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     SUFST/Inc
     SUFST/Middlewares
     SUFST/Middlewares/can-defs/out
-    SUFST/Middlewares/rtcan/inc
     Middlewares/TinyUSB/Inc
     ${TINYUSB_INC}
     eez-Stag12/src/ui
@@ -109,7 +109,10 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined compile definitions
     CFG_TUSB_MCU=OPT_MCU_STM32F7
-    RTCAN_RX_MSG_POOL_SIZE=1000U
+)
+
+set_source_files_properties(eez-Stag12/src/ui/screens.c PROPERTIES
+    COMPILE_OPTIONS "-include${CMAKE_CURRENT_SOURCE_DIR}/SUFST/Inc/eez_compat.h"
 )
 
 # Remove wrong libob.a library dependency when using cpp files
@@ -122,14 +125,13 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 )
 
 # `cmake --build <dir> --target flash`
-# builds first if stale, then programs the resulting ELF over ST-Link via openocd
+# builds first if stale, converts the ELF to a raw binary, then programs it over ST-Link via st-flash
+set(FLASH_BIN_FILE ${CMAKE_PROJECT_NAME}.bin)
 add_custom_target(flash
-    COMMAND openocd
-        -f interface/stlink.cfg
-        -f target/stm32f7x.cfg
-        -c "program \"$<TARGET_FILE:${CMAKE_PROJECT_NAME}>\" verify reset exit"
+    COMMAND ${CMAKE_OBJCOPY} -O binary "$<TARGET_FILE:${CMAKE_PROJECT_NAME}>" ${FLASH_BIN_FILE}
+    COMMAND st-flash write ${FLASH_BIN_FILE} 0x8000000
     DEPENDS ${CMAKE_PROJECT_NAME}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    COMMENT "Flashing ${CMAKE_PROJECT_NAME} via OpenOCD/ST-Link"
+    COMMENT "Flashing ${CMAKE_PROJECT_NAME} via st-flash/ST-Link"
     USES_TERMINAL
 )

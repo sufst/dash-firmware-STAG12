@@ -26,9 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "can.h"
-#include "rtcan.h"
+#include "ltdc.h"
 #include "ui.h"
-#include "can_rx_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,15 +73,53 @@ const osThreadAttr_t canRXTask_attributes = {
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 
+#define DASH_LCD_HOR_RES 800U
+#define DASH_LCD_VER_RES 480U
+#define DASH_LCD_FB0_ADDR ((lv_color_t *) 0xC0000000U)
+#define DASH_LCD_FB1_ADDR ((lv_color_t *) (0xC0000000U + (DASH_LCD_HOR_RES * DASH_LCD_VER_RES * sizeof(lv_color_t))))
+
+/* Given by HAL_LTDC_ReloadEventCallback() once a flush's FBStartAdress swap
+   has actually landed at the vertical blanking interval -- only then is it
+   safe to let LVGL start drawing into the buffer that was just displayed. */
+static osSemaphoreId_t lcd_reload_sem;
+
+void HAL_LTDC_ReloadEventCallback(LTDC_HandleTypeDef *hltdc_arg)
+{
+  (void) hltdc_arg;
+  osSemaphoreRelease(lcd_reload_sem);
+}
+
 static void dash_lvgl_flush_cb(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color_p)
 {
   (void) area;
   (void) color_p;
+
+  /* In direct_mode, flush_cb is invoked once per separate invalidated
+     region within a single refresh cycle, but the active buffer only
+     actually swaps after the last one (see draw_buf_flush() in
+     lv_refr.c). Presenting the buffer to the LTDC on every intermediate
+     call would flash partially-drawn frames onto the live scan-out, so
+     only push/wait on the final flush of the cycle. */
+  if (!lv_disp_flush_is_last(disp_drv))
+  {
+    lv_disp_flush_ready(disp_drv);
+    return;
+  }
+
+  /* Hand the just-rendered (off-screen) buffer to the LTDC and swap at the
+     next vblank instead of mid-scan, then wait for that swap to complete
+     before telling LVGL the flush is done -- this is what actually stops
+     the tearing/flicker, on top of no longer sharing one buffer between
+     the renderer and the live scan-out. */
+  HAL_LTDC_SetAddress_NoReload(&hltdc, (uint32_t) color_p, 0);
+  HAL_LTDC_Reload(&hltdc, LTDC_RELOAD_VERTICAL_BLANKING);
+  osSemaphoreAcquire(lcd_reload_sem, osWaitForever);
+
   lv_disp_flush_ready(disp_drv);
 }
 
-/* Implemented in can.c; not declared in can.h to avoid a circular include with rtcan.h */
-rtcan_status_t can_bus_init(CAN_HandleTypeDef *can_s_h, CAN_HandleTypeDef *can_t_h);
+/* Implemented in can.c; not declared in can.h to keep can.h HAL-callback-free */
+HAL_StatusTypeDef can_bus_init(CAN_HandleTypeDef *can_s_h, CAN_HandleTypeDef *can_t_h);
 
 /* USER CODE END FunctionPrototypes */
 
@@ -145,7 +182,7 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
 
-  if (can_bus_init(&hcan1, &hcan2) != RTCAN_OK)
+  if (can_bus_init(&hcan1, &hcan2) != HAL_OK)
   {
     /* Do not call Error_Handler() -- losing a CAN bus shouldn't halt the
        whole dashboard. Inspect can_bus_get_error() to diagnose. */
@@ -153,16 +190,19 @@ void StartDefaultTask(void *argument)
 
   lv_init();
 
+  lcd_reload_sem = osSemaphoreNew(1, 0, NULL);
+
   static lv_disp_draw_buf_t draw_buf;
-  lv_disp_draw_buf_init(&draw_buf, (lv_color_t *) 0xC0000000, NULL, 800U * 480U);
+  lv_disp_draw_buf_init(&draw_buf, DASH_LCD_FB0_ADDR, DASH_LCD_FB1_ADDR, DASH_LCD_HOR_RES * DASH_LCD_VER_RES);
 
   static lv_disp_drv_t disp_drv;
   lv_disp_drv_init(&disp_drv);
-  disp_drv.hor_res = 800;
-  disp_drv.ver_res = 480;
+  disp_drv.hor_res = DASH_LCD_HOR_RES;
+  disp_drv.ver_res = DASH_LCD_VER_RES;
   disp_drv.draw_buf = &draw_buf;
   disp_drv.flush_cb = dash_lvgl_flush_cb;
-  disp_drv.full_refresh = 1;
+  disp_drv.direct_mode = 1;
+  disp_drv.full_refresh = 0;
   lv_disp_drv_register(&disp_drv);
 
   ui_init();
@@ -188,10 +228,7 @@ void StartDefaultTask(void *argument)
 void StartTask02(void *argument)
 {
   /* USER CODE BEGIN StartTask02 */
-  can_rx_task_run();
-
-  /* Only reached if subscription setup itself failed -- go idle rather than
-     return from a FreeRTOS task function or treat it as fatal. */
+  /* Infinite loop */
   for(;;)
   {
     osDelay(1);

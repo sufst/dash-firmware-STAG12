@@ -145,6 +145,15 @@ clock_t _times(struct tms *buf)
   return -1;
 }
 
+int _gettimeofday(struct timeval *tv, void *tz)
+{
+  (void)tv;
+  (void)tz;
+  /* No RTC wired up -- nothing to report. */
+  errno = ENOSYS;
+  return -1;
+}
+
 int _stat(const char *file, struct stat *st)
 {
   (void)file;

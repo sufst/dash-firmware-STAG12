@@ -1,0 +1,92 @@
+/* Auto generated: Do not edit directly, instead add signals in Codegen/signal_mapping.yaml or update Codegen/can_rx_handlers.c.j2 */
+
+#include <stdint.h>
+#include <stdbool.h>
+
+/* Include your generated cantools headers */
+#include "can_t.h"
+#include "can_s.h"
+
+/* ==================================================================== */
+/* Global Backing Variables for EEZ Studio                              */
+/* ==================================================================== */
+
+{% for bus in buses %}
+    {%- for msg in bus.messages %}
+        {%- for sig in msg.signals %}
+static {{ sig.backing_c_type }} g_{{ sig.flat_name }} = {{ sig.zero_literal }};
+        {%- endfor %}
+    {%- endfor %}
+{% endfor %}
+
+/* ==================================================================== */
+/* EEZ Studio Native Variable Interface (Getters & Setters)             */
+/* ==================================================================== */
+
+{% for bus in buses %}
+    {%- for msg in bus.messages %}
+        {%- for sig in msg.signals %}
+// Getter for {{ sig.flat_name }}
+{{ sig.accessor_c_type }} get_var_{{ sig.flat_name }}(void)
+{
+{%- if sig.choices %}
+    switch (g_{{ sig.flat_name }})
+    {
+        {%- for value, label in sig.choices %}
+    case {{ value }}: return "{{ label }}";
+        {%- endfor %}
+    default: return "Unknown";
+    }
+{%- else %}
+    return g_{{ sig.flat_name }};
+{%- endif %}
+}
+
+// Setter for {{ sig.flat_name }} (No-op for read-only telemetry)
+void set_var_{{ sig.flat_name }}({{ sig.accessor_c_type }} value)
+{
+    (void)value;
+}
+        {%- endfor %}
+    {%- endfor %}
+{% endfor %}
+
+/* ==================================================================== */
+/* CAN Message Handlers                                                 */
+/* ==================================================================== */
+
+{% for bus in buses %}
+/**
+ * @brief Decode and map RX messages for {{ bus.name }}
+ */
+void {{ bus.name | lower }}_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
+{
+    switch (id)
+    {
+    {%- for msg in bus.messages %}
+    case {{ bus.name | upper }}_{{ msg.name | upper }}_FRAME_ID:
+    {
+        struct {{ bus.name | lower }}_{{ msg.name | lower }}_t payload;
+        if ({{ bus.name | lower }}_{{ msg.name | lower }}_unpack(&payload, data, length) == 0)
+        {
+            {%- for sig in msg.signals %}
+            {%- if sig.mux_guard_expr %}
+            if ({{ sig.mux_guard_expr }})
+            {
+                g_{{ sig.flat_name }} = ({{ sig.backing_c_type }}){{ bus.name | lower }}_{{ msg.name | lower }}_{{ sig.name | lower }}_decode(payload.{{ sig.name | lower }});
+            }
+            {%- else %}
+            g_{{ sig.flat_name }} = ({{ sig.backing_c_type }}){{ bus.name | lower }}_{{ msg.name | lower }}_{{ sig.name | lower }}_decode(payload.{{ sig.name | lower }});
+            {%- endif %}
+            {%- endfor %}
+        }
+        break;
+    }
+    {%- endfor %}
+
+    default:
+        // Unhandled frame ID on {{ bus.name }}
+        break;
+    }
+}
+{% endfor %}

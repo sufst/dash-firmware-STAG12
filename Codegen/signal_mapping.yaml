@@ -1,0 +1,17 @@
+CAN_T:
+  VCU_STATE:
+    vcu_rolling_counter: "vcu_rolling_counter"
+    vcu_ctrl_state: "vcu_ctrl_state"
+  BMS_PACK_STATE:
+    bms_pack_inst_voltage: "bms_pack_inst_voltage"
+    bms_pack_current: "bms_pack_current"
+  PDM_IN_VOLTAGE:
+    pdm_input_10_voltage: "pdm_input_10_voltage"
+  PM100_INTERNAL_STATES:
+    pm100_vsm_state: "pm100_vsm_state"
+CAN_S:
+  WHEEL_SPEEDS:
+    wheel_fl_speed: "wheel_fl_speed"
+    wheel_fr_speed: "wheel_fr_speed"
+    wheel_rl_speed: "wheel_rl_speed"
+    wheel_rr_speed: "wheel_rr_speed"

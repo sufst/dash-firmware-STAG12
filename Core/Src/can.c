@@ -21,21 +21,7 @@
 #include "can.h"
 
 /* USER CODE BEGIN 0 */
-#include "cmsis_os2.h"
-#include "rtcan.h"
-
-#ifndef CAN_BUS_S_THREAD_PRIORITY
-#define CAN_BUS_S_THREAD_PRIORITY ((uint32_t) osPriorityAboveNormal)
-#endif
-#ifndef CAN_BUS_T_THREAD_PRIORITY
-#define CAN_BUS_T_THREAD_PRIORITY ((uint32_t) osPriorityAboveNormal)
-#endif
-#ifndef CAN_BUS_TX_THREAD_STACK_SIZE
-#define CAN_BUS_TX_THREAD_STACK_SIZE (512U * 4U)
-#endif
-#ifndef CAN_BUS_RX_THREAD_STACK_SIZE
-#define CAN_BUS_RX_THREAD_STACK_SIZE (512U * 4U)
-#endif
+#include "can_rx_handlers.h"
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan1;
@@ -54,14 +40,14 @@ void MX_CAN1_Init(void)
   /* USER CODE END CAN1_Init 1 */
   hcan1.Instance = CAN1;
   hcan1.Init.Prescaler = 3;
-  hcan1.Init.Mode = CAN_MODE_NORMAL;
-  hcan1.Init.SyncJumpWidth = CAN_SJW_2TQ;
-  hcan1.Init.TimeSeg1 = CAN_BS1_15TQ;
-  hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
+  hcan1.Init.Mode = CAN_MODE_SILENT;
+  hcan1.Init.SyncJumpWidth = CAN_SJW_4TQ;
+  hcan1.Init.TimeSeg1 = CAN_BS1_14TQ;
+  hcan1.Init.TimeSeg2 = CAN_BS2_3TQ;
   hcan1.Init.TimeTriggeredMode = DISABLE;
   hcan1.Init.AutoBusOff = DISABLE;
   hcan1.Init.AutoWakeUp = DISABLE;
-  hcan1.Init.AutoRetransmission = DISABLE;
+  hcan1.Init.AutoRetransmission = ENABLE;
   hcan1.Init.ReceiveFifoLocked = DISABLE;
   hcan1.Init.TransmitFifoPriority = DISABLE;
   if (HAL_CAN_Init(&hcan1) != HAL_OK)
@@ -86,7 +72,7 @@ void MX_CAN2_Init(void)
   /* USER CODE END CAN2_Init 1 */
   hcan2.Instance = CAN2;
   hcan2.Init.Prescaler = 6;
-  hcan2.Init.Mode = CAN_MODE_NORMAL;
+  hcan2.Init.Mode = CAN_MODE_SILENT;
   hcan2.Init.SyncJumpWidth = CAN_SJW_2TQ;
   hcan2.Init.TimeSeg1 = CAN_BS1_15TQ;
   hcan2.Init.TimeSeg2 = CAN_BS2_2TQ;
@@ -251,23 +237,18 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 #define CAN_BUS_CAN2_FILTER_BANK        14U
 #define CAN_BUS_SLAVE_START_FILTER_BANK 14U
 
-rtcan_handle_t can_bus_rtcan_s;
-rtcan_handle_t can_bus_rtcan_t;
-
-static rtcan_status_t init_one_bus(rtcan_handle_t *rtcan_h,
-                                   CAN_HandleTypeDef *hcan,
-                                   uint32_t thread_priority)
+static HAL_StatusTypeDef init_one_bus(CAN_HandleTypeDef *hcan)
 {
-    if ((rtcan_h == NULL) || (hcan == NULL))
+    if (hcan == NULL)
     {
-        return RTCAN_ERROR;
+        return HAL_ERROR;
     }
 
     const uint32_t filter_bank = (hcan->Instance == CAN1)
                                       ? CAN_BUS_CAN1_FILTER_BANK
                                       : CAN_BUS_CAN2_FILTER_BANK;
 
-    const CAN_FilterTypeDef filter = {
+    CAN_FilterTypeDef filter = {
         .FilterIdHigh = 0x0000,
         .FilterIdLow = 0x0000,
         .FilterMaskIdHigh = 0x0000,
@@ -280,82 +261,52 @@ static rtcan_status_t init_one_bus(rtcan_handle_t *rtcan_h,
         .SlaveStartFilterBank = CAN_BUS_SLAVE_START_FILTER_BANK,
     };
 
-    const rtcan_config_t config = {
-        .thread_priority = thread_priority,
-        .tx_thread_stack_size = CAN_BUS_TX_THREAD_STACK_SIZE,
-        .rx_thread_stack_size = CAN_BUS_RX_THREAD_STACK_SIZE,
-        .tx_thread_stack_mem = NULL,
-        .rx_thread_stack_mem = NULL,
-        .filters = &filter,
-        .filter_count = 1U,
-    };
-
-    rtcan_status_t status = rtcan_init(rtcan_h, hcan, &config);
-    if (status == RTCAN_OK)
+    HAL_StatusTypeDef status = HAL_CAN_ConfigFilter(hcan, &filter);
+    if (status == HAL_OK)
     {
-        status = rtcan_start(rtcan_h);
+        status = HAL_CAN_Start(hcan);
+    }
+    if (status == HAL_OK)
+    {
+        status = HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
     }
     return status;
 }
 
-rtcan_status_t can_bus_init(CAN_HandleTypeDef *can_s_h, CAN_HandleTypeDef *can_t_h)
+HAL_StatusTypeDef can_bus_init(CAN_HandleTypeDef *can_s_h, CAN_HandleTypeDef *can_t_h)
 {
     if ((can_s_h == NULL) || (can_t_h == NULL) || (can_s_h->Instance == can_t_h->Instance))
     {
-        return RTCAN_ERROR;
+        return HAL_ERROR;
     }
 
-    rtcan_status_t s_status = init_one_bus(&can_bus_rtcan_s, can_s_h, CAN_BUS_S_THREAD_PRIORITY);
-    rtcan_status_t t_status = init_one_bus(&can_bus_rtcan_t, can_t_h, CAN_BUS_T_THREAD_PRIORITY);
+    HAL_StatusTypeDef s_status = init_one_bus(can_s_h);
+    HAL_StatusTypeDef t_status = init_one_bus(can_t_h);
 
-    return ((s_status == RTCAN_OK) && (t_status == RTCAN_OK)) ? RTCAN_OK : RTCAN_ERROR;
+    return ((s_status == HAL_OK) && (t_status == HAL_OK)) ? HAL_OK : HAL_ERROR;
 }
-
-uint32_t can_bus_get_error(void)
-{
-    uint32_t s_err = rtcan_get_error(&can_bus_rtcan_s);
-    uint32_t t_err = rtcan_get_error(&can_bus_rtcan_t);
-    return (s_err & 0x0000FFFFU) | ((t_err & 0x0000FFFFU) << 16);
-}
-
-static rtcan_handle_t *dispatch_target(const CAN_HandleTypeDef *hcan)
-{
-    if (hcan == NULL) return NULL;
-    if (hcan == can_bus_rtcan_s.hcan) return &can_bus_rtcan_s;
-    if (hcan == can_bus_rtcan_t.hcan) return &can_bus_rtcan_t;
-    return NULL;
-}
-
-static void handle_tx_event(CAN_HandleTypeDef *hcan)
-{
-    rtcan_handle_t *rtcan_h = dispatch_target(hcan);
-    if (rtcan_h != NULL) (void) rtcan_handle_tx_mailbox_callback(rtcan_h, hcan);
-}
-
-void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan) { handle_tx_event(hcan); }
-void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan) { handle_tx_event(hcan); }
-void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan) { handle_tx_event(hcan); }
-
-void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef *hcan) { handle_tx_event(hcan); }
-void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef *hcan) { handle_tx_event(hcan); }
-void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan) { handle_tx_event(hcan); }
 
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
-    rtcan_handle_t *rtcan_h = dispatch_target(hcan);
-    if (rtcan_h != NULL) (void) rtcan_handle_rx_it(rtcan_h, hcan, CAN_RX_FIFO0);
-}
+    CAN_RxHeaderTypeDef header;
+    uint8_t data[8];
 
-void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-    rtcan_handle_t *rtcan_h = dispatch_target(hcan);
-    if (rtcan_h != NULL) (void) rtcan_handle_rx_it(rtcan_h, hcan, CAN_RX_FIFO1);
-}
+    if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &header, data) != HAL_OK)
+    {
+        return;
+    }
 
-void HAL_CAN_ErrorCallback(CAN_HandleTypeDef *hcan)
-{
-    rtcan_handle_t *rtcan_h = dispatch_target(hcan);
-    if (rtcan_h != NULL) (void) rtcan_handle_hal_error(rtcan_h, hcan);
+    const uint32_t id = (header.IDE == CAN_ID_STD) ? header.StdId : header.ExtId;
+
+    /* CAN1 = bus S, CAN2 = bus T */
+    if (hcan == &hcan1)
+    {
+        can_s_handle_rx_message(id, data, header.DLC);
+    }
+    else if (hcan == &hcan2)
+    {
+        can_t_handle_rx_message(id, data, header.DLC);
+    }
 }
 
 /* USER CODE END 1 */

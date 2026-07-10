@@ -1,4 +1,6 @@
-# .gitignore
 build/
 .vscode/
-.mxprojec/
+.mxproject
+__pycache__
+Codegen/.venv
+*.bin

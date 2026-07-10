@@ -1,8 +1,10 @@
 {
   "navigation": {
-    "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/1",
+    "selectedUserPageObject": "[Stag12.eez-project]:/userPages/0",
+    "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/9",
+    "selectedBitmapObject": "[Stag12.eez-project]:/bitmaps/0",
     "subnavigationSelectedItems": {
-      "variables-tab/sub-navigation/selected-item": "Global"
+      "variables-tab/sub-navigation/selected-item": "Actions"
     }
   },
   "layoutModel": {
@@ -23,7 +25,8 @@
           },
           {
             "type": "border",
-            "size": 240,
+            "selected": 2,
+            "size": 87.5,
             "location": "right",
             "children": [
               {
@@ -79,6 +82,7 @@
           {
             "type": "border",
             "selected": 0,
+            "size": 150.09375,
             "location": "bottom",
             "children": [
               {
@@ -125,7 +129,7 @@
             {
               "type": "row",
               "id": "#ef6275d2-2245-473f-90ea-02ba0eb071d7",
-              "weight": 15,
+              "weight": 26.08175473579262,
               "children": [
                 {
                   "type": "tabset",
@@ -196,10 +200,23 @@
             {
               "type": "tabset",
               "id": "EDITORS",
-              "weight": 65,
+              "weight": 48.888833781301656,
+              "selected": 1,
               "enableDeleteWhenEmpty": false,
               "enableClose": false,
               "children": [
+                {
+                  "type": "tab",
+                  "id": "#c4cdaa74-10f8-4a95-b218-ec8a4a6ada8f",
+                  "name": "Settings",
+                  "component": "editor",
+                  "config": {
+                    "objectPath": "[Stag12.eez-project]:/settings",
+                    "subObjectPath": "[Stag12.eez-project]:/settings",
+                    "permanent": false
+                  },
+                  "icon": "material:settings"
+                },
                 {
                   "type": "tab",
                   "id": "#40b98cea-1be6-4d9d-aff9-ef8a28a2bdd3",
@@ -217,12 +234,12 @@
             {
               "type": "row",
               "id": "#c5601e25-a50d-4ed0-bb8c-3081c6aefe67",
-              "weight": 20,
+              "weight": 25.029411482905715,
               "children": [
                 {
                   "type": "tabset",
                   "id": "#69efb16a-d9e1-410d-aaaa-5bf80dac3f9f",
-                  "weight": 2,
+                  "weight": 1.7845659163987138,
                   "children": [
                     {
                       "type": "tab",
@@ -237,7 +254,7 @@
                 {
                   "type": "tabset",
                   "id": "#22d07ad3-54ba-4a70-928a-90c45775f228",
-                  "weight": 1,
+                  "weight": 1.2154340836012862,
                   "children": [
                     {
                       "type": "tab",
@@ -452,10 +469,21 @@
               "type": "tabset",
               "id": "RUNTIME-EDITORS",
               "weight": 1,
-              "selected": -1,
               "enableDeleteWhenEmpty": false,
               "enableClose": false,
-              "children": []
+              "children": [
+                {
+                  "type": "tab",
+                  "id": "#b4cd7177-ae48-4892-a0e8-a174a7aa21d4",
+                  "name": "Main",
+                  "component": "editor",
+                  "config": {
+                    "objectPath": "[Stag12.eez-project]:/userPages/0",
+                    "permanent": false
+                  },
+                  "icon": "svg:page"
+                }
+              ]
             },
             {
               "type": "row",
@@ -484,7 +512,8 @@
                       "enableClose": false,
                       "icon": "svg:breakpoints_panel"
                     }
-                  ]
+                  ],
+                  "active": true
                 },
                 {
                   "type": "tabset",
@@ -562,7 +591,8 @@
                       "enableClose": false,
                       "icon": "svg:log"
                     }
-                  ]
+                  ],
+                  "active": true
                 },
                 {
                   "type": "tabset",
@@ -623,7 +653,8 @@
                       "component": "bitmaps",
                       "enableClose": false
                     }
-                  ]
+                  ],
+                  "active": true
                 },
                 {
                   "type": "tabset",
@@ -1066,10 +1097,10 @@
       },
       "transform": {
         "translate": {
-          "x": -400,
-          "y": -40.83334312438964
+          "x": -128.74954405495146,
+          "y": -131.2458828178343
         },
-        "scale": 1
+        "scale": 0.75
       },
       "timeline": {
         "isEditorActive": false,
@@ -1085,6 +1116,7 @@
   "searchMatchWholeWord": false,
   "replaceEnabled": false,
   "replaceText": "",
+  "pageRuntimeFrontFace": false,
   "breakpoints": {},
   "watchExpressions": [],
   "showComponentDescriptions": true,
@@ -1095,6 +1127,7 @@
   "lvglExpandedPropertiesGroup": [],
   "showInactiveFlowsInDebugger": true,
   "globalFlowZoom": true,
-  "flowZoom": 1,
-  "implementationLanguage": "C"
+  "flowZoom": 0.75,
+  "implementationLanguage": "C",
+  "openDialogDefaultPath": "C:\\Users\\Martin\\Downloads\\stag-5.png"
 }
