@@ -38,6 +38,20 @@ extern const char *get_var_vcu_ctrl_state();
 extern void set_var_vcu_ctrl_state(const char *value);
 extern const char *get_var_pm100_vsm_state();
 extern void set_var_pm100_vsm_state(const char *value);
+extern double get_var_vcu_sagl();
+extern void set_var_vcu_sagl(double value);
+extern double get_var_vcu_apps();
+extern void set_var_vcu_apps(double value);
+extern double get_var_vcu_bps();
+extern void set_var_vcu_bps(double value);
+extern double get_var_pm100_module_a();
+extern void set_var_pm100_module_a(double value);
+extern double get_var_pm100_module_b();
+extern void set_var_pm100_module_b(double value);
+extern double get_var_pm100_module_c();
+extern void set_var_pm100_module_c(double value);
+extern double get_var_pm100_gate_driver_board();
+extern void set_var_pm100_gate_driver_board(double value);
 
 #ifdef __cplusplus
 }

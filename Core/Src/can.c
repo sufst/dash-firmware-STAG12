@@ -21,6 +21,9 @@
 #include "can.h"
 
 /* USER CODE BEGIN 0 */
+#include <stdbool.h>
+
+#include "cmsis_os.h"
 #include "can_rx_handlers.h"
 /* USER CODE END 0 */
 
@@ -286,27 +289,71 @@ HAL_StatusTypeDef can_bus_init(CAN_HandleTypeDef *can_s_h, CAN_HandleTypeDef *ca
     return ((s_status == HAL_OK) && (t_status == HAL_OK)) ? HAL_OK : HAL_ERROR;
 }
 
+/* Decoding a frame runs cantools unpack/decode math and then touches the
+   shared g_* telemetry globals -- keep that off the ISR (bounded IRQ time,
+   no risk of blocking other interrupts) and out of the same execution
+   context that get_var_*() reads from. The ISR only copies the raw frame
+   into this queue; canRXTask (see freertos.c) does the actual decode. */
+typedef struct
+{
+    void (*handler)(uint32_t id, const uint8_t *data, uint8_t length);
+    uint32_t id;
+    uint8_t data[8];
+    uint8_t length;
+} can_rx_frame_t;
+
+#define CAN_RX_QUEUE_DEPTH 32U
+
+static osMessageQueueId_t can_rx_queue = NULL;
+
+void can_rx_queue_init(void)
+{
+    can_rx_queue = osMessageQueueNew(CAN_RX_QUEUE_DEPTH, sizeof(can_rx_frame_t), NULL);
+}
+
+bool can_rx_process_pending(uint32_t timeout_ms)
+{
+    can_rx_frame_t frame;
+
+    if ((can_rx_queue == NULL) || (osMessageQueueGet(can_rx_queue, &frame, NULL, timeout_ms) != osOK))
+    {
+        return false;
+    }
+
+    frame.handler(frame.id, frame.data, frame.length);
+    return true;
+}
+
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
     CAN_RxHeaderTypeDef header;
-    uint8_t data[8];
+    can_rx_frame_t frame;
 
-    if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &header, data) != HAL_OK)
+    if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &header, frame.data) != HAL_OK)
     {
         return;
     }
 
-    const uint32_t id = (header.IDE == CAN_ID_STD) ? header.StdId : header.ExtId;
+    frame.id = (header.IDE == CAN_ID_STD) ? header.StdId : header.ExtId;
+    frame.length = header.DLC;
 
     /* CAN1 = bus S, CAN2 = bus T */
     if (hcan == &hcan1)
     {
-        can_s_handle_rx_message(id, data, header.DLC);
+        frame.handler = can_s_handle_rx_message;
     }
     else if (hcan == &hcan2)
     {
-        can_t_handle_rx_message(id, data, header.DLC);
+        frame.handler = can_t_handle_rx_message;
     }
+    else
+    {
+        return;
+    }
+
+    /* Best-effort: if canRXTask has fallen behind and the queue is full,
+       drop the frame rather than block the ISR. */
+    (void) osMessageQueuePut(can_rx_queue, &frame, 0, 0);
 }
 
 /* USER CODE END 1 */

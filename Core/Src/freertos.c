@@ -25,6 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdbool.h>
+
 #include "can.h"
 #include "ltdc.h"
 #include "ui.h"
@@ -67,7 +69,7 @@ osThreadId_t canRXTaskHandle;
 const osThreadAttr_t canRXTask_attributes = {
   .name = "canRXTask",
   .stack_size = 2048 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,6 +122,8 @@ static void dash_lvgl_flush_cb(lv_disp_drv_t *disp_drv, const lv_area_t *area, l
 
 /* Implemented in can.c; not declared in can.h to keep can.h HAL-callback-free */
 HAL_StatusTypeDef can_bus_init(CAN_HandleTypeDef *can_s_h, CAN_HandleTypeDef *can_t_h);
+void can_rx_queue_init(void);
+bool can_rx_process_pending(uint32_t timeout_ms);
 
 /* USER CODE END FunctionPrototypes */
 
@@ -151,7 +155,10 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_TIMERS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
+  /* Must exist before osKernelStart() -- the CAN RX ISR (see can.c) can start
+     pushing frames onto it as soon as can_bus_init() enables interrupts,
+     which happens from StartDefaultTask() right after the scheduler starts. */
+  can_rx_queue_init();
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -231,7 +238,7 @@ void StartTask02(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    can_rx_process_pending(osWaitForever);
   }
   /* USER CODE END StartTask02 */
 }

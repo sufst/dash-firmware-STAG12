@@ -1,10 +1,10 @@
 {
   "navigation": {
     "selectedUserPageObject": "[Stag12.eez-project]:/userPages/0",
-    "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/9",
-    "selectedBitmapObject": "[Stag12.eez-project]:/bitmaps/0",
+    "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/13",
+    "selectedBitmapObject": "[Stag12.eez-project]:/bitmaps/1",
     "subnavigationSelectedItems": {
-      "variables-tab/sub-navigation/selected-item": "Actions"
+      "variables-tab/sub-navigation/selected-item": "Global"
     }
   },
   "layoutModel": {
@@ -25,8 +25,7 @@
           },
           {
             "type": "border",
-            "selected": 2,
-            "size": 87.5,
+            "size": 272.5,
             "location": "right",
             "children": [
               {
@@ -68,21 +67,13 @@
                 "component": "lvgl-groups",
                 "enableClose": false,
                 "icon": "material:view_compact"
-              },
-              {
-                "type": "tab",
-                "id": "BREAKPOINTS_PALETTE",
-                "name": "Breakpoints",
-                "component": "breakpointsPanel",
-                "enableClose": false,
-                "icon": "svg:breakpoints_panel"
               }
             ]
           },
           {
             "type": "border",
             "selected": 0,
-            "size": 150.09375,
+            "size": 88.09375,
             "location": "bottom",
             "children": [
               {
@@ -129,7 +120,7 @@
             {
               "type": "row",
               "id": "#ef6275d2-2245-473f-90ea-02ba0eb071d7",
-              "weight": 26.08175473579262,
+              "weight": 23.0319524656184,
               "children": [
                 {
                   "type": "tabset",
@@ -166,7 +157,7 @@
                 {
                   "type": "tabset",
                   "id": "#c9381802-d387-4ae8-b642-da60f379765c",
-                  "weight": 1,
+                  "weight": 0.9836956521739131,
                   "enableClose": false,
                   "children": [
                     {
@@ -182,7 +173,7 @@
                 {
                   "type": "tabset",
                   "id": "#1ee6a451-f74a-4a5e-a839-83f430d840e1",
-                  "weight": 1,
+                  "weight": 1.016304347826087,
                   "enableClose": false,
                   "children": [
                     {
@@ -200,7 +191,7 @@
             {
               "type": "tabset",
               "id": "EDITORS",
-              "weight": 48.888833781301656,
+              "weight": 47.73288699396277,
               "selected": 1,
               "enableDeleteWhenEmpty": false,
               "enableClose": false,
@@ -234,12 +225,12 @@
             {
               "type": "row",
               "id": "#c5601e25-a50d-4ed0-bb8c-3081c6aefe67",
-              "weight": 25.029411482905715,
+              "weight": 29.235160540418825,
               "children": [
                 {
                   "type": "tabset",
                   "id": "#69efb16a-d9e1-410d-aaaa-5bf80dac3f9f",
-                  "weight": 1.7845659163987138,
+                  "weight": 1.3756476683937824,
                   "children": [
                     {
                       "type": "tab",
@@ -254,7 +245,7 @@
                 {
                   "type": "tabset",
                   "id": "#22d07ad3-54ba-4a70-928a-90c45775f228",
-                  "weight": 1.2154340836012862,
+                  "weight": 1.6243523316062176,
                   "children": [
                     {
                       "type": "tab",
@@ -263,6 +254,14 @@
                       "component": "componentsPalette",
                       "enableClose": false,
                       "icon": "svg:components"
+                    },
+                    {
+                      "type": "tab",
+                      "id": "BREAKPOINTS_PALETTE",
+                      "name": "Breakpoints",
+                      "component": "breakpointsPanel",
+                      "enableClose": false,
+                      "icon": "svg:breakpoints_panel"
                     }
                   ]
                 }
@@ -483,7 +482,8 @@
                   },
                   "icon": "svg:page"
                 }
-              ]
+              ],
+              "active": true
             },
             {
               "type": "row",
@@ -512,8 +512,7 @@
                       "enableClose": false,
                       "icon": "svg:breakpoints_panel"
                     }
-                  ],
-                  "active": true
+                  ]
                 },
                 {
                   "type": "tabset",
@@ -1093,19 +1092,21 @@
     "[Stag12.eez-project]:/userPages/0[flow-state]": {
       "selectionFront": {},
       "selectionBack": {
-        "0": {}
+        "0": {
+          "4": {}
+        }
       },
       "transform": {
         "translate": {
-          "x": -128.74954405495146,
-          "y": -131.2458828178343
+          "x": -318.7392889448881,
+          "y": -142.19804250864203
         },
         "scale": 0.75
       },
       "timeline": {
         "isEditorActive": false,
-        "position": 0,
-        "secondToPx": 200,
+        "position": 1,
+        "secondToPx": 48,
         "scrollLeft": 0
       }
     }
@@ -1116,18 +1117,21 @@
   "searchMatchWholeWord": false,
   "replaceEnabled": false,
   "replaceText": "",
-  "pageRuntimeFrontFace": false,
+  "pageRuntimeFrontFace": true,
   "breakpoints": {},
   "watchExpressions": [],
   "showComponentDescriptions": true,
   "logsPanelFilter": "all",
   "selectedStylePropertyName": "",
-  "lvglPart": "MAIN",
+  "lvglPart": "SCROLLBAR",
   "lvglState": "DEFAULT",
-  "lvglExpandedPropertiesGroup": [],
+  "lvglExpandedPropertiesGroup": [
+    "TEXT",
+    "MARGIN"
+  ],
   "showInactiveFlowsInDebugger": true,
   "globalFlowZoom": true,
   "flowZoom": 0.75,
   "implementationLanguage": "C",
-  "openDialogDefaultPath": "C:\\Users\\Martin\\Downloads\\stag-5.png"
+  "openDialogDefaultPath": "C:\\Users\\Martin\\Downloads\\Screenshot 2026-07-11 at 01-04-14 Southampton University Formula Student Team.png"
 }

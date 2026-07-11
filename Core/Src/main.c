@@ -108,6 +108,15 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+  HAL_GPIO_WritePin(BACKLIGHT_PWM_GPIO_Port, BACKLIGHT_PWM_Pin, GPIO_PIN_RESET);
+  GPIO_InitTypeDef backlight_early_init = {0};
+  backlight_early_init.Pin = BACKLIGHT_PWM_Pin;
+  backlight_early_init.Mode = GPIO_MODE_OUTPUT_PP;
+  backlight_early_init.Pull = GPIO_NOPULL;
+  backlight_early_init.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(BACKLIGHT_PWM_GPIO_Port, &backlight_early_init);
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -131,13 +140,10 @@ int main(void)
   HAL_GPIO_WritePin(LCD_DISP_EN_GPIO_Port, LCD_DISP_EN_Pin, GPIO_PIN_SET);
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   GPIO_InitStruct.Pin = BACKLIGHT_PWM_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(BACKLIGHT_PWM_GPIO_Port, &GPIO_InitStruct);
-  // Hold HIGH for 2ms to permanently lock the TPS61165 into PWM mode
   HAL_GPIO_WritePin(BACKLIGHT_PWM_GPIO_Port, BACKLIGHT_PWM_Pin, GPIO_PIN_SET);
-  HAL_Delay(2);
+  HAL_Delay(5);
   // Start the Timer in the background to configure brightness
   // (Assuming your Period is set to 10799 in tim.c, 5% is ~540)
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 1800);

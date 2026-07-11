@@ -3,6 +3,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "FreeRTOS.h"
+#include "task.h"
+
 /* Include your generated cantools headers */
 #include "can_t.h"
 #include "can_s.h"
@@ -29,16 +32,22 @@ static {{ sig.backing_c_type }} g_{{ sig.flat_name }} = {{ sig.zero_literal }};
 // Getter for {{ sig.flat_name }}
 {{ sig.accessor_c_type }} get_var_{{ sig.flat_name }}(void)
 {
+    {{ sig.backing_c_type }} value;
+
+    taskENTER_CRITICAL();
+    value = g_{{ sig.flat_name }};
+    taskEXIT_CRITICAL();
+
 {%- if sig.choices %}
-    switch (g_{{ sig.flat_name }})
+    switch (value)
     {
-        {%- for value, label in sig.choices %}
-    case {{ value }}: return "{{ label }}";
+        {%- for choice_value, label in sig.choices %}
+    case {{ choice_value }}: return "{{ label }}";
         {%- endfor %}
     default: return "Unknown";
     }
 {%- else %}
-    return g_{{ sig.flat_name }};
+    return value;
 {%- endif %}
 }
 
@@ -69,6 +78,7 @@ void {{ bus.name | lower }}_handle_rx_message(uint32_t id, const uint8_t *data, 
         struct {{ bus.name | lower }}_{{ msg.name | lower }}_t payload;
         if ({{ bus.name | lower }}_{{ msg.name | lower }}_unpack(&payload, data, length) == 0)
         {
+            taskENTER_CRITICAL();
             {%- for sig in msg.signals %}
             {%- if sig.mux_guard_expr %}
             if ({{ sig.mux_guard_expr }})
@@ -79,6 +89,7 @@ void {{ bus.name | lower }}_handle_rx_message(uint32_t id, const uint8_t *data, 
             g_{{ sig.flat_name }} = ({{ sig.backing_c_type }}){{ bus.name | lower }}_{{ msg.name | lower }}_{{ sig.name | lower }}_decode(payload.{{ sig.name | lower }});
             {%- endif %}
             {%- endfor %}
+            taskEXIT_CRITICAL();
         }
         break;
     }

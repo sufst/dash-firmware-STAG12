@@ -3,6 +3,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "FreeRTOS.h"
+#include "task.h"
+
 /* Include your generated cantools headers */
 #include "can_t.h"
 #include "can_s.h"
@@ -18,11 +21,18 @@ static double g_bms_pack_inst_voltage = 0.0;
 static double g_bms_pack_current = 0.0;
 static double g_pdm_input_10_voltage = 0.0;
 static int32_t g_pm100_vsm_state = 0;
+static double g_pm100_module_a = 0.0;
+static double g_pm100_module_b = 0.0;
+static double g_pm100_module_c = 0.0;
+static double g_pm100_gate_driver_board = 0.0;
 
 static double g_wheel_fl_speed = 0.0;
 static double g_wheel_fr_speed = 0.0;
 static double g_wheel_rl_speed = 0.0;
 static double g_wheel_rr_speed = 0.0;
+static double g_vcu_sagl = 0.0;
+static double g_vcu_apps = 0.0;
+static double g_vcu_bps = 0.0;
 
 
 /* ==================================================================== */
@@ -33,7 +43,12 @@ static double g_wheel_rr_speed = 0.0;
 // Getter for vcu_rolling_counter
 int32_t get_var_vcu_rolling_counter(void)
 {
-    return g_vcu_rolling_counter;
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_rolling_counter;
+    taskEXIT_CRITICAL();
+    return value;
 }
 
 // Setter for vcu_rolling_counter (No-op for read-only telemetry)
@@ -44,7 +59,12 @@ void set_var_vcu_rolling_counter(int32_t value)
 // Getter for vcu_ctrl_state
 const char * get_var_vcu_ctrl_state(void)
 {
-    switch (g_vcu_ctrl_state)
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_ctrl_state;
+    taskEXIT_CRITICAL();
+    switch (value)
     {
     case 0: return "TS Button Wait";
     case 1: return "Wait Neg AIR";
@@ -74,7 +94,12 @@ void set_var_vcu_ctrl_state(const char * value)
 // Getter for bms_pack_inst_voltage
 double get_var_bms_pack_inst_voltage(void)
 {
-    return g_bms_pack_inst_voltage;
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_bms_pack_inst_voltage;
+    taskEXIT_CRITICAL();
+    return value;
 }
 
 // Setter for bms_pack_inst_voltage (No-op for read-only telemetry)
@@ -85,7 +110,12 @@ void set_var_bms_pack_inst_voltage(double value)
 // Getter for bms_pack_current
 double get_var_bms_pack_current(void)
 {
-    return g_bms_pack_current;
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_bms_pack_current;
+    taskEXIT_CRITICAL();
+    return value;
 }
 
 // Setter for bms_pack_current (No-op for read-only telemetry)
@@ -96,7 +126,12 @@ void set_var_bms_pack_current(double value)
 // Getter for pdm_input_10_voltage
 double get_var_pdm_input_10_voltage(void)
 {
-    return g_pdm_input_10_voltage;
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_pdm_input_10_voltage;
+    taskEXIT_CRITICAL();
+    return value;
 }
 
 // Setter for pdm_input_10_voltage (No-op for read-only telemetry)
@@ -107,7 +142,12 @@ void set_var_pdm_input_10_voltage(double value)
 // Getter for pm100_vsm_state
 const char * get_var_pm100_vsm_state(void)
 {
-    switch (g_pm100_vsm_state)
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_pm100_vsm_state;
+    taskEXIT_CRITICAL();
+    switch (value)
     {
     case 0: return "VSM Start State";
     case 1: return "Pre-Charge Init state";
@@ -128,11 +168,80 @@ void set_var_pm100_vsm_state(const char * value)
 {
     (void)value;
 }
+// Getter for pm100_module_a
+double get_var_pm100_module_a(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_pm100_module_a;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for pm100_module_a (No-op for read-only telemetry)
+void set_var_pm100_module_a(double value)
+{
+    (void)value;
+}
+// Getter for pm100_module_b
+double get_var_pm100_module_b(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_pm100_module_b;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for pm100_module_b (No-op for read-only telemetry)
+void set_var_pm100_module_b(double value)
+{
+    (void)value;
+}
+// Getter for pm100_module_c
+double get_var_pm100_module_c(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_pm100_module_c;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for pm100_module_c (No-op for read-only telemetry)
+void set_var_pm100_module_c(double value)
+{
+    (void)value;
+}
+// Getter for pm100_gate_driver_board
+double get_var_pm100_gate_driver_board(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_pm100_gate_driver_board;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for pm100_gate_driver_board (No-op for read-only telemetry)
+void set_var_pm100_gate_driver_board(double value)
+{
+    (void)value;
+}
 
 // Getter for wheel_fl_speed
 double get_var_wheel_fl_speed(void)
 {
-    return g_wheel_fl_speed;
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_wheel_fl_speed;
+    taskEXIT_CRITICAL();
+    return value;
 }
 
 // Setter for wheel_fl_speed (No-op for read-only telemetry)
@@ -143,7 +252,12 @@ void set_var_wheel_fl_speed(double value)
 // Getter for wheel_fr_speed
 double get_var_wheel_fr_speed(void)
 {
-    return g_wheel_fr_speed;
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_wheel_fr_speed;
+    taskEXIT_CRITICAL();
+    return value;
 }
 
 // Setter for wheel_fr_speed (No-op for read-only telemetry)
@@ -154,7 +268,12 @@ void set_var_wheel_fr_speed(double value)
 // Getter for wheel_rl_speed
 double get_var_wheel_rl_speed(void)
 {
-    return g_wheel_rl_speed;
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_wheel_rl_speed;
+    taskEXIT_CRITICAL();
+    return value;
 }
 
 // Setter for wheel_rl_speed (No-op for read-only telemetry)
@@ -165,11 +284,64 @@ void set_var_wheel_rl_speed(double value)
 // Getter for wheel_rr_speed
 double get_var_wheel_rr_speed(void)
 {
-    return g_wheel_rr_speed;
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_wheel_rr_speed;
+    taskEXIT_CRITICAL();
+    return value;
 }
 
 // Setter for wheel_rr_speed (No-op for read-only telemetry)
 void set_var_wheel_rr_speed(double value)
+{
+    (void)value;
+}
+// Getter for vcu_sagl
+double get_var_vcu_sagl(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_sagl;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_sagl (No-op for read-only telemetry)
+void set_var_vcu_sagl(double value)
+{
+    (void)value;
+}
+// Getter for vcu_apps
+double get_var_vcu_apps(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_apps;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_apps (No-op for read-only telemetry)
+void set_var_vcu_apps(double value)
+{
+    (void)value;
+}
+// Getter for vcu_bps
+double get_var_vcu_bps(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_bps;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_bps (No-op for read-only telemetry)
+void set_var_vcu_bps(double value)
 {
     (void)value;
 }
@@ -192,8 +364,10 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         struct can_t_vcu_state_t payload;
         if (can_t_vcu_state_unpack(&payload, data, length) == 0)
         {
+            taskENTER_CRITICAL();
             g_vcu_rolling_counter = (int32_t)can_t_vcu_state_vcu_rolling_counter_decode(payload.vcu_rolling_counter);
             g_vcu_ctrl_state = (int32_t)can_t_vcu_state_vcu_ctrl_state_decode(payload.vcu_ctrl_state);
+            taskEXIT_CRITICAL();
         }
         break;
     }
@@ -202,8 +376,10 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         struct can_t_bms_pack_state_t payload;
         if (can_t_bms_pack_state_unpack(&payload, data, length) == 0)
         {
+            taskENTER_CRITICAL();
             g_bms_pack_inst_voltage = (double)can_t_bms_pack_state_bms_pack_inst_voltage_decode(payload.bms_pack_inst_voltage);
             g_bms_pack_current = (double)can_t_bms_pack_state_bms_pack_current_decode(payload.bms_pack_current);
+            taskEXIT_CRITICAL();
         }
         break;
     }
@@ -212,10 +388,12 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         struct can_t_pdm_in_voltage_t payload;
         if (can_t_pdm_in_voltage_unpack(&payload, data, length) == 0)
         {
+            taskENTER_CRITICAL();
             if (payload.pdm_in_voltage_compound_id == 1)
             {
                 g_pdm_input_10_voltage = (double)can_t_pdm_in_voltage_pdm_input_10_voltage_decode(payload.pdm_input_10_voltage);
             }
+            taskEXIT_CRITICAL();
         }
         break;
     }
@@ -224,7 +402,23 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         struct can_t_pm100_internal_states_t payload;
         if (can_t_pm100_internal_states_unpack(&payload, data, length) == 0)
         {
+            taskENTER_CRITICAL();
             g_pm100_vsm_state = (int32_t)can_t_pm100_internal_states_pm100_vsm_state_decode(payload.pm100_vsm_state);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_T_PM100_TEMPERATURE_SET_1_FRAME_ID:
+    {
+        struct can_t_pm100_temperature_set_1_t payload;
+        if (can_t_pm100_temperature_set_1_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_pm100_module_a = (double)can_t_pm100_temperature_set_1_pm100_module_a_decode(payload.pm100_module_a);
+            g_pm100_module_b = (double)can_t_pm100_temperature_set_1_pm100_module_b_decode(payload.pm100_module_b);
+            g_pm100_module_c = (double)can_t_pm100_temperature_set_1_pm100_module_c_decode(payload.pm100_module_c);
+            g_pm100_gate_driver_board = (double)can_t_pm100_temperature_set_1_pm100_gate_driver_board_decode(payload.pm100_gate_driver_board);
+            taskEXIT_CRITICAL();
         }
         break;
     }
@@ -247,10 +441,25 @@ void can_s_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         struct can_s_wheel_speeds_t payload;
         if (can_s_wheel_speeds_unpack(&payload, data, length) == 0)
         {
+            taskENTER_CRITICAL();
             g_wheel_fl_speed = (double)can_s_wheel_speeds_wheel_fl_speed_decode(payload.wheel_fl_speed);
             g_wheel_fr_speed = (double)can_s_wheel_speeds_wheel_fr_speed_decode(payload.wheel_fr_speed);
             g_wheel_rl_speed = (double)can_s_wheel_speeds_wheel_rl_speed_decode(payload.wheel_rl_speed);
             g_wheel_rr_speed = (double)can_s_wheel_speeds_wheel_rr_speed_decode(payload.wheel_rr_speed);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_S_VCU_SENSORS_FRAME_ID:
+    {
+        struct can_s_vcu_sensors_t payload;
+        if (can_s_vcu_sensors_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_vcu_sagl = (double)can_s_vcu_sensors_vcu_sagl_decode(payload.vcu_sagl);
+            g_vcu_apps = (double)can_s_vcu_sensors_vcu_apps_decode(payload.vcu_apps);
+            g_vcu_bps = (double)can_s_vcu_sensors_vcu_bps_decode(payload.vcu_bps);
+            taskEXIT_CRITICAL();
         }
         break;
     }

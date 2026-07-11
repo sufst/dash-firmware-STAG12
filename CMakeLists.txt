@@ -92,6 +92,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     eez-Stag12/src/ui/images.c
     eez-Stag12/src/ui/ui.c
     eez-Stag12/src/ui/ui_image_stag.c
+    eez-Stag12/src/ui/ui_image_background.c
     eez-Stag12/src/ui/eez-flow.cpp
     SUFST/Src/can_rx_handlers.c
 )
@@ -125,13 +126,12 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 )
 
 # `cmake --build <dir> --target flash`
-# builds first if stale, converts the ELF to a raw binary, then programs it over ST-Link via st-flash
-set(FLASH_BIN_FILE ${CMAKE_PROJECT_NAME}.bin)
+# builds first if stale, then programs the ELF directly over ST-Link via OpenOCD (program + verify + reset + run)
 add_custom_target(flash
-    COMMAND ${CMAKE_OBJCOPY} -O binary "$<TARGET_FILE:${CMAKE_PROJECT_NAME}>" ${FLASH_BIN_FILE}
-    COMMAND st-flash write ${FLASH_BIN_FILE} 0x8000000
+    COMMAND openocd -f interface/stlink.cfg -f target/stm32f7x.cfg
+            -c "program $<TARGET_FILE:${CMAKE_PROJECT_NAME}> verify reset exit"
     DEPENDS ${CMAKE_PROJECT_NAME}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    COMMENT "Flashing ${CMAKE_PROJECT_NAME} via st-flash/ST-Link"
+    COMMENT "Flashing ${CMAKE_PROJECT_NAME} via OpenOCD/ST-Link"
     USES_TERMINAL
 )

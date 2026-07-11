@@ -1,3 +1,4 @@
+# Map of Bus -> Signal -> EEZ studio variable name
 CAN_T:
   VCU_STATE:
     vcu_rolling_counter: "vcu_rolling_counter"
@@ -9,9 +10,18 @@ CAN_T:
     pdm_input_10_voltage: "pdm_input_10_voltage"
   PM100_INTERNAL_STATES:
     pm100_vsm_state: "pm100_vsm_state"
+  PM100_Temperature_Set_1:
+    pm100_module_a: "pm100_module_a"
+    pm100_module_b: "pm100_module_b"
+    pm100_module_c: "pm100_module_c"
+    pm100_gate_driver_board: "pm100_gate_driver_board"
 CAN_S:
   WHEEL_SPEEDS:
     wheel_fl_speed: "wheel_fl_speed"
     wheel_fr_speed: "wheel_fr_speed"
     wheel_rl_speed: "wheel_rl_speed"
     wheel_rr_speed: "wheel_rr_speed"
+  VCU_Sensors:
+    vcu_sagl: "vcu_sagl"
+    vcu_apps: "vcu_apps"
+    vcu_bps: "vcu_bps"
