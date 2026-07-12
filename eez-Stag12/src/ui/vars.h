@@ -58,6 +58,10 @@ extern int32_t get_var_bms_high_temperature();
 extern void set_var_bms_high_temperature(int32_t value);
 extern int32_t get_var_bms_average_temperature();
 extern void set_var_bms_average_temperature(int32_t value);
+extern const char *get_var_vcu_current_mode();
+extern void set_var_vcu_current_mode(const char *value);
+extern const char *get_var_vcu_requested_mode();
+extern void set_var_vcu_requested_mode(const char *value);
 
 #ifdef __cplusplus
 }

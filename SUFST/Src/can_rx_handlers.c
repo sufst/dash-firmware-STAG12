@@ -17,6 +17,8 @@
 
 static int32_t g_vcu_rolling_counter = 0;
 static int32_t g_vcu_ctrl_state = 0;
+static int32_t g_vcu_current_mode = 0;
+static int32_t g_vcu_requested_mode = 0;
 static double g_bms_pack_inst_voltage = 0.0;
 static double g_bms_pack_current = 0.0;
 static double g_pdm_input_10_voltage = 0.0;
@@ -91,6 +93,68 @@ const char * get_var_vcu_ctrl_state(void)
 
 // Setter for vcu_ctrl_state (No-op for read-only telemetry)
 void set_var_vcu_ctrl_state(const char * value)
+{
+    (void)value;
+}
+// Getter for vcu_current_mode
+const char * get_var_vcu_current_mode(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_current_mode;
+    taskEXIT_CRITICAL();
+    switch (value)
+    {
+    case 0: return "Endurance";
+    case 1: return "Max";
+    case 2: return "Torque_Ctrl";
+    case 3: return "Undefined";
+    case 4: return "Undefined";
+    case 5: return "Undefined";
+    case 6: return "Undefined";
+    case 7: return "Undefined";
+    case 8: return "Crawl";
+    case 9: return "Reverse";
+    case 10: return "Undefined";
+    case 11: return "Inverter_Prog";
+    default: return "Unknown";
+    }
+}
+
+// Setter for vcu_current_mode (No-op for read-only telemetry)
+void set_var_vcu_current_mode(const char * value)
+{
+    (void)value;
+}
+// Getter for vcu_requested_mode
+const char * get_var_vcu_requested_mode(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_requested_mode;
+    taskEXIT_CRITICAL();
+    switch (value)
+    {
+    case 0: return "Endurance";
+    case 1: return "Max";
+    case 2: return "Torque_Ctrl";
+    case 3: return "Undefined";
+    case 4: return "Undefined";
+    case 5: return "Undefined";
+    case 6: return "Undefined";
+    case 7: return "Undefined";
+    case 8: return "Crawl";
+    case 9: return "Reverse";
+    case 10: return "Undefined";
+    case 11: return "Inverter_Prog";
+    default: return "Unknown";
+    }
+}
+
+// Setter for vcu_requested_mode (No-op for read-only telemetry)
+void set_var_vcu_requested_mode(const char * value)
 {
     (void)value;
 }
@@ -418,6 +482,8 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
             taskENTER_CRITICAL();
             g_vcu_rolling_counter = (int32_t)can_t_vcu_state_vcu_rolling_counter_decode(payload.vcu_rolling_counter);
             g_vcu_ctrl_state = (int32_t)can_t_vcu_state_vcu_ctrl_state_decode(payload.vcu_ctrl_state);
+            g_vcu_current_mode = (int32_t)can_t_vcu_state_vcu_current_mode_decode(payload.vcu_current_mode);
+            g_vcu_requested_mode = (int32_t)can_t_vcu_state_vcu_requested_mode_decode(payload.vcu_requested_mode);
             taskEXIT_CRITICAL();
         }
         break;

@@ -37,6 +37,10 @@ typedef struct _objects_t {
     lv_obj_t *inverter_temp_8;
     lv_obj_t *inverter_temp_9;
     lv_obj_t *inverter_temp_10;
+    lv_obj_t *pdm_12;
+    lv_obj_t *pdm_13;
+    lv_obj_t *wheel_fl_2;
+    lv_obj_t *wheel_fl_3;
 } objects_t;
 
 extern objects_t objects;

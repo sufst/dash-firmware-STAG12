@@ -3,6 +3,8 @@ CAN_T:
   VCU_STATE:
     vcu_rolling_counter: "vcu_rolling_counter"
     vcu_ctrl_state: "vcu_ctrl_state"
+    vcu_current_mode: "vcu_current_mode"
+    vcu_requested_mode: "vcu_requested_mode"
   BMS_PACK_STATE:
     bms_pack_inst_voltage: "bms_pack_inst_voltage"
     bms_pack_current: "bms_pack_current"

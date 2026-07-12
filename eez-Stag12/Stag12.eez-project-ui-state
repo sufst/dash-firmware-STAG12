@@ -1,7 +1,7 @@
 {
   "navigation": {
     "selectedUserPageObject": "[Stag12.eez-project]:/userPages/0",
-    "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/13",
+    "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/9",
     "selectedBitmapObject": "[Stag12.eez-project]:/bitmaps/1",
     "subnavigationSelectedItems": {
       "variables-tab/sub-navigation/selected-item": "Global"
@@ -25,6 +25,7 @@
           },
           {
             "type": "border",
+            "selected": 2,
             "size": 272.5,
             "location": "right",
             "children": [
@@ -219,7 +220,8 @@
                   },
                   "icon": "svg:page"
                 }
-              ]
+              ],
+              "active": true
             },
             {
               "type": "row",
@@ -239,8 +241,7 @@
                       "enableClose": false,
                       "icon": "svg:properties"
                     }
-                  ],
-                  "active": true
+                  ]
                 },
                 {
                   "type": "tabset",
@@ -1093,18 +1094,16 @@
       "selectionFront": {},
       "selectionBack": {
         "0": {
-          "4": {},
-          "20": {
-            "$selected": true
-          }
+          "0": {},
+          "4": {}
         }
       },
       "transform": {
         "translate": {
-          "x": -257.71993118821683,
-          "y": -202.25042265337302
+          "x": -270.03262353822953,
+          "y": -49.10875398875885
         },
-        "scale": 0.75
+        "scale": 0.67
       },
       "timeline": {
         "isEditorActive": false,
@@ -1136,7 +1135,7 @@
   ],
   "showInactiveFlowsInDebugger": true,
   "globalFlowZoom": true,
-  "flowZoom": 0.75,
+  "flowZoom": 0.67,
   "implementationLanguage": "C",
   "openDialogDefaultPath": "C:\\Users\\Martin\\Downloads\\Screenshot 2026-07-11 at 01-04-14 Southampton University Formula Student Team.png"
 }
