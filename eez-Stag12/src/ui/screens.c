@@ -30,7 +30,7 @@ static void event_handler_cb_main_obj0(lv_event_t *e) {
         lv_obj_t *ta = lv_event_get_target(e);
         if (tick_value_change_obj != ta) {
             int32_t value = lv_arc_get_value(ta);
-            assignIntegerProperty(flowState, 5, 3, value, "Failed to assign Value in Arc widget");
+            assignIntegerProperty(flowState, 4, 3, value, "Failed to assign Value in Arc widget");
         }
     }
 }
@@ -48,16 +48,9 @@ void create_screen_main() {
     lv_obj_set_size(obj, 800, 480);
     lv_obj_set_style_bg_color(obj, lv_color_hex(0x003ca2), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(obj, 0, LV_PART_SCROLLBAR | LV_STATE_DEFAULT);
+    lv_obj_set_style_blend_mode(obj, LV_BLEND_MODE_NORMAL, LV_PART_SCROLLBAR | LV_STATE_DEFAULT);
     {
         lv_obj_t *parent_obj = obj;
-        {
-            lv_obj_t *obj = lv_img_create(parent_obj);
-            lv_obj_set_pos(obj, 0, 0);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_img_set_src(obj, &img_background);
-            lv_img_set_pivot(obj, 0, 0);
-            lv_img_set_zoom(obj, 168);
-        }
         {
             // pdm_10
             lv_obj_t *obj = lv_label_create(parent_obj);
@@ -348,7 +341,7 @@ void tick_screen_main() {
     void *flowState = getFlowState(0, 0);
     (void)flowState;
     {
-        const char *new_val = evalTextProperty(flowState, 2, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 0, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.pdm_10);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.pdm_10;
@@ -357,7 +350,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 3, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 2, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.vcu_state);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.vcu_state;
@@ -366,7 +359,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 4, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 3, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.inv_state);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.inv_state;
@@ -375,7 +368,7 @@ void tick_screen_main() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 5, 3, "Failed to evaluate Value in Arc widget");
+        int32_t new_val = evalIntegerProperty(flowState, 4, 3, "Failed to evaluate Value in Arc widget");
         int32_t cur_val = lv_arc_get_value(objects.obj0);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.obj0;
@@ -384,7 +377,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 6, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 5, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.wheel_fl);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.wheel_fl;
@@ -393,7 +386,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 8, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 7, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.pdm_11);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.pdm_11;
@@ -402,7 +395,7 @@ void tick_screen_main() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 9, 3, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 8, 3, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.apps);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.apps;
@@ -411,7 +404,7 @@ void tick_screen_main() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 10, 3, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 9, 3, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.bps);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.bps;
@@ -420,7 +413,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 11, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 10, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.inverter_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.inverter_temp;
@@ -429,7 +422,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 12, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 11, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.inverter_temp_1);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.inverter_temp_1;
@@ -438,7 +431,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 19, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 18, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.inverter_temp_8);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.inverter_temp_8;
@@ -447,7 +440,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 20, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 19, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.inverter_temp_9);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.inverter_temp_9;
@@ -456,7 +449,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 21, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 20, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.inverter_temp_10);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.inverter_temp_10;
@@ -465,7 +458,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 22, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 21, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.pdm_12);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.pdm_12;
@@ -474,7 +467,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 23, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 22, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.pdm_13);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.pdm_13;
@@ -483,7 +476,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 25, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 24, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.wheel_fl_3);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.wheel_fl_3;

@@ -296,56 +296,6 @@
           "heightUnit": "px",
           "children": [
             {
-              "objID": "3ef6a52a-9cb1-4cfe-f645-d7c06f70585c",
-              "type": "LVGLImageWidget",
-              "left": 0,
-              "top": 0,
-              "width": 1219,
-              "height": 731,
-              "customInputs": [],
-              "customOutputs": [],
-              "style": {
-                "objID": "6d8e9b06-7402-4286-b3e3-d4465537e13c",
-                "useStyle": "default",
-                "conditionalStyles": [],
-                "childStyles": []
-              },
-              "locked": true,
-              "timeline": [],
-              "eventHandlers": [],
-              "leftUnit": "px",
-              "topUnit": "px",
-              "widthUnit": "content",
-              "heightUnit": "content",
-              "children": [],
-              "widgetFlags": "ADV_HITTEST|CLICK_FOCUSABLE|GESTURE_BUBBLE|PRESS_LOCK|SCROLLABLE|SCROLL_CHAIN_HOR|SCROLL_CHAIN_VER|SCROLL_ELASTIC|SCROLL_MOMENTUM|SCROLL_WITH_ARROW|SNAPPABLE",
-              "hiddenFlagType": "literal",
-              "clickableFlagType": "literal",
-              "flagScrollbarMode": "",
-              "flagScrollDirection": "",
-              "scrollSnapX": "",
-              "scrollSnapY": "",
-              "checkedStateType": "literal",
-              "disabledStateType": "literal",
-              "states": "",
-              "localStyles": {
-                "objID": "9cc18a24-371f-4569-f232-1b94cd68619f"
-              },
-              "group": "",
-              "groupIndex": 0,
-              "image": "background",
-              "setPivot": true,
-              "pivotX": 0,
-              "pivotY": 0,
-              "zoom": 168,
-              "angle": 0,
-              "innerAlign": "CENTER",
-              "sizeMode": "VIRTUAL",
-              "value": 0,
-              "valueType": "literal",
-              "previewValue": 0
-            },
-            {
               "objID": "d44bc6a1-be02-4da9-a723-ce451f03298e",
               "type": "LVGLLabelWidget",
               "left": -22,
@@ -1692,7 +1642,8 @@
               },
               "SCROLLBAR": {
                 "DEFAULT": {
-                  "bg_opa": 0
+                  "bg_opa": 0,
+                  "blend_mode": "NORMAL"
                 }
               }
             }
