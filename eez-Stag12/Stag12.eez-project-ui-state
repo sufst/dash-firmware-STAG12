@@ -73,7 +73,7 @@
           {
             "type": "border",
             "selected": 0,
-            "size": 88.09375,
+            "size": 10.09375,
             "location": "bottom",
             "children": [
               {
@@ -219,8 +219,7 @@
                   },
                   "icon": "svg:page"
                 }
-              ],
-              "active": true
+              ]
             },
             {
               "type": "row",
@@ -230,7 +229,7 @@
                 {
                   "type": "tabset",
                   "id": "#69efb16a-d9e1-410d-aaaa-5bf80dac3f9f",
-                  "weight": 1.3756476683937824,
+                  "weight": 2.5745062836624775,
                   "children": [
                     {
                       "type": "tab",
@@ -240,12 +239,13 @@
                       "enableClose": false,
                       "icon": "svg:properties"
                     }
-                  ]
+                  ],
+                  "active": true
                 },
                 {
                   "type": "tabset",
                   "id": "#22d07ad3-54ba-4a70-928a-90c45775f228",
-                  "weight": 1.6243523316062176,
+                  "weight": 0.4254937163375224,
                   "children": [
                     {
                       "type": "tab",
@@ -1093,13 +1093,16 @@
       "selectionFront": {},
       "selectionBack": {
         "0": {
-          "4": {}
+          "4": {},
+          "20": {
+            "$selected": true
+          }
         }
       },
       "transform": {
         "translate": {
-          "x": -318.7392889448881,
-          "y": -142.19804250864203
+          "x": -257.71993118821683,
+          "y": -202.25042265337302
         },
         "scale": 0.75
       },
@@ -1127,7 +1130,9 @@
   "lvglState": "DEFAULT",
   "lvglExpandedPropertiesGroup": [
     "TEXT",
-    "MARGIN"
+    "MARGIN",
+    "POSITION AND SIZE",
+    "MISCELLANEOUS"
   ],
   "showInactiveFlowsInDebugger": true,
   "globalFlowZoom": true,

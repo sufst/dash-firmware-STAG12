@@ -15,6 +15,11 @@ CAN_T:
     pm100_module_b: "pm100_module_b"
     pm100_module_c: "pm100_module_c"
     pm100_gate_driver_board: "pm100_gate_driver_board"
+  PM100_Temperature_Set_3:
+    pm100_motor_temperature: "pm100_motor_temperature"
+  BMS_Cell_State:
+    bms_high_temperature: "bms_high_temperature"
+    bms_average_temperature: "bms_average_temperature"
 CAN_S:
   WHEEL_SPEEDS:
     wheel_fl_speed: "wheel_fl_speed"

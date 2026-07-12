@@ -52,6 +52,12 @@ extern double get_var_pm100_module_c();
 extern void set_var_pm100_module_c(double value);
 extern double get_var_pm100_gate_driver_board();
 extern void set_var_pm100_gate_driver_board(double value);
+extern double get_var_pm100_motor_temperature();
+extern void set_var_pm100_motor_temperature(double value);
+extern int32_t get_var_bms_high_temperature();
+extern void set_var_bms_high_temperature(int32_t value);
+extern int32_t get_var_bms_average_temperature();
+extern void set_var_bms_average_temperature(int32_t value);
 
 #ifdef __cplusplus
 }

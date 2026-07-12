@@ -25,6 +25,9 @@ static double g_pm100_module_a = 0.0;
 static double g_pm100_module_b = 0.0;
 static double g_pm100_module_c = 0.0;
 static double g_pm100_gate_driver_board = 0.0;
+static double g_pm100_motor_temperature = 0.0;
+static int32_t g_bms_high_temperature = 0;
+static int32_t g_bms_average_temperature = 0;
 
 static double g_wheel_fl_speed = 0.0;
 static double g_wheel_fr_speed = 0.0;
@@ -232,6 +235,54 @@ void set_var_pm100_gate_driver_board(double value)
 {
     (void)value;
 }
+// Getter for pm100_motor_temperature
+double get_var_pm100_motor_temperature(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_pm100_motor_temperature;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for pm100_motor_temperature (No-op for read-only telemetry)
+void set_var_pm100_motor_temperature(double value)
+{
+    (void)value;
+}
+// Getter for bms_high_temperature
+int32_t get_var_bms_high_temperature(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_bms_high_temperature;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for bms_high_temperature (No-op for read-only telemetry)
+void set_var_bms_high_temperature(int32_t value)
+{
+    (void)value;
+}
+// Getter for bms_average_temperature
+int32_t get_var_bms_average_temperature(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_bms_average_temperature;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for bms_average_temperature (No-op for read-only telemetry)
+void set_var_bms_average_temperature(int32_t value)
+{
+    (void)value;
+}
 
 // Getter for wheel_fl_speed
 double get_var_wheel_fl_speed(void)
@@ -418,6 +469,29 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
             g_pm100_module_b = (double)can_t_pm100_temperature_set_1_pm100_module_b_decode(payload.pm100_module_b);
             g_pm100_module_c = (double)can_t_pm100_temperature_set_1_pm100_module_c_decode(payload.pm100_module_c);
             g_pm100_gate_driver_board = (double)can_t_pm100_temperature_set_1_pm100_gate_driver_board_decode(payload.pm100_gate_driver_board);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_T_PM100_TEMPERATURE_SET_3_FRAME_ID:
+    {
+        struct can_t_pm100_temperature_set_3_t payload;
+        if (can_t_pm100_temperature_set_3_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_pm100_motor_temperature = (double)can_t_pm100_temperature_set_3_pm100_motor_temperature_decode(payload.pm100_motor_temperature);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_T_BMS_CELL_STATE_FRAME_ID:
+    {
+        struct can_t_bms_cell_state_t payload;
+        if (can_t_bms_cell_state_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_bms_high_temperature = (int32_t)can_t_bms_cell_state_bms_high_temperature_decode(payload.bms_high_temperature);
+            g_bms_average_temperature = (int32_t)can_t_bms_cell_state_bms_average_temperature_decode(payload.bms_average_temperature);
             taskEXIT_CRITICAL();
         }
         break;
