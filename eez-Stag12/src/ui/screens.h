@@ -17,7 +17,7 @@ enum ScreensEnum {
 
 typedef struct _objects_t {
     lv_obj_t *main;
-    lv_obj_t *pdm_10;
+    lv_obj_t *lvbox_pwr;
     lv_obj_t *vcu_state;
     lv_obj_t *inv_state;
     lv_obj_t *obj0;
@@ -41,6 +41,15 @@ typedef struct _objects_t {
     lv_obj_t *pdm_13;
     lv_obj_t *wheel_fl_2;
     lv_obj_t *wheel_fl_3;
+    lv_obj_t *wheel_fl_4;
+    lv_obj_t *obj1;
+    lv_obj_t *inverter_temp_11;
+    lv_obj_t *obj2;
+    lv_obj_t *inverter_temp_12;
+    lv_obj_t *obj3;
+    lv_obj_t *inverter_temp_13;
+    lv_obj_t *obj4;
+    lv_obj_t *inverter_temp_14;
 } objects_t;
 
 extern objects_t objects;

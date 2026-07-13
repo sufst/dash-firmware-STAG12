@@ -22,6 +22,12 @@ CAN_T:
   BMS_Cell_State:
     bms_high_temperature: "bms_high_temperature"
     bms_average_temperature: "bms_average_temperature"
+  VCU_PDM:
+    inverter: "inverter"
+    brakelight: "brakelight"
+    pump: "pump"
+    fan: "fan"
+
 CAN_S:
   WHEEL_SPEEDS:
     wheel_fl_speed: "wheel_fl_speed"
@@ -32,3 +38,5 @@ CAN_S:
     vcu_sagl: "vcu_sagl"
     vcu_apps: "vcu_apps"
     vcu_bps: "vcu_bps"
+  LV_Box_Analog:
+    lvbox_pwr: "lvbox_pwr"

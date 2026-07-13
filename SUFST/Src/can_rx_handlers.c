@@ -30,6 +30,10 @@ static double g_pm100_gate_driver_board = 0.0;
 static double g_pm100_motor_temperature = 0.0;
 static int32_t g_bms_high_temperature = 0;
 static int32_t g_bms_average_temperature = 0;
+static bool g_inverter = false;
+static bool g_brakelight = false;
+static bool g_pump = false;
+static bool g_fan = false;
 
 static double g_wheel_fl_speed = 0.0;
 static double g_wheel_fr_speed = 0.0;
@@ -38,6 +42,7 @@ static double g_wheel_rr_speed = 0.0;
 static double g_vcu_sagl = 0.0;
 static double g_vcu_apps = 0.0;
 static double g_vcu_bps = 0.0;
+static double g_lvbox_pwr = 0.0;
 
 
 /* ==================================================================== */
@@ -106,18 +111,16 @@ const char * get_var_vcu_current_mode(void)
     taskEXIT_CRITICAL();
     switch (value)
     {
-    case 0: return "Endurance";
-    case 1: return "Max";
-    case 2: return "Torque_Ctrl";
-    case 3: return "Undefined";
-    case 4: return "Undefined";
-    case 5: return "Undefined";
+    case 1: return "Endurance";
+    case 2: return "Max";
+    case 3: return "Torque_Ctrl";
+    case 4: return "Crawl";
+    case 5: return "Reverse";
     case 6: return "Undefined";
     case 7: return "Undefined";
-    case 8: return "Crawl";
-    case 9: return "Reverse";
-    case 10: return "Undefined";
-    case 11: return "Inverter_Prog";
+    case 8: return "Undefined";
+    case 9: return "Undefined";
+    case 10: return "Inverter_Prog";
     default: return "Unknown";
     }
 }
@@ -137,18 +140,16 @@ const char * get_var_vcu_requested_mode(void)
     taskEXIT_CRITICAL();
     switch (value)
     {
-    case 0: return "Endurance";
-    case 1: return "Max";
-    case 2: return "Torque_Ctrl";
-    case 3: return "Undefined";
-    case 4: return "Undefined";
-    case 5: return "Undefined";
+    case 1: return "Endurance";
+    case 2: return "Max";
+    case 3: return "Torque_Ctrl";
+    case 4: return "Crawl";
+    case 5: return "Reverse";
     case 6: return "Undefined";
     case 7: return "Undefined";
-    case 8: return "Crawl";
-    case 9: return "Reverse";
-    case 10: return "Undefined";
-    case 11: return "Inverter_Prog";
+    case 8: return "Undefined";
+    case 9: return "Undefined";
+    case 10: return "Inverter_Prog";
     default: return "Unknown";
     }
 }
@@ -347,6 +348,70 @@ void set_var_bms_average_temperature(int32_t value)
 {
     (void)value;
 }
+// Getter for inverter
+bool get_var_inverter(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_inverter;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for inverter (No-op for read-only telemetry)
+void set_var_inverter(bool value)
+{
+    (void)value;
+}
+// Getter for brakelight
+bool get_var_brakelight(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_brakelight;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for brakelight (No-op for read-only telemetry)
+void set_var_brakelight(bool value)
+{
+    (void)value;
+}
+// Getter for pump
+bool get_var_pump(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_pump;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for pump (No-op for read-only telemetry)
+void set_var_pump(bool value)
+{
+    (void)value;
+}
+// Getter for fan
+bool get_var_fan(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_fan;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for fan (No-op for read-only telemetry)
+void set_var_fan(bool value)
+{
+    (void)value;
+}
 
 // Getter for wheel_fl_speed
 double get_var_wheel_fl_speed(void)
@@ -460,6 +525,22 @@ void set_var_vcu_bps(double value)
 {
     (void)value;
 }
+// Getter for lvbox_pwr
+double get_var_lvbox_pwr(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_lvbox_pwr;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for lvbox_pwr (No-op for read-only telemetry)
+void set_var_lvbox_pwr(double value)
+{
+    (void)value;
+}
 
 
 /* ==================================================================== */
@@ -562,6 +643,20 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         }
         break;
     }
+    case CAN_T_VCU_PDM_FRAME_ID:
+    {
+        struct can_t_vcu_pdm_t payload;
+        if (can_t_vcu_pdm_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_inverter = (bool)can_t_vcu_pdm_inverter_decode(payload.inverter);
+            g_brakelight = (bool)can_t_vcu_pdm_brakelight_decode(payload.brakelight);
+            g_pump = (bool)can_t_vcu_pdm_pump_decode(payload.pump);
+            g_fan = (bool)can_t_vcu_pdm_fan_decode(payload.fan);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
 
     default:
         // Unhandled frame ID on CAN_T
@@ -599,6 +694,17 @@ void can_s_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
             g_vcu_sagl = (double)can_s_vcu_sensors_vcu_sagl_decode(payload.vcu_sagl);
             g_vcu_apps = (double)can_s_vcu_sensors_vcu_apps_decode(payload.vcu_apps);
             g_vcu_bps = (double)can_s_vcu_sensors_vcu_bps_decode(payload.vcu_bps);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_S_LV_BOX_ANALOG_FRAME_ID:
+    {
+        struct can_s_lv_box_analog_t payload;
+        if (can_s_lv_box_analog_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_lvbox_pwr = (double)can_s_lv_box_analog_lvbox_pwr_decode(payload.lvbox_pwr);
             taskEXIT_CRITICAL();
         }
         break;

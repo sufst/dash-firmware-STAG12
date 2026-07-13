@@ -4,7 +4,7 @@
     "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/9",
     "selectedBitmapObject": "[Stag12.eez-project]:/bitmaps/1",
     "subnavigationSelectedItems": {
-      "variables-tab/sub-navigation/selected-item": "Global"
+      "variables-tab/sub-navigation/selected-item": "Widgets"
     }
   },
   "layoutModel": {
@@ -158,7 +158,7 @@
                 {
                   "type": "tabset",
                   "id": "#c9381802-d387-4ae8-b642-da60f379765c",
-                  "weight": 0.9836956521739131,
+                  "weight": 0,
                   "enableClose": false,
                   "children": [
                     {
@@ -174,7 +174,7 @@
                 {
                   "type": "tabset",
                   "id": "#1ee6a451-f74a-4a5e-a839-83f430d840e1",
-                  "weight": 1.016304347826087,
+                  "weight": 2,
                   "enableClose": false,
                   "children": [
                     {
@@ -231,7 +231,7 @@
                 {
                   "type": "tabset",
                   "id": "#69efb16a-d9e1-410d-aaaa-5bf80dac3f9f",
-                  "weight": 2.5745062836624775,
+                  "weight": 2.725984251968504,
                   "children": [
                     {
                       "type": "tab",
@@ -246,7 +246,7 @@
                 {
                   "type": "tabset",
                   "id": "#22d07ad3-54ba-4a70-928a-90c45775f228",
-                  "weight": 0.4254937163375224,
+                  "weight": 0.2740157480314961,
                   "children": [
                     {
                       "type": "tab",
@@ -1095,13 +1095,13 @@
       "selectionBack": {
         "0": {
           "0": {},
-          "4": {}
+          "3": {}
         }
       },
       "transform": {
         "translate": {
-          "x": -270.03262353822953,
-          "y": -49.10875398875885
+          "x": -260.5365843295309,
+          "y": -191.75867122437657
         },
         "scale": 0.67
       },
@@ -1125,13 +1125,14 @@
   "showComponentDescriptions": true,
   "logsPanelFilter": "all",
   "selectedStylePropertyName": "",
-  "lvglPart": "SCROLLBAR",
-  "lvglState": "DEFAULT",
+  "lvglPart": "MAIN",
+  "lvglState": "CHECKED",
   "lvglExpandedPropertiesGroup": [
     "TEXT",
     "MARGIN",
     "POSITION AND SIZE",
-    "MISCELLANEOUS"
+    "MISCELLANEOUS",
+    "BACKGROUND"
   ],
   "showInactiveFlowsInDebugger": true,
   "globalFlowZoom": true,

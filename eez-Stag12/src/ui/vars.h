@@ -62,6 +62,16 @@ extern const char *get_var_vcu_current_mode();
 extern void set_var_vcu_current_mode(const char *value);
 extern const char *get_var_vcu_requested_mode();
 extern void set_var_vcu_requested_mode(const char *value);
+extern double get_var_lvbox_pwr();
+extern void set_var_lvbox_pwr(double value);
+extern bool get_var_inverter();
+extern void set_var_inverter(bool value);
+extern bool get_var_brakelight();
+extern void set_var_brakelight(bool value);
+extern bool get_var_pump();
+extern void set_var_pump(bool value);
+extern bool get_var_fan();
+extern void set_var_fan(bool value);
 
 #ifdef __cplusplus
 }
