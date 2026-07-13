@@ -116,7 +116,7 @@ const char * get_var_vcu_current_mode(void)
     case 3: return "Torque_Ctrl";
     case 4: return "Crawl";
     case 5: return "Reverse";
-    case 6: return "Undefined";
+    case 6: return "Remote_Ctrl";
     case 7: return "Undefined";
     case 8: return "Undefined";
     case 9: return "Undefined";
@@ -145,7 +145,7 @@ const char * get_var_vcu_requested_mode(void)
     case 3: return "Torque_Ctrl";
     case 4: return "Crawl";
     case 5: return "Reverse";
-    case 6: return "Undefined";
+    case 6: return "Remote_Ctrl";
     case 7: return "Undefined";
     case 8: return "Undefined";
     case 9: return "Undefined";

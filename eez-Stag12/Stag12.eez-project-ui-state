@@ -1,10 +1,10 @@
 {
   "navigation": {
     "selectedUserPageObject": "[Stag12.eez-project]:/userPages/0",
-    "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/9",
+    "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/23",
     "selectedBitmapObject": "[Stag12.eez-project]:/bitmaps/1",
     "subnavigationSelectedItems": {
-      "variables-tab/sub-navigation/selected-item": "Widgets"
+      "variables-tab/sub-navigation/selected-item": "Global"
     }
   },
   "layoutModel": {
@@ -231,7 +231,7 @@
                 {
                   "type": "tabset",
                   "id": "#69efb16a-d9e1-410d-aaaa-5bf80dac3f9f",
-                  "weight": 2.725984251968504,
+                  "weight": 1.3795275590551181,
                   "children": [
                     {
                       "type": "tab",
@@ -246,7 +246,7 @@
                 {
                   "type": "tabset",
                   "id": "#22d07ad3-54ba-4a70-928a-90c45775f228",
-                  "weight": 0.2740157480314961,
+                  "weight": 1.6204724409448819,
                   "children": [
                     {
                       "type": "tab",
