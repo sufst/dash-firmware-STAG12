@@ -2,7 +2,7 @@
   "navigation": {
     "selectedUserPageObject": "[Stag12.eez-project]:/userPages/0",
     "selectedGlobalVariableObject": "[Stag12.eez-project]:/variables/globalVariables/23",
-    "selectedBitmapObject": "[Stag12.eez-project]:/bitmaps/1",
+    "selectedBitmapObject": "[Stag12.eez-project]:/bitmaps/0",
     "subnavigationSelectedItems": {
       "variables-tab/sub-navigation/selected-item": "Global"
     }
@@ -153,7 +153,8 @@
                       "enableClose": false,
                       "icon": "material:code"
                     }
-                  ]
+                  ],
+                  "active": true
                 },
                 {
                   "type": "tabset",
@@ -220,8 +221,7 @@
                   },
                   "icon": "svg:page"
                 }
-              ],
-              "active": true
+              ]
             },
             {
               "type": "row",
@@ -1100,10 +1100,10 @@
       },
       "transform": {
         "translate": {
-          "x": -260.5365843295309,
-          "y": -191.75867122437657
+          "x": -272.0599982076061,
+          "y": -505.35641349727877
         },
-        "scale": 0.67
+        "scale": 0.75
       },
       "timeline": {
         "isEditorActive": false,
@@ -1126,17 +1126,19 @@
   "logsPanelFilter": "all",
   "selectedStylePropertyName": "",
   "lvglPart": "MAIN",
-  "lvglState": "CHECKED",
+  "lvglState": "DEFAULT",
   "lvglExpandedPropertiesGroup": [
     "TEXT",
     "MARGIN",
     "POSITION AND SIZE",
     "MISCELLANEOUS",
-    "BACKGROUND"
+    "BACKGROUND",
+    "IMAGE",
+    "BORDER"
   ],
   "showInactiveFlowsInDebugger": true,
   "globalFlowZoom": true,
-  "flowZoom": 0.67,
+  "flowZoom": 0.75,
   "implementationLanguage": "C",
   "openDialogDefaultPath": "C:\\Users\\Martin\\Downloads\\Screenshot 2026-07-11 at 01-04-14 Southampton University Formula Student Team.png"
 }

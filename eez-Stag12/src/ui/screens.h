@@ -33,7 +33,6 @@ typedef struct _objects_t {
     lv_obj_t *inverter_temp_4;
     lv_obj_t *inverter_temp_5;
     lv_obj_t *inverter_temp_6;
-    lv_obj_t *inverter_temp_7;
     lv_obj_t *inverter_temp_8;
     lv_obj_t *inverter_temp_9;
     lv_obj_t *inverter_temp_10;
@@ -50,6 +49,8 @@ typedef struct _objects_t {
     lv_obj_t *inverter_temp_13;
     lv_obj_t *obj4;
     lv_obj_t *inverter_temp_14;
+    lv_obj_t *obj5;
+    lv_obj_t *obj6;
 } objects_t;
 
 extern objects_t objects;

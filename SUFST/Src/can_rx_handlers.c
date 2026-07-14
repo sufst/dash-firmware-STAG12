@@ -34,6 +34,7 @@ static bool g_inverter = false;
 static bool g_brakelight = false;
 static bool g_pump = false;
 static bool g_fan = false;
+static double g_pdm_battery_voltage = 0.0;
 
 static double g_wheel_fl_speed = 0.0;
 static double g_wheel_fr_speed = 0.0;
@@ -412,6 +413,22 @@ void set_var_fan(bool value)
 {
     (void)value;
 }
+// Getter for pdm_battery_voltage
+double get_var_pdm_battery_voltage(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_pdm_battery_voltage;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for pdm_battery_voltage (No-op for read-only telemetry)
+void set_var_pdm_battery_voltage(double value)
+{
+    (void)value;
+}
 
 // Getter for wheel_fl_speed
 double get_var_wheel_fl_speed(void)
@@ -653,6 +670,20 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
             g_brakelight = (bool)can_t_vcu_pdm_brakelight_decode(payload.brakelight);
             g_pump = (bool)can_t_vcu_pdm_pump_decode(payload.pump);
             g_fan = (bool)can_t_vcu_pdm_fan_decode(payload.fan);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_T_PDM_STATE_FRAME_ID:
+    {
+        struct can_t_pdm_state_t payload;
+        if (can_t_pdm_state_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            if (payload.pdm_state_compound_id == 3)
+            {
+                g_pdm_battery_voltage = (double)can_t_pdm_state_pdm_battery_voltage_decode(payload.pdm_battery_voltage);
+            }
             taskEXIT_CRITICAL();
         }
         break;

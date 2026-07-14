@@ -72,6 +72,10 @@ extern bool get_var_pump();
 extern void set_var_pump(bool value);
 extern bool get_var_fan();
 extern void set_var_fan(bool value);
+extern double get_var_pdm_battery_voltage();
+extern void set_var_pdm_battery_voltage(double value);
+extern const char *get_var_uptime_str();
+extern void set_var_uptime_str(const char *value);
 
 #ifdef __cplusplus
 }

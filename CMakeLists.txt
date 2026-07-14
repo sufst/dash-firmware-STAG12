@@ -95,6 +95,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     eez-Stag12/src/ui/ui_image_background.c
     eez-Stag12/src/ui/eez-flow.cpp
     SUFST/Src/can_rx_handlers.c
+    SUFST/Src/uptime.c
 )
 
 # Include directories

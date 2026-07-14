@@ -27,6 +27,8 @@ CAN_T:
     brakelight: "brakelight"
     pump: "pump"
     fan: "fan"
+  PDM_State:
+    pdm_battery_voltage: "pdm_battery_voltage"
 
 CAN_S:
   WHEEL_SPEEDS:
