@@ -161,6 +161,26 @@ def multiplexer_guard_expr(signal):
     return "(" + " || ".join(comparisons) + ")"
 
 
+def resolve_target(target, sig_name, classification):
+    """Returns (variable path, round_to_int) for a signal_mapping.yaml entry, which is
+    either a bare variable name or a {name, type} mapping."""
+    if isinstance(target, str):
+        return target, False
+
+    if not isinstance(target, dict) or "name" not in target:
+        raise ValueError(f"Mapping for signal '{sig_name}' must be a variable name or {{name, type}}")
+
+    requested_type = target.get("type")
+    if requested_type is None or requested_type == classification["eez_type"]:
+        return target["name"], False
+    if requested_type == "integer" and classification["eez_type"] in ("double", "float"):
+        return target["name"], True
+    raise ValueError(
+        f"Signal '{sig_name}' is {classification['eez_type']!r}; type override {requested_type!r} "
+        "is not supported (only integer for scaled numeric signals)."
+    )
+
+
 def build_resolved_buses(yaml_data, databases):
     """Resolves signal_mapping.yaml against the loaded DBCs into the template context,
     classifying each signal's type exactly once."""
@@ -170,9 +190,12 @@ def build_resolved_buses(yaml_data, databases):
         bus_entry = {"name": bus_name, "messages": []}
         for msg_name, signals in messages.items():
             msg_entry = {"name": msg_name, "signals": []}
-            for sig_name, path in signals.items():
+            for sig_name, target in signals.items():
                 cantools_signal = find_signal(db, msg_name, sig_name)
                 classification = classify_signal_type(cantools_signal)
+                path, round_to_int = resolve_target(target, sig_name, classification)
+                if round_to_int:
+                    classification = dict(classification, eez_type="integer", accessor_c_type="int32_t")
                 msg_entry["signals"].append({
                     "name": sig_name,
                     "flat_name": path.replace('.', '_'),
@@ -182,6 +205,7 @@ def build_resolved_buses(yaml_data, databases):
                     "choices": classification["choices"],
                     "zero_literal": ZERO_LITERALS[classification["backing_c_type"]],
                     "mux_guard_expr": multiplexer_guard_expr(cantools_signal),
+                    "round_to_int": round_to_int,
                 })
             bus_entry["messages"].append(msg_entry)
         buses.append(bus_entry)
@@ -208,6 +232,9 @@ def build_eez_flat_variables(buses, eez_data):
                         "native": True
                     })
                 else:
+                    if not existing_var.get("native"):
+                        print(f"NOTE: '{sig['flat_name']}' was not native; switching it to native so it reads from CAN.")
+                        existing_var["native"] = True
                     if existing_var.get("type") != sig["eez_type"]:
                         print(
                             f"WARNING: '{sig['flat_name']}' type changed "

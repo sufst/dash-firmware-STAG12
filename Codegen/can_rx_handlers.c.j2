@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <math.h>
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -46,6 +47,8 @@ static {{ sig.backing_c_type }} g_{{ sig.flat_name }} = {{ sig.zero_literal }};
         {%- endfor %}
     default: return "Unknown";
     }
+{%- elif sig.round_to_int %}
+    return (int32_t)lround(value);
 {%- else %}
     return value;
 {%- endif %}
@@ -56,6 +59,19 @@ void set_var_{{ sig.flat_name }}({{ sig.accessor_c_type }} value)
 {
     (void)value;
 }
+{%- if sig.choices %}
+
+// Raw value for {{ sig.flat_name }}, for C code that needs the number rather than the label
+int32_t get_raw_{{ sig.flat_name }}(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_{{ sig.flat_name }};
+    taskEXIT_CRITICAL();
+    return value;
+}
+{%- endif %}
         {%- endfor %}
     {%- endfor %}
 {% endfor %}

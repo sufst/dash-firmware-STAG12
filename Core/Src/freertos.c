@@ -30,6 +30,7 @@
 #include "can.h"
 #include "ltdc.h"
 #include "ui.h"
+#include "screen_select.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -218,6 +219,7 @@ void StartDefaultTask(void *argument)
   for(;;)
   {
     lv_tick_inc(5);
+    screen_select_tick();
     ui_tick();
     lv_timer_handler();
     osDelay(5);

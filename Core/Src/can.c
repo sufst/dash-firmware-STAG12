@@ -25,6 +25,7 @@
 
 #include "cmsis_os.h"
 #include "can_rx_handlers.h"
+#include "dash_diag.h"
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan1;
@@ -351,9 +352,14 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
         return;
     }
 
+    dash_diag_note_rx(hcan == &hcan2, frame.id);
+
     /* Best-effort: if canRXTask has fallen behind and the queue is full,
        drop the frame rather than block the ISR. */
-    (void) osMessageQueuePut(can_rx_queue, &frame, 0, 0);
+    if (osMessageQueuePut(can_rx_queue, &frame, 0, 0) != osOK)
+    {
+        dash_diag_note_rx_dropped();
+    }
 }
 
 /* USER CODE END 1 */

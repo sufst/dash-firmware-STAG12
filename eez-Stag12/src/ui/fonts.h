@@ -7,6 +7,14 @@
 extern "C" {
 #endif
 
+extern const lv_font_t ui_font_b612_14;
+extern const lv_font_t ui_font_b612_22;
+extern const lv_font_t ui_font_b612_30;
+extern const lv_font_t ui_font_b612_36;
+extern const lv_font_t ui_font_b612_46;
+extern const lv_font_t ui_font_b612_56;
+extern const lv_font_t ui_font_b612_70;
+
 #ifndef EXT_FONT_DESC_T
 #define EXT_FONT_DESC_T
 typedef struct _ext_font_desc_t {

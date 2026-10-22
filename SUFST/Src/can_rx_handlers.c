@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <math.h>
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -19,8 +20,14 @@ static int32_t g_vcu_rolling_counter = 0;
 static int32_t g_vcu_ctrl_state = 0;
 static int32_t g_vcu_current_mode = 0;
 static int32_t g_vcu_requested_mode = 0;
+static int32_t g_vcu_lc_state = 0;
+static int32_t g_vcu_lc_fault = 0;
+static bool g_vcu_lc_shadow_mode = false;
+static bool g_vcu_lc_stationary = false;
+static int32_t g_vcu_lc_arm_progress = 0;
 static double g_bms_pack_inst_voltage = 0.0;
 static double g_bms_pack_current = 0.0;
+static double g_bms_pack_soc = 0.0;
 static double g_pdm_input_10_voltage = 0.0;
 static int32_t g_pm100_vsm_state = 0;
 static double g_pm100_module_a = 0.0;
@@ -35,6 +42,12 @@ static bool g_brakelight = false;
 static bool g_pump = false;
 static bool g_fan = false;
 static double g_pdm_battery_voltage = 0.0;
+static int32_t g_vcu_ctrl_error = 0;
+static int32_t g_vcu_scs_error = 0;
+static int32_t g_vcu_pm100_error = 0;
+static int32_t g_vcu_rtcan1_error = 0;
+static int32_t g_vcu_rtcan2_error = 0;
+static int32_t g_vcu_canbc_error = 0;
 
 static double g_wheel_fl_speed = 0.0;
 static double g_wheel_fr_speed = 0.0;
@@ -44,6 +57,20 @@ static double g_vcu_sagl = 0.0;
 static double g_vcu_apps = 0.0;
 static double g_vcu_bps = 0.0;
 static double g_lvbox_pwr = 0.0;
+static int32_t g_vcu_apps1_raw = 0;
+static int32_t g_vcu_apps2_raw = 0;
+static int32_t g_vcu_bps_raw = 0;
+static int32_t g_vcu_max_temp = 0;
+static bool g_tap_estops = false;
+static bool g_imd_fault = false;
+static bool g_ams_fault = false;
+static bool g_ts_detected = false;
+static bool g_tap_latching = false;
+static bool g_tap_hvd = false;
+static bool g_tap_bots = false;
+static bool g_tap_estop = false;
+static bool g_tap_sdc_inertia = false;
+static bool g_bspd_status = false;
 
 
 /* ==================================================================== */
@@ -102,6 +129,17 @@ void set_var_vcu_ctrl_state(const char * value)
 {
     (void)value;
 }
+
+// Raw value for vcu_ctrl_state, for C code that needs the number rather than the label
+int32_t get_raw_vcu_ctrl_state(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_ctrl_state;
+    taskEXIT_CRITICAL();
+    return value;
+}
 // Getter for vcu_current_mode
 const char * get_var_vcu_current_mode(void)
 {
@@ -114,7 +152,7 @@ const char * get_var_vcu_current_mode(void)
     {
     case 1: return "Endurance";
     case 2: return "Max";
-    case 3: return "Torque_Ctrl";
+    case 3: return "Launch_Ctrl";
     case 4: return "Crawl";
     case 5: return "Reverse";
     case 6: return "Remote_Ctrl";
@@ -131,6 +169,17 @@ void set_var_vcu_current_mode(const char * value)
 {
     (void)value;
 }
+
+// Raw value for vcu_current_mode, for C code that needs the number rather than the label
+int32_t get_raw_vcu_current_mode(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_current_mode;
+    taskEXIT_CRITICAL();
+    return value;
+}
 // Getter for vcu_requested_mode
 const char * get_var_vcu_requested_mode(void)
 {
@@ -143,7 +192,7 @@ const char * get_var_vcu_requested_mode(void)
     {
     case 1: return "Endurance";
     case 2: return "Max";
-    case 3: return "Torque_Ctrl";
+    case 3: return "Launch_Ctrl";
     case 4: return "Crawl";
     case 5: return "Reverse";
     case 6: return "Remote_Ctrl";
@@ -157,6 +206,136 @@ const char * get_var_vcu_requested_mode(void)
 
 // Setter for vcu_requested_mode (No-op for read-only telemetry)
 void set_var_vcu_requested_mode(const char * value)
+{
+    (void)value;
+}
+
+// Raw value for vcu_requested_mode, for C code that needs the number rather than the label
+int32_t get_raw_vcu_requested_mode(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_requested_mode;
+    taskEXIT_CRITICAL();
+    return value;
+}
+// Getter for vcu_lc_state
+const char * get_var_vcu_lc_state(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_state;
+    taskEXIT_CRITICAL();
+    switch (value)
+    {
+    case 0: return "Off";
+    case 1: return "Armed";
+    case 2: return "Active";
+    case 3: return "Done";
+    case 4: return "Fault";
+    default: return "Unknown";
+    }
+}
+
+// Setter for vcu_lc_state (No-op for read-only telemetry)
+void set_var_vcu_lc_state(const char * value)
+{
+    (void)value;
+}
+
+// Raw value for vcu_lc_state, for C code that needs the number rather than the label
+int32_t get_raw_vcu_lc_state(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_state;
+    taskEXIT_CRITICAL();
+    return value;
+}
+// Getter for vcu_lc_fault
+const char * get_var_vcu_lc_fault(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_fault;
+    taskEXIT_CRITICAL();
+    switch (value)
+    {
+    case 0: return "None";
+    case 1: return "Front_Stale";
+    case 2: return "Front_Disagree";
+    case 3: return "Motor_Reverse";
+    case 4: return "Front_Ahead";
+    case 5: return "Bad_Dt";
+    default: return "Unknown";
+    }
+}
+
+// Setter for vcu_lc_fault (No-op for read-only telemetry)
+void set_var_vcu_lc_fault(const char * value)
+{
+    (void)value;
+}
+
+// Raw value for vcu_lc_fault, for C code that needs the number rather than the label
+int32_t get_raw_vcu_lc_fault(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_fault;
+    taskEXIT_CRITICAL();
+    return value;
+}
+// Getter for vcu_lc_shadow_mode
+bool get_var_vcu_lc_shadow_mode(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_shadow_mode;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_lc_shadow_mode (No-op for read-only telemetry)
+void set_var_vcu_lc_shadow_mode(bool value)
+{
+    (void)value;
+}
+// Getter for vcu_lc_stationary
+bool get_var_vcu_lc_stationary(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_stationary;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_lc_stationary (No-op for read-only telemetry)
+void set_var_vcu_lc_stationary(bool value)
+{
+    (void)value;
+}
+// Getter for vcu_lc_arm_progress
+int32_t get_var_vcu_lc_arm_progress(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_arm_progress;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_lc_arm_progress (No-op for read-only telemetry)
+void set_var_vcu_lc_arm_progress(int32_t value)
 {
     (void)value;
 }
@@ -189,6 +368,22 @@ double get_var_bms_pack_current(void)
 
 // Setter for bms_pack_current (No-op for read-only telemetry)
 void set_var_bms_pack_current(double value)
+{
+    (void)value;
+}
+// Getter for bms_pack_soc
+int32_t get_var_bms_pack_soc(void)
+{
+    double value;
+
+    taskENTER_CRITICAL();
+    value = g_bms_pack_soc;
+    taskEXIT_CRITICAL();
+    return (int32_t)lround(value);
+}
+
+// Setter for bms_pack_soc (No-op for read-only telemetry)
+void set_var_bms_pack_soc(int32_t value)
 {
     (void)value;
 }
@@ -236,6 +431,17 @@ const char * get_var_pm100_vsm_state(void)
 void set_var_pm100_vsm_state(const char * value)
 {
     (void)value;
+}
+
+// Raw value for pm100_vsm_state, for C code that needs the number rather than the label
+int32_t get_raw_pm100_vsm_state(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_pm100_vsm_state;
+    taskEXIT_CRITICAL();
+    return value;
 }
 // Getter for pm100_module_a
 double get_var_pm100_module_a(void)
@@ -429,6 +635,102 @@ void set_var_pdm_battery_voltage(double value)
 {
     (void)value;
 }
+// Getter for vcu_ctrl_error
+int32_t get_var_vcu_ctrl_error(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_ctrl_error;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_ctrl_error (No-op for read-only telemetry)
+void set_var_vcu_ctrl_error(int32_t value)
+{
+    (void)value;
+}
+// Getter for vcu_scs_error
+int32_t get_var_vcu_scs_error(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_scs_error;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_scs_error (No-op for read-only telemetry)
+void set_var_vcu_scs_error(int32_t value)
+{
+    (void)value;
+}
+// Getter for vcu_pm100_error
+int32_t get_var_vcu_pm100_error(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_pm100_error;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_pm100_error (No-op for read-only telemetry)
+void set_var_vcu_pm100_error(int32_t value)
+{
+    (void)value;
+}
+// Getter for vcu_rtcan1_error
+int32_t get_var_vcu_rtcan1_error(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_rtcan1_error;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_rtcan1_error (No-op for read-only telemetry)
+void set_var_vcu_rtcan1_error(int32_t value)
+{
+    (void)value;
+}
+// Getter for vcu_rtcan2_error
+int32_t get_var_vcu_rtcan2_error(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_rtcan2_error;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_rtcan2_error (No-op for read-only telemetry)
+void set_var_vcu_rtcan2_error(int32_t value)
+{
+    (void)value;
+}
+// Getter for vcu_canbc_error
+int32_t get_var_vcu_canbc_error(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_canbc_error;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_canbc_error (No-op for read-only telemetry)
+void set_var_vcu_canbc_error(int32_t value)
+{
+    (void)value;
+}
 
 // Getter for wheel_fl_speed
 double get_var_wheel_fl_speed(void)
@@ -558,6 +860,230 @@ void set_var_lvbox_pwr(double value)
 {
     (void)value;
 }
+// Getter for vcu_apps1_raw
+int32_t get_var_vcu_apps1_raw(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_apps1_raw;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_apps1_raw (No-op for read-only telemetry)
+void set_var_vcu_apps1_raw(int32_t value)
+{
+    (void)value;
+}
+// Getter for vcu_apps2_raw
+int32_t get_var_vcu_apps2_raw(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_apps2_raw;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_apps2_raw (No-op for read-only telemetry)
+void set_var_vcu_apps2_raw(int32_t value)
+{
+    (void)value;
+}
+// Getter for vcu_bps_raw
+int32_t get_var_vcu_bps_raw(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_bps_raw;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_bps_raw (No-op for read-only telemetry)
+void set_var_vcu_bps_raw(int32_t value)
+{
+    (void)value;
+}
+// Getter for vcu_max_temp
+int32_t get_var_vcu_max_temp(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_max_temp;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_max_temp (No-op for read-only telemetry)
+void set_var_vcu_max_temp(int32_t value)
+{
+    (void)value;
+}
+// Getter for tap_estops
+bool get_var_tap_estops(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_tap_estops;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for tap_estops (No-op for read-only telemetry)
+void set_var_tap_estops(bool value)
+{
+    (void)value;
+}
+// Getter for imd_fault
+bool get_var_imd_fault(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_imd_fault;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for imd_fault (No-op for read-only telemetry)
+void set_var_imd_fault(bool value)
+{
+    (void)value;
+}
+// Getter for ams_fault
+bool get_var_ams_fault(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_ams_fault;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for ams_fault (No-op for read-only telemetry)
+void set_var_ams_fault(bool value)
+{
+    (void)value;
+}
+// Getter for ts_detected
+bool get_var_ts_detected(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_ts_detected;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for ts_detected (No-op for read-only telemetry)
+void set_var_ts_detected(bool value)
+{
+    (void)value;
+}
+// Getter for tap_latching
+bool get_var_tap_latching(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_tap_latching;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for tap_latching (No-op for read-only telemetry)
+void set_var_tap_latching(bool value)
+{
+    (void)value;
+}
+// Getter for tap_hvd
+bool get_var_tap_hvd(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_tap_hvd;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for tap_hvd (No-op for read-only telemetry)
+void set_var_tap_hvd(bool value)
+{
+    (void)value;
+}
+// Getter for tap_bots
+bool get_var_tap_bots(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_tap_bots;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for tap_bots (No-op for read-only telemetry)
+void set_var_tap_bots(bool value)
+{
+    (void)value;
+}
+// Getter for tap_estop
+bool get_var_tap_estop(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_tap_estop;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for tap_estop (No-op for read-only telemetry)
+void set_var_tap_estop(bool value)
+{
+    (void)value;
+}
+// Getter for tap_sdc_inertia
+bool get_var_tap_sdc_inertia(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_tap_sdc_inertia;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for tap_sdc_inertia (No-op for read-only telemetry)
+void set_var_tap_sdc_inertia(bool value)
+{
+    (void)value;
+}
+// Getter for bspd_status
+bool get_var_bspd_status(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_bspd_status;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for bspd_status (No-op for read-only telemetry)
+void set_var_bspd_status(bool value)
+{
+    (void)value;
+}
 
 
 /* ==================================================================== */
@@ -586,6 +1112,21 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         }
         break;
     }
+    case CAN_T_VCU_LAUNCH_CTRL_FRAME_ID:
+    {
+        struct can_t_vcu_launch_ctrl_t payload;
+        if (can_t_vcu_launch_ctrl_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_vcu_lc_state = (int32_t)can_t_vcu_launch_ctrl_vcu_lc_state_decode(payload.vcu_lc_state);
+            g_vcu_lc_fault = (int32_t)can_t_vcu_launch_ctrl_vcu_lc_fault_decode(payload.vcu_lc_fault);
+            g_vcu_lc_shadow_mode = (bool)can_t_vcu_launch_ctrl_vcu_lc_shadow_mode_decode(payload.vcu_lc_shadow_mode);
+            g_vcu_lc_stationary = (bool)can_t_vcu_launch_ctrl_vcu_lc_stationary_decode(payload.vcu_lc_stationary);
+            g_vcu_lc_arm_progress = (int32_t)can_t_vcu_launch_ctrl_vcu_lc_arm_progress_decode(payload.vcu_lc_arm_progress);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
     case CAN_T_BMS_PACK_STATE_FRAME_ID:
     {
         struct can_t_bms_pack_state_t payload;
@@ -594,6 +1135,7 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
             taskENTER_CRITICAL();
             g_bms_pack_inst_voltage = (double)can_t_bms_pack_state_bms_pack_inst_voltage_decode(payload.bms_pack_inst_voltage);
             g_bms_pack_current = (double)can_t_bms_pack_state_bms_pack_current_decode(payload.bms_pack_current);
+            g_bms_pack_soc = (double)can_t_bms_pack_state_bms_pack_soc_decode(payload.bms_pack_soc);
             taskEXIT_CRITICAL();
         }
         break;
@@ -688,6 +1230,22 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         }
         break;
     }
+    case CAN_T_VCU_ERROR_FRAME_ID:
+    {
+        struct can_t_vcu_error_t payload;
+        if (can_t_vcu_error_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_vcu_ctrl_error = (int32_t)can_t_vcu_error_vcu_ctrl_error_decode(payload.vcu_ctrl_error);
+            g_vcu_scs_error = (int32_t)can_t_vcu_error_vcu_scs_error_decode(payload.vcu_scs_error);
+            g_vcu_pm100_error = (int32_t)can_t_vcu_error_vcu_pm100_error_decode(payload.vcu_pm100_error);
+            g_vcu_rtcan1_error = (int32_t)can_t_vcu_error_vcu_rtcan1_error_decode(payload.vcu_rtcan1_error);
+            g_vcu_rtcan2_error = (int32_t)can_t_vcu_error_vcu_rtcan2_error_decode(payload.vcu_rtcan2_error);
+            g_vcu_canbc_error = (int32_t)can_t_vcu_error_vcu_canbc_error_decode(payload.vcu_canbc_error);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
 
     default:
         // Unhandled frame ID on CAN_T
@@ -736,6 +1294,70 @@ void can_s_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
         {
             taskENTER_CRITICAL();
             g_lvbox_pwr = (double)can_s_lv_box_analog_lvbox_pwr_decode(payload.lvbox_pwr);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_S_VCU_SENSORS_RAW_FRAME_ID:
+    {
+        struct can_s_vcu_sensors_raw_t payload;
+        if (can_s_vcu_sensors_raw_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_vcu_apps1_raw = (int32_t)can_s_vcu_sensors_raw_vcu_apps1_raw_decode(payload.vcu_apps1_raw);
+            g_vcu_apps2_raw = (int32_t)can_s_vcu_sensors_raw_vcu_apps2_raw_decode(payload.vcu_apps2_raw);
+            g_vcu_bps_raw = (int32_t)can_s_vcu_sensors_raw_vcu_bps_raw_decode(payload.vcu_bps_raw);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_S_VCU_TEMPS_FRAME_ID:
+    {
+        struct can_s_vcu_temps_t payload;
+        if (can_s_vcu_temps_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_vcu_max_temp = (int32_t)can_s_vcu_temps_vcu_max_temp_decode(payload.vcu_max_temp);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_S_LV_BOX_DIGITAL_FRAME_ID:
+    {
+        struct can_s_lv_box_digital_t payload;
+        if (can_s_lv_box_digital_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_tap_estops = (bool)can_s_lv_box_digital_tap_estops_decode(payload.tap_estops);
+            g_imd_fault = (bool)can_s_lv_box_digital_imd_fault_decode(payload.imd_fault);
+            g_ams_fault = (bool)can_s_lv_box_digital_ams_fault_decode(payload.ams_fault);
+            g_ts_detected = (bool)can_s_lv_box_digital_ts_detected_decode(payload.ts_detected);
+            g_tap_latching = (bool)can_s_lv_box_digital_tap_latching_decode(payload.tap_latching);
+            g_tap_hvd = (bool)can_s_lv_box_digital_tap_hvd_decode(payload.tap_hvd);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_S_DASH_SENSORS_DIGITAL_FRAME_ID:
+    {
+        struct can_s_dash_sensors_digital_t payload;
+        if (can_s_dash_sensors_digital_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_tap_bots = (bool)can_s_dash_sensors_digital_tap_bots_decode(payload.tap_bots);
+            g_tap_estop = (bool)can_s_dash_sensors_digital_tap_estop_decode(payload.tap_estop);
+            g_tap_sdc_inertia = (bool)can_s_dash_sensors_digital_tap_sdc_inertia_decode(payload.tap_sdc_inertia);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_S_PEDAL_BOX_DIGITAL_FRAME_ID:
+    {
+        struct can_s_pedal_box_digital_t payload;
+        if (can_s_pedal_box_digital_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_bspd_status = (bool)can_s_pedal_box_digital_bspd_status_decode(payload.bspd_status);
             taskEXIT_CRITICAL();
         }
         break;

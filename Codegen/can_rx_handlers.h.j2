@@ -10,6 +10,13 @@ extern "C" {
 {% for bus in buses %}
 void {{ bus.name | lower }}_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length);
 {%- endfor %}
+{% for bus in buses %}
+    {%- for msg in bus.messages %}
+        {%- for sig in msg.signals if sig.choices %}
+int32_t get_raw_{{ sig.flat_name }}(void);
+        {%- endfor %}
+    {%- endfor %}
+{%- endfor %}
 
 #ifdef __cplusplus
 }

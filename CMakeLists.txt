@@ -77,6 +77,12 @@ target_link_libraries(lvgl PUBLIC stm32cubemx)
 
 set_target_properties(lvgl_examples lvgl_demos PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
+# EEZ Studio generates one source file per font/image, so pick up whatever is there
+file(GLOB EEZ_UI_SRC CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/eez-Stag12/src/ui/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/eez-Stag12/src/ui/*.cpp
+)
+
 # Source directories
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     SUFST/Src/bsp_sd_override.c
@@ -87,15 +93,11 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     Middlewares/TinyUSB/Src/usb_irq.c
     Middlewares/TinyUSB/Src/usb_init.c
     ${TINYUSB_SRC}
-    eez-Stag12/src/ui/screens.c
-    eez-Stag12/src/ui/styles.c
-    eez-Stag12/src/ui/images.c
-    eez-Stag12/src/ui/ui.c
-    eez-Stag12/src/ui/ui_image_stag.c
-    eez-Stag12/src/ui/ui_image_background.c
-    eez-Stag12/src/ui/eez-flow.cpp
+    ${EEZ_UI_SRC}
     SUFST/Src/can_rx_handlers.c
     SUFST/Src/uptime.c
+    SUFST/Src/dash_diag.c
+    SUFST/Src/screen_select.c
 )
 
 # Include directories
