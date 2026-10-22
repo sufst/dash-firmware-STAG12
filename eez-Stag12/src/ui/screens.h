@@ -51,6 +51,12 @@ typedef struct _objects_t {
     lv_obj_t *inverter_temp_14;
     lv_obj_t *obj5;
     lv_obj_t *obj6;
+    lv_obj_t *lc_caption;
+    lv_obj_t *lc_status;
+    lv_obj_t *lc_status_go;
+    lv_obj_t *lc_status_fault;
+    lv_obj_t *lc_hint;
+    lv_obj_t *lc_arm_bar;
 } objects_t;
 
 extern objects_t objects;

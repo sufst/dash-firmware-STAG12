@@ -19,6 +19,11 @@ static int32_t g_vcu_rolling_counter = 0;
 static int32_t g_vcu_ctrl_state = 0;
 static int32_t g_vcu_current_mode = 0;
 static int32_t g_vcu_requested_mode = 0;
+static int32_t g_vcu_lc_state = 0;
+static int32_t g_vcu_lc_fault = 0;
+static bool g_vcu_lc_shadow_mode = false;
+static bool g_vcu_lc_stationary = false;
+static int32_t g_vcu_lc_arm_progress = 0;
 static double g_bms_pack_inst_voltage = 0.0;
 static double g_bms_pack_current = 0.0;
 static double g_pdm_input_10_voltage = 0.0;
@@ -114,7 +119,7 @@ const char * get_var_vcu_current_mode(void)
     {
     case 1: return "Endurance";
     case 2: return "Max";
-    case 3: return "Torque_Ctrl";
+    case 3: return "Launch_Ctrl";
     case 4: return "Crawl";
     case 5: return "Reverse";
     case 6: return "Remote_Ctrl";
@@ -143,7 +148,7 @@ const char * get_var_vcu_requested_mode(void)
     {
     case 1: return "Endurance";
     case 2: return "Max";
-    case 3: return "Torque_Ctrl";
+    case 3: return "Launch_Ctrl";
     case 4: return "Crawl";
     case 5: return "Reverse";
     case 6: return "Remote_Ctrl";
@@ -157,6 +162,103 @@ const char * get_var_vcu_requested_mode(void)
 
 // Setter for vcu_requested_mode (No-op for read-only telemetry)
 void set_var_vcu_requested_mode(const char * value)
+{
+    (void)value;
+}
+// Getter for vcu_lc_state
+const char * get_var_vcu_lc_state(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_state;
+    taskEXIT_CRITICAL();
+    switch (value)
+    {
+    case 0: return "Off";
+    case 1: return "Armed";
+    case 2: return "Active";
+    case 3: return "Done";
+    case 4: return "Fault";
+    default: return "Unknown";
+    }
+}
+
+// Setter for vcu_lc_state (No-op for read-only telemetry)
+void set_var_vcu_lc_state(const char * value)
+{
+    (void)value;
+}
+// Getter for vcu_lc_fault
+const char * get_var_vcu_lc_fault(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_fault;
+    taskEXIT_CRITICAL();
+    switch (value)
+    {
+    case 0: return "None";
+    case 1: return "Front_Stale";
+    case 2: return "Front_Disagree";
+    case 3: return "Motor_Reverse";
+    case 4: return "Front_Ahead";
+    case 5: return "Bad_Dt";
+    default: return "Unknown";
+    }
+}
+
+// Setter for vcu_lc_fault (No-op for read-only telemetry)
+void set_var_vcu_lc_fault(const char * value)
+{
+    (void)value;
+}
+// Getter for vcu_lc_shadow_mode
+bool get_var_vcu_lc_shadow_mode(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_shadow_mode;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_lc_shadow_mode (No-op for read-only telemetry)
+void set_var_vcu_lc_shadow_mode(bool value)
+{
+    (void)value;
+}
+// Getter for vcu_lc_stationary
+bool get_var_vcu_lc_stationary(void)
+{
+    bool value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_stationary;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_lc_stationary (No-op for read-only telemetry)
+void set_var_vcu_lc_stationary(bool value)
+{
+    (void)value;
+}
+// Getter for vcu_lc_arm_progress
+int32_t get_var_vcu_lc_arm_progress(void)
+{
+    int32_t value;
+
+    taskENTER_CRITICAL();
+    value = g_vcu_lc_arm_progress;
+    taskEXIT_CRITICAL();
+    return value;
+}
+
+// Setter for vcu_lc_arm_progress (No-op for read-only telemetry)
+void set_var_vcu_lc_arm_progress(int32_t value)
 {
     (void)value;
 }
@@ -582,6 +684,21 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
             g_vcu_ctrl_state = (int32_t)can_t_vcu_state_vcu_ctrl_state_decode(payload.vcu_ctrl_state);
             g_vcu_current_mode = (int32_t)can_t_vcu_state_vcu_current_mode_decode(payload.vcu_current_mode);
             g_vcu_requested_mode = (int32_t)can_t_vcu_state_vcu_requested_mode_decode(payload.vcu_requested_mode);
+            taskEXIT_CRITICAL();
+        }
+        break;
+    }
+    case CAN_T_VCU_LAUNCH_CTRL_FRAME_ID:
+    {
+        struct can_t_vcu_launch_ctrl_t payload;
+        if (can_t_vcu_launch_ctrl_unpack(&payload, data, length) == 0)
+        {
+            taskENTER_CRITICAL();
+            g_vcu_lc_state = (int32_t)can_t_vcu_launch_ctrl_vcu_lc_state_decode(payload.vcu_lc_state);
+            g_vcu_lc_fault = (int32_t)can_t_vcu_launch_ctrl_vcu_lc_fault_decode(payload.vcu_lc_fault);
+            g_vcu_lc_shadow_mode = (bool)can_t_vcu_launch_ctrl_vcu_lc_shadow_mode_decode(payload.vcu_lc_shadow_mode);
+            g_vcu_lc_stationary = (bool)can_t_vcu_launch_ctrl_vcu_lc_stationary_decode(payload.vcu_lc_stationary);
+            g_vcu_lc_arm_progress = (int32_t)can_t_vcu_launch_ctrl_vcu_lc_arm_progress_decode(payload.vcu_lc_arm_progress);
             taskEXIT_CRITICAL();
         }
         break;

@@ -314,6 +314,41 @@
         "defaultValue": "\"00:00:00\"",
         "persistent": false,
         "native": true
+      },
+      {
+        "objID": "325f5dbd-f683-497c-89ed-d8b2a2c83352",
+        "name": "vcu_lc_state",
+        "type": "string",
+        "defaultValue": "\"\"",
+        "native": true
+      },
+      {
+        "objID": "ddbaae5c-2363-49e9-b58d-3d5375b72e0d",
+        "name": "vcu_lc_fault",
+        "type": "string",
+        "defaultValue": "\"\"",
+        "native": true
+      },
+      {
+        "objID": "a618df3b-5452-4851-91e1-c2eec67da2ca",
+        "name": "vcu_lc_shadow_mode",
+        "type": "boolean",
+        "defaultValue": "false",
+        "native": true
+      },
+      {
+        "objID": "3e1f3d15-28a3-47e6-b9cf-68cfae38f5d4",
+        "name": "vcu_lc_stationary",
+        "type": "boolean",
+        "defaultValue": "false",
+        "native": true
+      },
+      {
+        "objID": "22675e8c-81d8-4349-bc3a-ab77bd79c06c",
+        "name": "vcu_lc_arm_progress",
+        "type": "integer",
+        "defaultValue": "0",
+        "native": true
       }
     ],
     "structures": [],
@@ -398,7 +433,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "PDM LV: 12.6V"
+              "previewValue": "PDM LV: 12.6V",
+              "useStaticText": true
             },
             {
               "objID": "9ff3808b-311e-4b98-b297-0d306b982585",
@@ -450,7 +486,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "VCU: OK (1234)"
+              "previewValue": "VCU: OK (1234)",
+              "useStaticText": true
             },
             {
               "objID": "d17133f0-a557-4516-f4f9-16656a6b7a1f",
@@ -502,7 +539,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "INV: VSM_WAIT"
+              "previewValue": "INV: VSM_WAIT",
+              "useStaticText": true
             },
             {
               "objID": "03a57d89-84ca-4bec-d8a5-b231cb46fca5",
@@ -628,7 +666,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "23"
+              "previewValue": "23",
+              "useStaticText": true
             },
             {
               "objID": "522e0ba9-ec91-4361-ed1f-e4d67d3a4657",
@@ -680,7 +719,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "mph"
+              "previewValue": "mph",
+              "useStaticText": true
             },
             {
               "objID": "1352bfae-3bc3-4b9d-aaf6-bca023654b51",
@@ -734,7 +774,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "BMS HV: 395V"
+              "previewValue": "BMS HV: 395V",
+              "useStaticText": true
             },
             {
               "objID": "e0cc3e5f-e904-4132-c73a-d47db307c516",
@@ -909,7 +950,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "b4484be3-177e-4d1b-d58a-0150b05282a8",
@@ -964,7 +1006,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "21.4C"
+              "previewValue": "21.4C",
+              "useStaticText": true
             },
             {
               "objID": "6849d3d1-297c-4181-d186-598d8f23084a",
@@ -1019,7 +1062,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "5d50cae8-f750-4b11-8f19-14323a0f1caf",
@@ -1074,7 +1118,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "98d1eb07-9879-43fc-af7c-c6664ddab151",
@@ -1129,7 +1174,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "422be24a-9a4e-401d-b716-3f0754ab524a",
@@ -1184,7 +1230,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "175d6fea-ae92-471c-bd04-a24d1098a4fc",
@@ -1239,7 +1286,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "e199be32-61ab-4d27-d9e4-33f4fa75bf6d",
@@ -1294,7 +1342,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "f55df6b5-3e63-464a-c218-684b7b3ea0ee",
@@ -1349,7 +1398,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "612ef773-f3a1-4725-f05e-420e5d7a73a7",
@@ -1404,7 +1454,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "5de509e5-4c44-4ce2-b39e-aa21fc0043be",
@@ -1458,7 +1509,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "Endurance"
+              "previewValue": "Endurance",
+              "useStaticText": true
             },
             {
               "objID": "b6e8700d-3ee5-49e2-c7b1-d7b694af31a6",
@@ -1512,7 +1564,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "Max"
+              "previewValue": "Max",
+              "useStaticText": true
             },
             {
               "objID": "72f72bec-ea09-47d9-f1bb-b820b0f5d635",
@@ -1565,7 +1618,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "mph"
+              "previewValue": "mph",
+              "useStaticText": true
             },
             {
               "objID": "7fe3e243-a554-49eb-f04e-2ee76e8e6ff2",
@@ -1618,7 +1672,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "Requested"
+              "previewValue": "Requested",
+              "useStaticText": true
             },
             {
               "objID": "f8cde53e-a2b8-4010-d9d0-a5772420563f",
@@ -1671,7 +1726,8 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "Press TS_ON (left)"
+              "previewValue": "Press TS_ON (left)",
+              "useStaticText": true
             },
             {
               "objID": "0e887ce8-22bf-448b-e39d-ea23b8ae393a",
@@ -1766,7 +1822,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "f0948a4d-43c6-43a4-b10e-a8d2c2ca0ae3",
@@ -1861,7 +1918,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "c519272f-53b8-4e2d-f9c4-7032f6d8e943",
@@ -1956,7 +2014,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "5357d1e3-decb-4d2c-b144-5528774bf21b",
@@ -2051,7 +2110,8 @@
               "textType": "literal",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "22.4C"
+              "previewValue": "22.4C",
+              "useStaticText": true
             },
             {
               "objID": "bcde3e34-bf47-45ab-8eef-b830d1b1775e",
@@ -2159,7 +2219,354 @@
               "textType": "expression",
               "longMode": "WRAP",
               "recolor": false,
-              "previewValue": "00:00:00"
+              "previewValue": "00:00:00",
+              "useStaticText": true
+            },
+            {
+              "objID": "5322e960-4138-478b-9880-95b9e8804299",
+              "type": "LVGLLabelWidget",
+              "left": 17,
+              "top": 198,
+              "width": 158,
+              "height": 22,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "61974475-9405-4390-ae09-b6d986edceb1",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "identifier": "lc_caption",
+              "leftUnit": "px",
+              "topUnit": "px",
+              "widthUnit": "content",
+              "heightUnit": "content",
+              "children": [],
+              "widgetFlags": "CLICK_FOCUSABLE|GESTURE_BUBBLE|PRESS_LOCK|SCROLLABLE|SCROLL_CHAIN_HOR|SCROLL_CHAIN_VER|SCROLL_ELASTIC|SCROLL_MOMENTUM|SCROLL_WITH_ARROW|SNAPPABLE",
+              "hiddenFlag": "vcu_current_mode != \"Launch_Ctrl\"",
+              "hiddenFlagType": "expression",
+              "clickableFlagType": "literal",
+              "flagScrollbarMode": "",
+              "flagScrollDirection": "",
+              "scrollSnapX": "",
+              "scrollSnapY": "",
+              "checkedStateType": "literal",
+              "disabledStateType": "literal",
+              "states": "",
+              "localStyles": {
+                "objID": "7edf2390-bbad-45cf-b832-a8c0d026ac89",
+                "definition": {
+                  "MAIN": {
+                    "DEFAULT": {
+                      "outline_color": "#000000",
+                      "text_color": "#FFFFFF",
+                      "align": "TOP_LEFT",
+                      "text_font": "MONTSERRAT_20"
+                    }
+                  }
+                }
+              },
+              "group": "",
+              "groupIndex": 0,
+              "text": "vcu_lc_shadow_mode ? \"Launch Control (shadow)\" : \"Launch Control\"",
+              "textType": "expression",
+              "longMode": "WRAP",
+              "recolor": false,
+              "previewValue": "Launch Control",
+              "useStaticText": true
+            },
+            {
+              "objID": "a4834321-88d2-4eaf-b0fa-45ef462f5882",
+              "type": "LVGLLabelWidget",
+              "left": 17,
+              "top": 222,
+              "width": 209,
+              "height": 33,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "50b9127a-29be-46df-8251-4ae6218762bd",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "identifier": "lc_status",
+              "leftUnit": "px",
+              "topUnit": "px",
+              "widthUnit": "content",
+              "heightUnit": "content",
+              "children": [],
+              "widgetFlags": "CLICK_FOCUSABLE|GESTURE_BUBBLE|PRESS_LOCK|SCROLLABLE|SCROLL_CHAIN_HOR|SCROLL_CHAIN_VER|SCROLL_ELASTIC|SCROLL_MOMENTUM|SCROLL_WITH_ARROW|SNAPPABLE",
+              "hiddenFlag": "vcu_current_mode != \"Launch_Ctrl\" || (vcu_lc_state == \"Armed\" || vcu_lc_state == \"Active\") || vcu_lc_state == \"Fault\"",
+              "hiddenFlagType": "expression",
+              "clickableFlagType": "literal",
+              "flagScrollbarMode": "",
+              "flagScrollDirection": "",
+              "scrollSnapX": "",
+              "scrollSnapY": "",
+              "checkedStateType": "literal",
+              "disabledStateType": "literal",
+              "states": "",
+              "localStyles": {
+                "objID": "24854fe1-a932-4381-b4b8-4b41136dc88c",
+                "definition": {
+                  "MAIN": {
+                    "DEFAULT": {
+                      "outline_color": "#000000",
+                      "text_color": "#FFFFFF",
+                      "align": "TOP_LEFT",
+                      "text_font": "MONTSERRAT_30"
+                    }
+                  }
+                }
+              },
+              "group": "",
+              "groupIndex": 0,
+              "text": "!vcu_lc_stationary ? \"STOP THE CAR\" : vcu_lc_arm_progress > 0 ? \"HOLD... \" + Math.round((100 - vcu_lc_arm_progress) / 20 + 0.49) + \" s\" : \"HOLD BRAKE\"",
+              "textType": "expression",
+              "longMode": "WRAP",
+              "recolor": false,
+              "previewValue": "HOLD BRAKE",
+              "useStaticText": true
+            },
+            {
+              "objID": "1429860a-7de3-4e84-9d22-724f33c128da",
+              "type": "LVGLLabelWidget",
+              "left": 17,
+              "top": 222,
+              "width": 118,
+              "height": 33,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "36feb105-a5a1-4a86-8237-51017a96f0fa",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "identifier": "lc_status_go",
+              "leftUnit": "px",
+              "topUnit": "px",
+              "widthUnit": "content",
+              "heightUnit": "content",
+              "children": [],
+              "widgetFlags": "CLICK_FOCUSABLE|GESTURE_BUBBLE|PRESS_LOCK|SCROLLABLE|SCROLL_CHAIN_HOR|SCROLL_CHAIN_VER|SCROLL_ELASTIC|SCROLL_MOMENTUM|SCROLL_WITH_ARROW|SNAPPABLE",
+              "hiddenFlag": "vcu_current_mode != \"Launch_Ctrl\" || !(vcu_lc_state == \"Armed\" || vcu_lc_state == \"Active\")",
+              "hiddenFlagType": "expression",
+              "clickableFlagType": "literal",
+              "flagScrollbarMode": "",
+              "flagScrollDirection": "",
+              "scrollSnapX": "",
+              "scrollSnapY": "",
+              "checkedStateType": "literal",
+              "disabledStateType": "literal",
+              "states": "",
+              "localStyles": {
+                "objID": "5617bb4b-21a8-48a0-b34d-ff0b67d54f0a",
+                "definition": {
+                  "MAIN": {
+                    "DEFAULT": {
+                      "outline_color": "#000000",
+                      "text_color": "#00E000",
+                      "align": "TOP_LEFT",
+                      "text_font": "MONTSERRAT_30"
+                    }
+                  }
+                }
+              },
+              "group": "",
+              "groupIndex": 0,
+              "text": "vcu_lc_state == \"Active\" ? \"LAUNCH!\" : \"ARMED\"",
+              "textType": "expression",
+              "longMode": "WRAP",
+              "recolor": false,
+              "previewValue": "ARMED",
+              "useStaticText": true
+            },
+            {
+              "objID": "e47b1751-a622-4813-a9ca-3d8e4db5ff2e",
+              "type": "LVGLLabelWidget",
+              "left": 17,
+              "top": 222,
+              "width": 98,
+              "height": 33,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "bef9a2ce-f223-4d2b-ae64-eaa706c73ec7",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "identifier": "lc_status_fault",
+              "leftUnit": "px",
+              "topUnit": "px",
+              "widthUnit": "content",
+              "heightUnit": "content",
+              "children": [],
+              "widgetFlags": "CLICK_FOCUSABLE|GESTURE_BUBBLE|PRESS_LOCK|SCROLLABLE|SCROLL_CHAIN_HOR|SCROLL_CHAIN_VER|SCROLL_ELASTIC|SCROLL_MOMENTUM|SCROLL_WITH_ARROW|SNAPPABLE",
+              "hiddenFlag": "vcu_current_mode != \"Launch_Ctrl\" || !(vcu_lc_state == \"Fault\")",
+              "hiddenFlagType": "expression",
+              "clickableFlagType": "literal",
+              "flagScrollbarMode": "",
+              "flagScrollDirection": "",
+              "scrollSnapX": "",
+              "scrollSnapY": "",
+              "checkedStateType": "literal",
+              "disabledStateType": "literal",
+              "states": "",
+              "localStyles": {
+                "objID": "e1e875d9-a279-4da8-9de2-dda56e61c371",
+                "definition": {
+                  "MAIN": {
+                    "DEFAULT": {
+                      "outline_color": "#000000",
+                      "text_color": "#FF4040",
+                      "align": "TOP_LEFT",
+                      "text_font": "MONTSERRAT_30"
+                    }
+                  }
+                }
+              },
+              "group": "",
+              "groupIndex": 0,
+              "text": "FAULT",
+              "textType": "literal",
+              "longMode": "WRAP",
+              "recolor": false,
+              "previewValue": "",
+              "useStaticText": true
+            },
+            {
+              "objID": "cd5b7d3f-bccf-4bdd-848c-38be49e6372c",
+              "type": "LVGLLabelWidget",
+              "left": 17,
+              "top": 260,
+              "width": 134,
+              "height": 22,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "1bec657e-b3e9-47b5-9dbd-6e3db89ce397",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "identifier": "lc_hint",
+              "leftUnit": "px",
+              "topUnit": "px",
+              "widthUnit": "content",
+              "heightUnit": "content",
+              "children": [],
+              "widgetFlags": "CLICK_FOCUSABLE|GESTURE_BUBBLE|PRESS_LOCK|SCROLLABLE|SCROLL_CHAIN_HOR|SCROLL_CHAIN_VER|SCROLL_ELASTIC|SCROLL_MOMENTUM|SCROLL_WITH_ARROW|SNAPPABLE",
+              "hiddenFlag": "vcu_current_mode != \"Launch_Ctrl\"",
+              "hiddenFlagType": "expression",
+              "clickableFlagType": "literal",
+              "flagScrollbarMode": "",
+              "flagScrollDirection": "",
+              "scrollSnapX": "",
+              "scrollSnapY": "",
+              "checkedStateType": "literal",
+              "disabledStateType": "literal",
+              "states": "",
+              "localStyles": {
+                "objID": "f48d46c5-cc1c-43cc-a7d7-9e82794309fa",
+                "definition": {
+                  "MAIN": {
+                    "DEFAULT": {
+                      "outline_color": "#000000",
+                      "text_color": "#FFFFFF",
+                      "align": "TOP_LEFT",
+                      "text_font": "MONTSERRAT_20"
+                    }
+                  }
+                }
+              },
+              "group": "",
+              "groupIndex": 0,
+              "text": "vcu_lc_state == \"Fault\" ? \"Hold brake 5 s to reset\" : vcu_lc_state == \"Armed\" ? \"Release brake, floor it\" : vcu_lc_state == \"Active\" ? \"\" : !vcu_lc_stationary ? \"then hold brake 5 s\" : vcu_lc_arm_progress > 0 ? \"\" : \"for 5 seconds\"",
+              "textType": "expression",
+              "longMode": "WRAP",
+              "recolor": false,
+              "previewValue": "for 5 seconds",
+              "useStaticText": true
+            },
+            {
+              "objID": "421c04d2-9d09-41b3-b20a-b3982eeebfac",
+              "type": "LVGLBarWidget",
+              "left": 17,
+              "top": 266,
+              "width": 230,
+              "height": 12,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "a9c59b60-5f0e-4100-b131-2a639e86894b",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "identifier": "lc_arm_bar",
+              "leftUnit": "px",
+              "topUnit": "px",
+              "widthUnit": "px",
+              "heightUnit": "px",
+              "children": [],
+              "widgetFlags": "CLICK_FOCUSABLE|GESTURE_BUBBLE|PRESS_LOCK|SCROLL_CHAIN_HOR|SCROLL_CHAIN_VER|SCROLL_ELASTIC|SCROLL_MOMENTUM|SCROLL_WITH_ARROW|SNAPPABLE",
+              "hiddenFlag": "vcu_current_mode != \"Launch_Ctrl\" || (vcu_lc_state == \"Armed\" || vcu_lc_state == \"Active\") || vcu_lc_state == \"Fault\" || !(vcu_lc_stationary && vcu_lc_arm_progress > 0 && vcu_lc_arm_progress < 100)",
+              "hiddenFlagType": "expression",
+              "clickableFlag": true,
+              "clickableFlagType": "literal",
+              "flagScrollbarMode": "",
+              "flagScrollDirection": "",
+              "scrollSnapX": "",
+              "scrollSnapY": "",
+              "checkedStateType": "literal",
+              "disabledStateType": "literal",
+              "states": "",
+              "useStyle": "",
+              "localStyles": {
+                "objID": "5bdacab8-9074-4541-81c5-b6a12a9721d8",
+                "definition": {
+                  "MAIN": {
+                    "DEFAULT": {
+                      "align": "TOP_LEFT"
+                    }
+                  },
+                  "INDICATOR": {
+                    "DEFAULT": {
+                      "bg_color": "#00E000"
+                    }
+                  }
+                }
+              },
+              "group": "",
+              "groupIndex": 0,
+              "min": 0,
+              "minType": "literal",
+              "max": 100,
+              "maxType": "literal",
+              "mode": "NORMAL",
+              "value": "vcu_lc_arm_progress",
+              "valueType": "expression",
+              "previewValue": "40",
+              "valueStart": 0,
+              "valueStartType": "literal",
+              "previewValueStart": "0",
+              "enableAnimation": true
             }
           ],
           "widgetFlags": "CLICKABLE|PRESS_LOCK|CLICK_FOCUSABLE|GESTURE_BUBBLE|SNAPPABLE|SCROLLABLE|SCROLL_ELASTIC|SCROLL_MOMENTUM|SCROLL_CHAIN_HOR|SCROLL_CHAIN_VER",

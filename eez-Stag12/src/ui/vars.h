@@ -76,6 +76,16 @@ extern double get_var_pdm_battery_voltage();
 extern void set_var_pdm_battery_voltage(double value);
 extern const char *get_var_uptime_str();
 extern void set_var_uptime_str(const char *value);
+extern const char *get_var_vcu_lc_state();
+extern void set_var_vcu_lc_state(const char *value);
+extern const char *get_var_vcu_lc_fault();
+extern void set_var_vcu_lc_fault(const char *value);
+extern bool get_var_vcu_lc_shadow_mode();
+extern void set_var_vcu_lc_shadow_mode(bool value);
+extern bool get_var_vcu_lc_stationary();
+extern void set_var_vcu_lc_stationary(bool value);
+extern int32_t get_var_vcu_lc_arm_progress();
+extern void set_var_vcu_lc_arm_progress(int32_t value);
 
 #ifdef __cplusplus
 }

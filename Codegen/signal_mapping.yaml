@@ -5,6 +5,12 @@ CAN_T:
     vcu_ctrl_state: "vcu_ctrl_state"
     vcu_current_mode: "vcu_current_mode"
     vcu_requested_mode: "vcu_requested_mode"
+  VCU_Launch_Ctrl:
+    vcu_lc_state: "vcu_lc_state"
+    vcu_lc_fault: "vcu_lc_fault"
+    vcu_lc_shadow_mode: "vcu_lc_shadow_mode"
+    vcu_lc_stationary: "vcu_lc_stationary"
+    vcu_lc_arm_progress: "vcu_lc_arm_progress"
   BMS_PACK_STATE:
     bms_pack_inst_voltage: "bms_pack_inst_voltage"
     bms_pack_current: "bms_pack_current"
