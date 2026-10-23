@@ -16,7 +16,8 @@ enum ScreensEnum {
     SCREEN_ID_ACCEL = 3,
     SCREEN_ID_DYNO = 4,
     SCREEN_ID_DEBUG = 5,
-    _SCREEN_ID_LAST = 5
+    SCREEN_ID_SPONSORS = 6,
+    _SCREEN_ID_LAST = 6
 };
 
 typedef struct _objects_t {
@@ -25,6 +26,7 @@ typedef struct _objects_t {
     lv_obj_t *accel;
     lv_obj_t *dyno;
     lv_obj_t *debug;
+    lv_obj_t *sponsors;
     lv_obj_t *lvbox_pwr;
     lv_obj_t *vcu_state;
     lv_obj_t *inv_state;
@@ -260,6 +262,23 @@ typedef struct _objects_t {
     lv_obj_t *obj85;
     lv_obj_t *obj86;
     lv_obj_t *obj87;
+    lv_obj_t *sponsors_title;
+    lv_obj_t *obj88;
+    lv_obj_t *sponsors_logo_uos;
+    lv_obj_t *sponsors_dot_0;
+    lv_obj_t *sponsors_dot_on_0;
+    lv_obj_t *sponsors_logo_sfs;
+    lv_obj_t *sponsors_dot_1;
+    lv_obj_t *sponsors_dot_on_1;
+    lv_obj_t *sponsors_logo_vector;
+    lv_obj_t *sponsors_dot_2;
+    lv_obj_t *sponsors_dot_on_2;
+    lv_obj_t *sponsors_logo_rfpro;
+    lv_obj_t *sponsors_dot_3;
+    lv_obj_t *sponsors_dot_on_3;
+    lv_obj_t *sponsors_logo_about_energy;
+    lv_obj_t *sponsors_dot_4;
+    lv_obj_t *sponsors_dot_on_4;
 } objects_t;
 
 extern objects_t objects;
@@ -283,6 +302,10 @@ void tick_screen_dyno();
 void create_screen_debug();
 void delete_screen_debug();
 void tick_screen_debug();
+
+void create_screen_sponsors();
+void delete_screen_sponsors();
+void tick_screen_sponsors();
 
 void create_screen_by_id(enum ScreensEnum screenId);
 void delete_screen_by_id(enum ScreensEnum screenId);

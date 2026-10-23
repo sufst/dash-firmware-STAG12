@@ -12,8 +12,8 @@
 
 objects_t objects;
 
-static const char *screen_names[] = { "Main", "Skidpad", "Accel", "Dyno", "Debug" };
-static const char *object_names[] = { "main", "skidpad", "accel", "dyno", "debug", "lvbox_pwr", "vcu_state", "inv_state", "obj0", "pdm_11", "apps", "bps", "inverter_temp_10", "pdm_13", "wheel_fl_3", "wheel_fl_4", "obj1", "lap_number", "obj2", "inverter_on", "inverter_off", "pumps_on", "pumps_off", "fans_on", "fans_off", "battery_ok", "battery_warn", "battery_crit", "motor_ok", "motor_warn", "motor_cit", "inverter_ok", "inverter_warn", "inverter_cit", "obj3", "obj4", "inverter_temp", "inverter_temp_4", "inverter_temp_5", "motor_temp", "inverter_temp_6", "battery_temp", "obj5", "obj6", "obj7", "obj8", "obj9", "obj10", "obj11", "obj12", "soc_bar", "soc_bar_warn", "soc_bar_crit", "soc_percent", "mode", "obj13", "inverter_switch_label", "pumps_switch_label", "fans_switch_label", "message_header", "driver_msg_label", "startup_instructions", "skidpad_lvbox_pwr", "skidpad_vcu_state", "skidpad_inv_state", "obj14", "skidpad_pdm_11", "skidpad_apps", "skidpad_bps", "skidpad_inverter_temp_10", "skidpad_pdm_13", "skidpad_wheel_fl_3", "skidpad_wheel_fl_4", "obj15", "skidpad_lap_number", "obj16", "skidpad_inverter_on", "skidpad_inverter_off", "skidpad_pumps_on", "skidpad_pumps_off", "skidpad_fans_on", "skidpad_fans_off", "skidpad_battery_ok", "skidpad_battery_warn", "skidpad_battery_crit", "skidpad_motor_ok", "skidpad_motor_warn", "skidpad_motor_cit", "skidpad_inverter_ok", "skidpad_inverter_warn", "skidpad_inverter_cit", "obj17", "obj18", "skidpad_inverter_temp", "skidpad_inverter_temp_4", "skidpad_inverter_temp_5", "skidpad_motor_temp", "skidpad_inverter_temp_6", "skidpad_battery_temp", "obj19", "obj20", "obj21", "obj22", "obj23", "obj24", "obj25", "obj26", "skidpad_soc_bar", "skidpad_soc_bar_warn", "skidpad_soc_bar_crit", "skidpad_soc_percent", "skidpad_mode", "obj27", "skidpad_inverter_switch_label", "skidpad_pumps_switch_label", "skidpad_fans_switch_label", "skidpad_message_header", "skidpad_driver_msg_label", "skidpad_startup_instructions", "accel_lvbox_pwr", "accel_vcu_state", "accel_inv_state", "obj28", "accel_pdm_11", "accel_apps", "accel_bps", "accel_inverter_temp_10", "accel_pdm_13", "accel_wheel_fl_3", "accel_wheel_fl_4", "obj29", "obj30", "accel_inverter_on", "accel_inverter_off", "accel_pumps_on", "accel_pumps_off", "accel_fans_on", "accel_fans_off", "accel_battery_ok", "accel_battery_warn", "accel_battery_crit", "accel_motor_ok", "accel_motor_warn", "accel_motor_cit", "accel_inverter_ok", "accel_inverter_warn", "accel_inverter_cit", "obj31", "obj32", "accel_inverter_temp", "accel_inverter_temp_4", "accel_inverter_temp_5", "accel_motor_temp", "accel_inverter_temp_6", "accel_battery_temp", "obj33", "obj34", "obj35", "obj36", "obj37", "obj38", "obj39", "obj40", "accel_soc_bar", "accel_soc_bar_warn", "accel_soc_bar_crit", "accel_soc_percent", "accel_mode", "obj41", "accel_inverter_switch_label", "accel_pumps_switch_label", "accel_fans_switch_label", "accel_message_header", "accel_startup_instructions", "accel_lc_status", "accel_lc_status_go", "accel_lc_status_fault", "accel_lc_hint", "accel_lc_arm_bar", "accel_lc_fault_reason", "accel_lc_shadow", "accel_slip_warn", "accel_speed", "accel_slip", "dyno_title", "obj42", "dyno_counter_caption", "dyno_counter", "obj43", "dyno_state_caption", "dyno_state", "dyno_no_vcu", "debug_title", "debug_vcu", "debug_link_ok", "debug_link_lost", "obj44", "obj45", "obj46", "obj47", "obj48", "obj49", "obj50", "obj51", "obj52", "obj53", "obj54", "obj55", "obj56", "obj57", "obj58", "obj59", "obj60", "obj61", "obj62", "obj63", "obj64", "obj65", "obj66", "obj67", "obj68", "obj69", "obj70", "obj71", "obj72", "obj73", "obj74", "obj75", "obj76", "obj77", "obj78", "obj79", "obj80", "obj81", "obj82", "obj83", "obj84", "obj85", "obj86", "obj87" };
+static const char *screen_names[] = { "Main", "Skidpad", "Accel", "Dyno", "Debug", "Sponsors" };
+static const char *object_names[] = { "main", "skidpad", "accel", "dyno", "debug", "sponsors", "lvbox_pwr", "vcu_state", "inv_state", "obj0", "pdm_11", "apps", "bps", "inverter_temp_10", "pdm_13", "wheel_fl_3", "wheel_fl_4", "obj1", "lap_number", "obj2", "inverter_on", "inverter_off", "pumps_on", "pumps_off", "fans_on", "fans_off", "battery_ok", "battery_warn", "battery_crit", "motor_ok", "motor_warn", "motor_cit", "inverter_ok", "inverter_warn", "inverter_cit", "obj3", "obj4", "inverter_temp", "inverter_temp_4", "inverter_temp_5", "motor_temp", "inverter_temp_6", "battery_temp", "obj5", "obj6", "obj7", "obj8", "obj9", "obj10", "obj11", "obj12", "soc_bar", "soc_bar_warn", "soc_bar_crit", "soc_percent", "mode", "obj13", "inverter_switch_label", "pumps_switch_label", "fans_switch_label", "message_header", "driver_msg_label", "startup_instructions", "skidpad_lvbox_pwr", "skidpad_vcu_state", "skidpad_inv_state", "obj14", "skidpad_pdm_11", "skidpad_apps", "skidpad_bps", "skidpad_inverter_temp_10", "skidpad_pdm_13", "skidpad_wheel_fl_3", "skidpad_wheel_fl_4", "obj15", "skidpad_lap_number", "obj16", "skidpad_inverter_on", "skidpad_inverter_off", "skidpad_pumps_on", "skidpad_pumps_off", "skidpad_fans_on", "skidpad_fans_off", "skidpad_battery_ok", "skidpad_battery_warn", "skidpad_battery_crit", "skidpad_motor_ok", "skidpad_motor_warn", "skidpad_motor_cit", "skidpad_inverter_ok", "skidpad_inverter_warn", "skidpad_inverter_cit", "obj17", "obj18", "skidpad_inverter_temp", "skidpad_inverter_temp_4", "skidpad_inverter_temp_5", "skidpad_motor_temp", "skidpad_inverter_temp_6", "skidpad_battery_temp", "obj19", "obj20", "obj21", "obj22", "obj23", "obj24", "obj25", "obj26", "skidpad_soc_bar", "skidpad_soc_bar_warn", "skidpad_soc_bar_crit", "skidpad_soc_percent", "skidpad_mode", "obj27", "skidpad_inverter_switch_label", "skidpad_pumps_switch_label", "skidpad_fans_switch_label", "skidpad_message_header", "skidpad_driver_msg_label", "skidpad_startup_instructions", "accel_lvbox_pwr", "accel_vcu_state", "accel_inv_state", "obj28", "accel_pdm_11", "accel_apps", "accel_bps", "accel_inverter_temp_10", "accel_pdm_13", "accel_wheel_fl_3", "accel_wheel_fl_4", "obj29", "obj30", "accel_inverter_on", "accel_inverter_off", "accel_pumps_on", "accel_pumps_off", "accel_fans_on", "accel_fans_off", "accel_battery_ok", "accel_battery_warn", "accel_battery_crit", "accel_motor_ok", "accel_motor_warn", "accel_motor_cit", "accel_inverter_ok", "accel_inverter_warn", "accel_inverter_cit", "obj31", "obj32", "accel_inverter_temp", "accel_inverter_temp_4", "accel_inverter_temp_5", "accel_motor_temp", "accel_inverter_temp_6", "accel_battery_temp", "obj33", "obj34", "obj35", "obj36", "obj37", "obj38", "obj39", "obj40", "accel_soc_bar", "accel_soc_bar_warn", "accel_soc_bar_crit", "accel_soc_percent", "accel_mode", "obj41", "accel_inverter_switch_label", "accel_pumps_switch_label", "accel_fans_switch_label", "accel_message_header", "accel_startup_instructions", "accel_lc_status", "accel_lc_status_go", "accel_lc_status_fault", "accel_lc_hint", "accel_lc_arm_bar", "accel_lc_fault_reason", "accel_lc_shadow", "accel_slip_warn", "accel_speed", "accel_slip", "dyno_title", "obj42", "dyno_counter_caption", "dyno_counter", "obj43", "dyno_state_caption", "dyno_state", "dyno_no_vcu", "debug_title", "debug_vcu", "debug_link_ok", "debug_link_lost", "obj44", "obj45", "obj46", "obj47", "obj48", "obj49", "obj50", "obj51", "obj52", "obj53", "obj54", "obj55", "obj56", "obj57", "obj58", "obj59", "obj60", "obj61", "obj62", "obj63", "obj64", "obj65", "obj66", "obj67", "obj68", "obj69", "obj70", "obj71", "obj72", "obj73", "obj74", "obj75", "obj76", "obj77", "obj78", "obj79", "obj80", "obj81", "obj82", "obj83", "obj84", "obj85", "obj86", "obj87", "sponsors_title", "obj88", "sponsors_logo_uos", "sponsors_dot_0", "sponsors_dot_on_0", "sponsors_logo_sfs", "sponsors_dot_1", "sponsors_dot_on_1", "sponsors_logo_vector", "sponsors_dot_2", "sponsors_dot_on_2", "sponsors_logo_rfpro", "sponsors_dot_3", "sponsors_dot_on_3", "sponsors_logo_about_energy", "sponsors_dot_4", "sponsors_dot_on_4" };
 
 //
 // Event handlers
@@ -4468,6 +4468,351 @@ void tick_screen_debug() {
     }
 }
 
+void create_screen_sponsors() {
+    void *flowState = getFlowState(0, 5);
+    (void)flowState;
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.sponsors = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_set_style_bg_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(obj, 0, LV_PART_SCROLLBAR | LV_STATE_DEFAULT);
+    lv_obj_set_style_blend_mode(obj, LV_BLEND_MODE_NORMAL, LV_PART_SCROLLBAR | LV_STATE_DEFAULT);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            // sponsors_title
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            objects.sponsors_title = obj;
+            lv_obj_set_pos(obj, 0, 22);
+            lv_obj_set_size(obj, 800, LV_SIZE_CONTENT);
+            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_text_font(obj, &ui_font_b612_36, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_text_align(obj, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_label_set_text_static(obj, "Thank you to our Platinum Sponsors");
+        }
+        {
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.obj88 = obj;
+            lv_obj_set_pos(obj, 40, 78);
+            lv_obj_set_size(obj, 720, 3);
+            lv_obj_set_style_border_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_logo_uos
+            lv_obj_t *obj = lv_img_create(parent_obj);
+            objects.sponsors_logo_uos = obj;
+            lv_obj_set_pos(obj, 160, 196);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_img_set_src(obj, &img_sponsor_uos);
+        }
+        {
+            // sponsors_dot_0
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_0 = obj;
+            lv_obj_set_pos(obj, 333, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_lighten(lv_color_hex(0x000000), 191), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_dot_on_0
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_on_0 = obj;
+            lv_obj_set_pos(obj, 333, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_logo_sfs
+            lv_obj_t *obj = lv_img_create(parent_obj);
+            objects.sponsors_logo_sfs = obj;
+            lv_obj_set_pos(obj, 285, 132);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_img_set_src(obj, &img_sponsor_sfs);
+        }
+        {
+            // sponsors_dot_1
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_1 = obj;
+            lv_obj_set_pos(obj, 363, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_lighten(lv_color_hex(0x000000), 191), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_dot_on_1
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_on_1 = obj;
+            lv_obj_set_pos(obj, 363, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_logo_vector
+            lv_obj_t *obj = lv_img_create(parent_obj);
+            objects.sponsors_logo_vector = obj;
+            lv_obj_set_pos(obj, 160, 190);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_img_set_src(obj, &img_sponsor_vector);
+        }
+        {
+            // sponsors_dot_2
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_2 = obj;
+            lv_obj_set_pos(obj, 393, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_lighten(lv_color_hex(0x000000), 191), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_dot_on_2
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_on_2 = obj;
+            lv_obj_set_pos(obj, 393, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_logo_rfpro
+            lv_obj_t *obj = lv_img_create(parent_obj);
+            objects.sponsors_logo_rfpro = obj;
+            lv_obj_set_pos(obj, 179, 132);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_img_set_src(obj, &img_sponsor_rfpro);
+        }
+        {
+            // sponsors_dot_3
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_3 = obj;
+            lv_obj_set_pos(obj, 423, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_lighten(lv_color_hex(0x000000), 191), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_dot_on_3
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_on_3 = obj;
+            lv_obj_set_pos(obj, 423, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_logo_about_energy
+            lv_obj_t *obj = lv_img_create(parent_obj);
+            objects.sponsors_logo_about_energy = obj;
+            lv_obj_set_pos(obj, 160, 220);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_img_set_src(obj, &img_sponsor_about_energy);
+        }
+        {
+            // sponsors_dot_4
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_4 = obj;
+            lv_obj_set_pos(obj, 453, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_lighten(lv_color_hex(0x000000), 191), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+        {
+            // sponsors_dot_on_4
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.sponsors_dot_on_4 = obj;
+            lv_obj_set_pos(obj, 453, 428);
+            lv_obj_set_size(obj, 14, 14);
+            lv_obj_set_style_bg_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_radius(obj, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+    }
+    
+    eez_flow_delete_screen_on_unload(SCREEN_ID_SPONSORS - 1);
+    
+    tick_screen_sponsors();
+}
+
+void delete_screen_sponsors() {
+    lv_obj_del(objects.sponsors);
+    objects.sponsors = 0;
+    objects.sponsors_title = 0;
+    objects.obj88 = 0;
+    objects.sponsors_logo_uos = 0;
+    objects.sponsors_dot_0 = 0;
+    objects.sponsors_dot_on_0 = 0;
+    objects.sponsors_logo_sfs = 0;
+    objects.sponsors_dot_1 = 0;
+    objects.sponsors_dot_on_1 = 0;
+    objects.sponsors_logo_vector = 0;
+    objects.sponsors_dot_2 = 0;
+    objects.sponsors_dot_on_2 = 0;
+    objects.sponsors_logo_rfpro = 0;
+    objects.sponsors_dot_3 = 0;
+    objects.sponsors_dot_on_3 = 0;
+    objects.sponsors_logo_about_energy = 0;
+    objects.sponsors_dot_4 = 0;
+    objects.sponsors_dot_on_4 = 0;
+    deletePageFlowState(5);
+}
+
+void tick_screen_sponsors() {
+    void *flowState = getFlowState(0, 5);
+    (void)flowState;
+    {
+        bool new_val = evalBooleanProperty(flowState, 3, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_logo_uos, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_logo_uos;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_logo_uos, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_logo_uos, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 5, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_dot_on_0, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_dot_on_0;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_dot_on_0, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_dot_on_0, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 6, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_logo_sfs, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_logo_sfs;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_logo_sfs, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_logo_sfs, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 8, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_dot_on_1, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_dot_on_1;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_dot_on_1, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_dot_on_1, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 9, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_logo_vector, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_logo_vector;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_logo_vector, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_logo_vector, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 11, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_dot_on_2, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_dot_on_2;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_dot_on_2, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_dot_on_2, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 12, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_logo_rfpro, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_logo_rfpro;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_logo_rfpro, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_logo_rfpro, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 14, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_dot_on_3, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_dot_on_3;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_dot_on_3, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_dot_on_3, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 15, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_logo_about_energy, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_logo_about_energy;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_logo_about_energy, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_logo_about_energy, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+    {
+        bool new_val = evalBooleanProperty(flowState, 17, 3, "Failed to evaluate Hidden flag");
+        bool cur_val = lv_obj_has_flag(objects.sponsors_dot_on_4, LV_OBJ_FLAG_HIDDEN);
+        if (new_val != cur_val) {
+            tick_value_change_obj = objects.sponsors_dot_on_4;
+            if (new_val) {
+                lv_obj_add_flag(objects.sponsors_dot_on_4, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_clear_flag(objects.sponsors_dot_on_4, LV_OBJ_FLAG_HIDDEN);
+            }
+            tick_value_change_obj = NULL;
+        }
+    }
+}
+
 typedef void (*create_screen_func_t)();
 create_screen_func_t create_screen_funcs[] = {
     create_screen_main,
@@ -4475,6 +4820,7 @@ create_screen_func_t create_screen_funcs[] = {
     create_screen_accel,
     create_screen_dyno,
     create_screen_debug,
+    create_screen_sponsors,
 };
 void create_screen(int screen_index) {
     create_screen_funcs[screen_index]();
@@ -4490,6 +4836,7 @@ delete_screen_func_t delete_screen_funcs[] = {
     delete_screen_accel,
     delete_screen_dyno,
     delete_screen_debug,
+    delete_screen_sponsors,
 };
 void delete_screen(int screen_index) {
     delete_screen_funcs[screen_index]();
@@ -4505,9 +4852,10 @@ tick_screen_func_t tick_screen_funcs[] = {
     tick_screen_accel,
     tick_screen_dyno,
     tick_screen_debug,
+    tick_screen_sponsors,
 };
 void tick_screen(int screen_index) {
-    if (screen_index >= 0 && screen_index < 5) {
+    if (screen_index >= 0 && screen_index < 6) {
         tick_screen_funcs[screen_index]();
     }
 }
@@ -4846,11 +5194,22 @@ void change_color_theme(uint32_t theme_index) {
         if (objects.obj86) lv_obj_set_style_text_color(objects.obj86, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.obj87) lv_obj_set_style_text_color(objects.obj87, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
     }
+    {
+        if (objects.sponsors) lv_obj_set_style_bg_color(objects.sponsors, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
+        if (objects.sponsors_title) lv_obj_set_style_text_color(objects.sponsors_title, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+        if (objects.obj88) lv_obj_set_style_border_color(objects.obj88, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+        if (objects.sponsors_dot_on_0) lv_obj_set_style_bg_color(objects.sponsors_dot_on_0, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+        if (objects.sponsors_dot_on_1) lv_obj_set_style_bg_color(objects.sponsors_dot_on_1, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+        if (objects.sponsors_dot_on_2) lv_obj_set_style_bg_color(objects.sponsors_dot_on_2, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+        if (objects.sponsors_dot_on_3) lv_obj_set_style_bg_color(objects.sponsors_dot_on_3, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+        if (objects.sponsors_dot_on_4) lv_obj_set_style_bg_color(objects.sponsors_dot_on_4, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
+    }
     if (objects.main) lv_obj_invalidate(objects.main);
     if (objects.skidpad) lv_obj_invalidate(objects.skidpad);
     if (objects.accel) lv_obj_invalidate(objects.accel);
     if (objects.dyno) lv_obj_invalidate(objects.dyno);
     if (objects.debug) lv_obj_invalidate(objects.debug);
+    if (objects.sponsors) lv_obj_invalidate(objects.sponsors);
 }
 static const char *theme_names[] = { "Default" };
 uint32_t theme_colors[1][9] = {

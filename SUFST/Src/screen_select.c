@@ -17,8 +17,8 @@ static enum ScreensEnum screen_for_mode(int32_t mode)
     case 3:  return SCREEN_ID_ACCEL;   /* Launch_Ctrl */
     case 6:  return SCREEN_ID_DYNO;    /* Remote_Ctrl */
     case 7:
-    case 8:
-    case 9:  return SCREEN_ID_DEBUG;   /* Undefined */
+    case 8:  return SCREEN_ID_DEBUG;    /* Undefined */
+    case 9:  return SCREEN_ID_SPONSORS; /* Undefined: car on show */
     case 10:
     case 11:
     case 12: return SCREEN_ID_DEBUG;   /* Inverter_Prog, until it has its own screen */

@@ -22,3 +22,14 @@ void set_var_uptime_str(const char * value)
 {
     (void) value;
 }
+
+/* Whole seconds since power-on, for timed things on screen (e.g. rotating sponsor logos) */
+int32_t get_var_uptime_s(void)
+{
+    return (int32_t) (HAL_GetTick() / 1000U);
+}
+
+void set_var_uptime_s(int32_t value)
+{
+    (void) value;
+}

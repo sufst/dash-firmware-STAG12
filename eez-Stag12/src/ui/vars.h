@@ -146,6 +146,8 @@ extern int32_t get_var_can_rx_dropped();
 extern void set_var_can_rx_dropped(int32_t value);
 extern bool get_var_vcu_link_ok();
 extern void set_var_vcu_link_ok(bool value);
+extern int32_t get_var_uptime_s();
+extern void set_var_uptime_s(int32_t value);
 
 #ifdef __cplusplus
 }
