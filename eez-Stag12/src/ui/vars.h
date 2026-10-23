@@ -148,6 +148,14 @@ extern bool get_var_vcu_link_ok();
 extern void set_var_vcu_link_ok(bool value);
 extern int32_t get_var_uptime_s();
 extern void set_var_uptime_s(int32_t value);
+extern int32_t get_var_inv_level();
+extern void set_var_inv_level(int32_t value);
+extern int32_t get_var_motor_level();
+extern void set_var_motor_level(int32_t value);
+extern int32_t get_var_batt_level();
+extern void set_var_batt_level(int32_t value);
+extern int32_t get_var_soc_level();
+extern void set_var_soc_level(int32_t value);
 
 #ifdef __cplusplus
 }

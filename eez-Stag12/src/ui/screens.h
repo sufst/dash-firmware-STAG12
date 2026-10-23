@@ -317,7 +317,8 @@ void create_screens();
 // Color themes
 
 enum Themes {
-    THEME_ID_DEFAULT,
+    THEME_ID_DASH_WHITE_BG,
+    THEME_ID_DASH_BLACK_BG,
 };
 enum Colors {
     COLOR_ID_BG,
@@ -329,9 +330,11 @@ enum Colors {
     COLOR_ID_ON_CRIT,
     COLOR_ID_MSG_BG,
     COLOR_ID_BAR_TRACK,
+    COLOR_ID_DYNO_BG,
+    COLOR_ID_SOC_TRACK,
 };
 void change_color_theme(uint32_t themeIndex);
-extern uint32_t theme_colors[1][9];
+extern uint32_t theme_colors[2][11];
 
 #ifdef __cplusplus
 }

@@ -214,6 +214,7 @@ void StartDefaultTask(void *argument)
   lv_disp_drv_register(&disp_drv);
 
   ui_init();
+  eez_flow_set_theme(DASH_THEME);
 
   /* Infinite loop */
   for(;;)

@@ -111,9 +111,15 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     eez-Stag12/src/ui
 )
 
+# Colour theme the dash starts in (themes are defined in the EEZ Studio project)
+set(DASH_THEME "dash-white-bg" CACHE STRING "Dash colour theme: dash-white-bg or dash-black-bg")
+set_property(CACHE DASH_THEME PROPERTY STRINGS dash-white-bg dash-black-bg)
+message("Dash theme: " ${DASH_THEME})
+
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined compile definitions
     CFG_TUSB_MCU=OPT_MCU_STM32F7
+    DASH_THEME="${DASH_THEME}"
 )
 
 set_source_files_properties(eez-Stag12/src/ui/screens.c PROPERTIES
