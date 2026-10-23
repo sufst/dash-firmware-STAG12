@@ -13,7 +13,7 @@
 objects_t objects;
 
 static const char *screen_names[] = { "Main", "Skidpad", "Accel", "Dyno", "Debug", "Sponsors" };
-static const char *object_names[] = { "main", "skidpad", "accel", "dyno", "debug", "sponsors", "lvbox_pwr", "vcu_state", "inv_state", "obj0", "pdm_11", "apps", "bps", "inverter_temp_10", "pdm_13", "wheel_fl_3", "wheel_fl_4", "obj1", "lap_number", "obj2", "inverter_on", "inverter_off", "pumps_on", "pumps_off", "fans_on", "fans_off", "battery_ok", "battery_warn", "battery_crit", "motor_ok", "motor_warn", "motor_cit", "inverter_ok", "inverter_warn", "inverter_cit", "obj3", "obj4", "inverter_temp", "inverter_temp_4", "inverter_temp_5", "motor_temp", "inverter_temp_6", "battery_temp", "obj5", "obj6", "obj7", "obj8", "obj9", "obj10", "obj11", "obj12", "soc_bar", "soc_bar_warn", "soc_bar_crit", "soc_percent", "mode", "obj13", "inverter_switch_label", "pumps_switch_label", "fans_switch_label", "message_header", "driver_msg_label", "startup_instructions", "skidpad_lvbox_pwr", "skidpad_vcu_state", "skidpad_inv_state", "obj14", "skidpad_pdm_11", "skidpad_apps", "skidpad_bps", "skidpad_inverter_temp_10", "skidpad_pdm_13", "skidpad_wheel_fl_3", "skidpad_wheel_fl_4", "obj15", "skidpad_lap_number", "obj16", "skidpad_inverter_on", "skidpad_inverter_off", "skidpad_pumps_on", "skidpad_pumps_off", "skidpad_fans_on", "skidpad_fans_off", "skidpad_battery_ok", "skidpad_battery_warn", "skidpad_battery_crit", "skidpad_motor_ok", "skidpad_motor_warn", "skidpad_motor_cit", "skidpad_inverter_ok", "skidpad_inverter_warn", "skidpad_inverter_cit", "obj17", "obj18", "skidpad_inverter_temp", "skidpad_inverter_temp_4", "skidpad_inverter_temp_5", "skidpad_motor_temp", "skidpad_inverter_temp_6", "skidpad_battery_temp", "obj19", "obj20", "obj21", "obj22", "obj23", "obj24", "obj25", "obj26", "skidpad_soc_bar", "skidpad_soc_bar_warn", "skidpad_soc_bar_crit", "skidpad_soc_percent", "skidpad_mode", "obj27", "skidpad_inverter_switch_label", "skidpad_pumps_switch_label", "skidpad_fans_switch_label", "skidpad_message_header", "skidpad_driver_msg_label", "skidpad_startup_instructions", "accel_lvbox_pwr", "accel_vcu_state", "accel_inv_state", "obj28", "accel_pdm_11", "accel_apps", "accel_bps", "accel_inverter_temp_10", "accel_pdm_13", "accel_wheel_fl_3", "accel_wheel_fl_4", "obj29", "obj30", "accel_inverter_on", "accel_inverter_off", "accel_pumps_on", "accel_pumps_off", "accel_fans_on", "accel_fans_off", "accel_battery_ok", "accel_battery_warn", "accel_battery_crit", "accel_motor_ok", "accel_motor_warn", "accel_motor_cit", "accel_inverter_ok", "accel_inverter_warn", "accel_inverter_cit", "obj31", "obj32", "accel_inverter_temp", "accel_inverter_temp_4", "accel_inverter_temp_5", "accel_motor_temp", "accel_inverter_temp_6", "accel_battery_temp", "obj33", "obj34", "obj35", "obj36", "obj37", "obj38", "obj39", "obj40", "accel_soc_bar", "accel_soc_bar_warn", "accel_soc_bar_crit", "accel_soc_percent", "accel_mode", "obj41", "accel_inverter_switch_label", "accel_pumps_switch_label", "accel_fans_switch_label", "accel_message_header", "accel_startup_instructions", "accel_lc_status", "accel_lc_status_go", "accel_lc_status_fault", "accel_lc_hint", "accel_lc_arm_bar", "accel_lc_fault_reason", "accel_lc_shadow", "accel_slip_warn", "accel_speed", "accel_slip", "dyno_title", "obj42", "dyno_counter_caption", "dyno_counter", "obj43", "dyno_state_caption", "dyno_state", "dyno_no_vcu", "debug_title", "debug_vcu", "debug_link_ok", "debug_link_lost", "obj44", "obj45", "obj46", "obj47", "obj48", "obj49", "obj50", "obj51", "obj52", "obj53", "obj54", "obj55", "obj56", "obj57", "obj58", "obj59", "obj60", "obj61", "obj62", "obj63", "obj64", "obj65", "obj66", "obj67", "obj68", "obj69", "obj70", "obj71", "obj72", "obj73", "obj74", "obj75", "obj76", "obj77", "obj78", "obj79", "obj80", "obj81", "obj82", "obj83", "obj84", "obj85", "obj86", "obj87", "sponsors_title", "obj88", "sponsors_logo_uos", "sponsors_dot_0", "sponsors_dot_on_0", "sponsors_logo_sfs", "sponsors_dot_1", "sponsors_dot_on_1", "sponsors_logo_vector", "sponsors_dot_2", "sponsors_dot_on_2", "sponsors_logo_rfpro", "sponsors_dot_3", "sponsors_dot_on_3", "sponsors_logo_about_energy", "sponsors_dot_4", "sponsors_dot_on_4" };
+static const char *object_names[] = { "main", "skidpad", "accel", "dyno", "debug", "sponsors", "lvbox_pwr", "vcu_state", "inv_state", "obj0", "pdm_11", "apps", "bps", "obj1", "lap_number", "obj2", "inverter_on", "inverter_off", "pumps_on", "pumps_off", "fans_on", "fans_off", "battery_ok", "battery_warn", "battery_crit", "motor_ok", "motor_warn", "motor_cit", "inverter_ok", "inverter_warn", "inverter_cit", "obj3", "obj4", "inverter_temp", "inverter_temp_4", "inverter_temp_5", "motor_temp", "inverter_temp_6", "battery_temp", "obj5", "obj6", "obj7", "obj8", "obj9", "obj10", "obj11", "obj12", "soc_bar", "soc_bar_warn", "soc_bar_crit", "soc_percent", "mode", "obj13", "inverter_switch_label", "pumps_switch_label", "fans_switch_label", "message_header", "driver_msg_label", "startup_instructions", "skidpad_lvbox_pwr", "skidpad_vcu_state", "skidpad_inv_state", "obj14", "skidpad_pdm_11", "skidpad_apps", "skidpad_bps", "obj15", "skidpad_lap_number", "obj16", "skidpad_inverter_on", "skidpad_inverter_off", "skidpad_pumps_on", "skidpad_pumps_off", "skidpad_fans_on", "skidpad_fans_off", "skidpad_battery_ok", "skidpad_battery_warn", "skidpad_battery_crit", "skidpad_motor_ok", "skidpad_motor_warn", "skidpad_motor_cit", "skidpad_inverter_ok", "skidpad_inverter_warn", "skidpad_inverter_cit", "obj17", "obj18", "skidpad_inverter_temp", "skidpad_inverter_temp_4", "skidpad_inverter_temp_5", "skidpad_motor_temp", "skidpad_inverter_temp_6", "skidpad_battery_temp", "obj19", "obj20", "obj21", "obj22", "obj23", "obj24", "obj25", "obj26", "skidpad_soc_bar", "skidpad_soc_bar_warn", "skidpad_soc_bar_crit", "skidpad_soc_percent", "skidpad_mode", "obj27", "skidpad_inverter_switch_label", "skidpad_pumps_switch_label", "skidpad_fans_switch_label", "skidpad_message_header", "skidpad_driver_msg_label", "skidpad_startup_instructions", "accel_lvbox_pwr", "accel_vcu_state", "accel_inv_state", "obj28", "accel_pdm_11", "accel_apps", "accel_bps", "obj29", "obj30", "accel_inverter_on", "accel_inverter_off", "accel_pumps_on", "accel_pumps_off", "accel_fans_on", "accel_fans_off", "accel_battery_ok", "accel_battery_warn", "accel_battery_crit", "accel_motor_ok", "accel_motor_warn", "accel_motor_cit", "accel_inverter_ok", "accel_inverter_warn", "accel_inverter_cit", "obj31", "obj32", "accel_inverter_temp", "accel_inverter_temp_4", "accel_inverter_temp_5", "accel_motor_temp", "accel_inverter_temp_6", "accel_battery_temp", "obj33", "obj34", "obj35", "obj36", "obj37", "obj38", "obj39", "obj40", "accel_soc_bar", "accel_soc_bar_warn", "accel_soc_bar_crit", "accel_soc_percent", "accel_mode", "obj41", "accel_inverter_switch_label", "accel_pumps_switch_label", "accel_fans_switch_label", "accel_message_header", "accel_startup_instructions", "accel_lc_status", "accel_lc_status_go", "accel_lc_status_fault", "accel_lc_hint", "accel_lc_arm_bar", "accel_lc_fault_reason", "accel_lc_shadow", "accel_slip_warn", "accel_speed", "accel_slip", "dyno_title", "obj42", "dyno_counter_caption", "dyno_counter", "obj43", "dyno_state_caption", "dyno_state", "dyno_no_vcu", "debug_title", "debug_vcu", "debug_link_ok", "debug_link_lost", "obj44", "obj45", "obj46", "obj47", "obj48", "obj49", "obj50", "obj51", "obj52", "obj53", "obj54", "obj55", "obj56", "obj57", "obj58", "obj59", "obj60", "obj61", "obj62", "obj63", "obj64", "obj65", "obj66", "obj67", "obj68", "obj69", "obj70", "obj71", "obj72", "obj73", "obj74", "obj75", "obj76", "obj77", "obj78", "obj79", "obj80", "obj81", "obj82", "obj83", "obj84", "obj85", "obj86", "obj87", "sponsors_title", "obj88", "sponsors_logo_uos", "sponsors_dot_0", "sponsors_dot_on_0", "sponsors_logo_sfs", "sponsors_dot_1", "sponsors_dot_on_1", "sponsors_logo_vector", "sponsors_dot_2", "sponsors_dot_on_2", "sponsors_logo_rfpro", "sponsors_dot_3", "sponsors_dot_on_3", "sponsors_logo_about_energy", "sponsors_dot_4", "sponsors_dot_on_4" };
 
 //
 // Event handlers
@@ -153,53 +153,6 @@ void create_screen_main() {
             lv_obj_set_style_bg_color(obj, lv_color_hex(0xff0000), LV_PART_INDICATOR | LV_STATE_DEFAULT);
             lv_obj_set_style_bg_color(obj, lv_color_hex(0xbcd8ee), LV_PART_MAIN | LV_STATE_DEFAULT);
             lv_obj_set_style_bg_opa(obj, 251, LV_PART_MAIN | LV_STATE_DEFAULT);
-        }
-        {
-            // inverter_temp_10
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.inverter_temp_10 = obj;
-            lv_obj_set_pos(obj, 258, 150);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_outline_color(obj, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_TOP_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_align(obj, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_30, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // pdm_13
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.pdm_13 = obj;
-            lv_obj_set_pos(obj, 244, 54);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_outline_color(obj, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_30, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // wheel_fl_3
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.wheel_fl_3 = obj;
-            lv_obj_set_pos(obj, 244, 27);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // wheel_fl_4
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.wheel_fl_4 = obj;
-            lv_obj_set_pos(obj, 0, 146);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
         }
         {
             lv_obj_t *obj = lv_img_create(parent_obj);
@@ -678,10 +631,6 @@ void delete_screen_main() {
     objects.pdm_11 = 0;
     objects.apps = 0;
     objects.bps = 0;
-    objects.inverter_temp_10 = 0;
-    objects.pdm_13 = 0;
-    objects.wheel_fl_3 = 0;
-    objects.wheel_fl_4 = 0;
     objects.obj1 = 0;
     objects.lap_number = 0;
     objects.obj2 = 0;
@@ -798,43 +747,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 8, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.inverter_temp_10);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.inverter_temp_10;
-            lv_label_set_text(objects.inverter_temp_10, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
         const char *new_val = evalTextProperty(flowState, 9, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.pdm_13);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.pdm_13;
-            lv_label_set_text(objects.pdm_13, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 10, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.wheel_fl_3);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.wheel_fl_3;
-            lv_label_set_text(objects.wheel_fl_3, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 11, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.wheel_fl_4);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.wheel_fl_4;
-            lv_label_set_text(objects.wheel_fl_4, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 13, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.lap_number);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.lap_number;
@@ -843,7 +756,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 16, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 12, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.inverter_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.inverter_off;
@@ -856,7 +769,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 18, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 14, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.pumps_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.pumps_off;
@@ -869,7 +782,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 20, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 16, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.fans_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.fans_off;
@@ -882,7 +795,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 22, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 18, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.battery_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.battery_warn;
@@ -895,7 +808,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 23, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 19, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.battery_crit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.battery_crit;
@@ -908,7 +821,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 25, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 21, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.motor_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.motor_warn;
@@ -921,7 +834,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 26, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 22, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.motor_cit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.motor_cit;
@@ -934,7 +847,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 28, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 24, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.inverter_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.inverter_warn;
@@ -947,7 +860,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 29, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 25, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.inverter_cit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.inverter_cit;
@@ -960,7 +873,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 32, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 28, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.inverter_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.inverter_temp;
@@ -969,7 +882,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 35, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 31, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.motor_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.motor_temp;
@@ -978,7 +891,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 37, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 33, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.battery_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.battery_temp;
@@ -987,7 +900,7 @@ void tick_screen_main() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 46, 3, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 42, 3, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.soc_bar);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.soc_bar;
@@ -996,7 +909,7 @@ void tick_screen_main() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 47, 4, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 43, 4, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.soc_bar_warn);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.soc_bar_warn;
@@ -1005,7 +918,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 47, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 43, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.soc_bar_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.soc_bar_warn;
@@ -1018,7 +931,7 @@ void tick_screen_main() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 48, 4, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 44, 4, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.soc_bar_crit);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.soc_bar_crit;
@@ -1027,7 +940,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 48, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 44, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.soc_bar_crit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.soc_bar_crit;
@@ -1040,7 +953,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 49, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 45, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.soc_percent);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.soc_percent;
@@ -1049,7 +962,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 50, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 46, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.mode);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.mode;
@@ -1058,7 +971,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 56, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 52, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.driver_msg_label);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.driver_msg_label;
@@ -1067,7 +980,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 56, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 52, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.driver_msg_label, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.driver_msg_label;
@@ -1080,7 +993,7 @@ void tick_screen_main() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 57, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 53, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.startup_instructions);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.startup_instructions;
@@ -1089,7 +1002,7 @@ void tick_screen_main() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 57, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 53, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.startup_instructions, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.startup_instructions;
@@ -1189,53 +1102,6 @@ void create_screen_skidpad() {
             lv_obj_set_style_bg_color(obj, lv_color_hex(0xff0000), LV_PART_INDICATOR | LV_STATE_DEFAULT);
             lv_obj_set_style_bg_color(obj, lv_color_hex(0xbcd8ee), LV_PART_MAIN | LV_STATE_DEFAULT);
             lv_obj_set_style_bg_opa(obj, 251, LV_PART_MAIN | LV_STATE_DEFAULT);
-        }
-        {
-            // skidpad_inverter_temp_10
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.skidpad_inverter_temp_10 = obj;
-            lv_obj_set_pos(obj, 258, 150);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_outline_color(obj, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_TOP_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_align(obj, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_30, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // skidpad_pdm_13
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.skidpad_pdm_13 = obj;
-            lv_obj_set_pos(obj, 244, 54);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_outline_color(obj, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_30, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // skidpad_wheel_fl_3
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.skidpad_wheel_fl_3 = obj;
-            lv_obj_set_pos(obj, 244, 27);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // skidpad_wheel_fl_4
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.skidpad_wheel_fl_4 = obj;
-            lv_obj_set_pos(obj, 0, 146);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
         }
         {
             lv_obj_t *obj = lv_img_create(parent_obj);
@@ -1714,10 +1580,6 @@ void delete_screen_skidpad() {
     objects.skidpad_pdm_11 = 0;
     objects.skidpad_apps = 0;
     objects.skidpad_bps = 0;
-    objects.skidpad_inverter_temp_10 = 0;
-    objects.skidpad_pdm_13 = 0;
-    objects.skidpad_wheel_fl_3 = 0;
-    objects.skidpad_wheel_fl_4 = 0;
     objects.obj15 = 0;
     objects.skidpad_lap_number = 0;
     objects.obj16 = 0;
@@ -1834,43 +1696,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 8, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.skidpad_inverter_temp_10);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.skidpad_inverter_temp_10;
-            lv_label_set_text(objects.skidpad_inverter_temp_10, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
         const char *new_val = evalTextProperty(flowState, 9, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.skidpad_pdm_13);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.skidpad_pdm_13;
-            lv_label_set_text(objects.skidpad_pdm_13, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 10, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.skidpad_wheel_fl_3);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.skidpad_wheel_fl_3;
-            lv_label_set_text(objects.skidpad_wheel_fl_3, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 11, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.skidpad_wheel_fl_4);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.skidpad_wheel_fl_4;
-            lv_label_set_text(objects.skidpad_wheel_fl_4, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 13, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.skidpad_lap_number);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.skidpad_lap_number;
@@ -1879,7 +1705,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 16, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 12, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_inverter_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_inverter_off;
@@ -1892,7 +1718,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 18, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 14, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_pumps_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_pumps_off;
@@ -1905,7 +1731,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 20, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 16, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_fans_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_fans_off;
@@ -1918,7 +1744,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 22, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 18, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_battery_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_battery_warn;
@@ -1931,7 +1757,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 23, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 19, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_battery_crit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_battery_crit;
@@ -1944,7 +1770,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 25, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 21, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_motor_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_motor_warn;
@@ -1957,7 +1783,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 26, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 22, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_motor_cit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_motor_cit;
@@ -1970,7 +1796,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 28, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 24, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_inverter_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_inverter_warn;
@@ -1983,7 +1809,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 29, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 25, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_inverter_cit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_inverter_cit;
@@ -1996,7 +1822,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 32, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 28, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.skidpad_inverter_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.skidpad_inverter_temp;
@@ -2005,7 +1831,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 35, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 31, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.skidpad_motor_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.skidpad_motor_temp;
@@ -2014,7 +1840,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 37, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 33, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.skidpad_battery_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.skidpad_battery_temp;
@@ -2023,7 +1849,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 46, 3, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 42, 3, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.skidpad_soc_bar);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_soc_bar;
@@ -2032,7 +1858,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 47, 4, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 43, 4, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.skidpad_soc_bar_warn);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_soc_bar_warn;
@@ -2041,7 +1867,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 47, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 43, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_soc_bar_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_soc_bar_warn;
@@ -2054,7 +1880,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 48, 4, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 44, 4, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.skidpad_soc_bar_crit);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_soc_bar_crit;
@@ -2063,7 +1889,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 48, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 44, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_soc_bar_crit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_soc_bar_crit;
@@ -2076,7 +1902,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 49, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 45, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.skidpad_soc_percent);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.skidpad_soc_percent;
@@ -2085,7 +1911,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 56, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 52, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.skidpad_driver_msg_label);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.skidpad_driver_msg_label;
@@ -2094,7 +1920,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 56, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 52, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_driver_msg_label, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_driver_msg_label;
@@ -2107,7 +1933,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 57, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 53, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.skidpad_startup_instructions);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.skidpad_startup_instructions;
@@ -2116,7 +1942,7 @@ void tick_screen_skidpad() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 57, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 53, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.skidpad_startup_instructions, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.skidpad_startup_instructions;
@@ -2216,53 +2042,6 @@ void create_screen_accel() {
             lv_obj_set_style_bg_color(obj, lv_color_hex(0xff0000), LV_PART_INDICATOR | LV_STATE_DEFAULT);
             lv_obj_set_style_bg_color(obj, lv_color_hex(0xbcd8ee), LV_PART_MAIN | LV_STATE_DEFAULT);
             lv_obj_set_style_bg_opa(obj, 251, LV_PART_MAIN | LV_STATE_DEFAULT);
-        }
-        {
-            // accel_inverter_temp_10
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.accel_inverter_temp_10 = obj;
-            lv_obj_set_pos(obj, 258, 150);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_outline_color(obj, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_TOP_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_align(obj, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_30, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // accel_pdm_13
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.accel_pdm_13 = obj;
-            lv_obj_set_pos(obj, 244, 54);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_outline_color(obj, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_30, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // accel_wheel_fl_3
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.accel_wheel_fl_3 = obj;
-            lv_obj_set_pos(obj, 244, 27);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            // accel_wheel_fl_4
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.accel_wheel_fl_4 = obj;
-            lv_obj_set_pos(obj, 0, 146);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_obj_set_style_text_color(obj, lv_color_hex(theme_colors[eez_flow_get_selected_theme_index()][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_label_set_text(obj, "");
         }
         {
             lv_obj_t *obj = lv_img_create(parent_obj);
@@ -2830,10 +2609,6 @@ void delete_screen_accel() {
     objects.accel_pdm_11 = 0;
     objects.accel_apps = 0;
     objects.accel_bps = 0;
-    objects.accel_inverter_temp_10 = 0;
-    objects.accel_pdm_13 = 0;
-    objects.accel_wheel_fl_3 = 0;
-    objects.accel_wheel_fl_4 = 0;
     objects.obj29 = 0;
     objects.obj30 = 0;
     objects.accel_inverter_on = 0;
@@ -2958,43 +2733,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 8, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.accel_inverter_temp_10);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.accel_inverter_temp_10;
-            lv_label_set_text(objects.accel_inverter_temp_10, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 9, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.accel_pdm_13);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.accel_pdm_13;
-            lv_label_set_text(objects.accel_pdm_13, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 10, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.accel_wheel_fl_3);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.accel_wheel_fl_3;
-            lv_label_set_text(objects.accel_wheel_fl_3, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        const char *new_val = evalTextProperty(flowState, 11, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(objects.accel_wheel_fl_4);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = objects.accel_wheel_fl_4;
-            lv_label_set_text(objects.accel_wheel_fl_4, new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    {
-        bool new_val = evalBooleanProperty(flowState, 15, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 11, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_inverter_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_inverter_off;
@@ -3007,7 +2746,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 17, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 13, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_pumps_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_pumps_off;
@@ -3020,7 +2759,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 19, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 15, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_fans_off, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_fans_off;
@@ -3033,7 +2772,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 21, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 17, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_battery_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_battery_warn;
@@ -3046,7 +2785,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 22, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 18, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_battery_crit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_battery_crit;
@@ -3059,7 +2798,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 24, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 20, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_motor_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_motor_warn;
@@ -3072,7 +2811,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 25, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 21, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_motor_cit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_motor_cit;
@@ -3085,7 +2824,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 27, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 23, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_inverter_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_inverter_warn;
@@ -3098,7 +2837,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 28, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 24, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_inverter_cit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_inverter_cit;
@@ -3111,7 +2850,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 31, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 27, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_inverter_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_inverter_temp;
@@ -3120,7 +2859,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 33, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 30, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_motor_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_motor_temp;
@@ -3129,7 +2868,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 36, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 32, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_battery_temp);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_battery_temp;
@@ -3138,7 +2877,7 @@ void tick_screen_accel() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 45, 3, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 41, 3, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.accel_soc_bar);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_soc_bar;
@@ -3147,7 +2886,7 @@ void tick_screen_accel() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 46, 4, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 42, 4, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.accel_soc_bar_warn);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_soc_bar_warn;
@@ -3156,7 +2895,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 46, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 42, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_soc_bar_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_soc_bar_warn;
@@ -3169,7 +2908,7 @@ void tick_screen_accel() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 47, 4, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 43, 4, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.accel_soc_bar_crit);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_soc_bar_crit;
@@ -3178,7 +2917,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 47, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 43, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_soc_bar_crit, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_soc_bar_crit;
@@ -3191,7 +2930,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 48, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 44, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_soc_percent);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_soc_percent;
@@ -3200,7 +2939,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 55, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 51, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_startup_instructions);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_startup_instructions;
@@ -3209,7 +2948,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 55, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 51, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_startup_instructions, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_startup_instructions;
@@ -3222,7 +2961,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 56, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 52, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_lc_status);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_lc_status;
@@ -3231,7 +2970,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 56, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 52, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_lc_status, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_lc_status;
@@ -3244,7 +2983,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 57, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 53, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_lc_status_go);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_lc_status_go;
@@ -3253,7 +2992,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 57, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 53, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_lc_status_go, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_lc_status_go;
@@ -3266,7 +3005,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 58, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 54, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_lc_status_fault, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_lc_status_fault;
@@ -3279,7 +3018,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 59, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 55, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_lc_hint);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_lc_hint;
@@ -3288,7 +3027,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 59, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 55, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_lc_hint, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_lc_hint;
@@ -3301,7 +3040,7 @@ void tick_screen_accel() {
         }
     }
     {
-        int32_t new_val = evalIntegerProperty(flowState, 60, 4, "Failed to evaluate Value in Bar widget");
+        int32_t new_val = evalIntegerProperty(flowState, 56, 4, "Failed to evaluate Value in Bar widget");
         int32_t cur_val = lv_bar_get_value(objects.accel_lc_arm_bar);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_lc_arm_bar;
@@ -3310,7 +3049,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 60, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 56, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_lc_arm_bar, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_lc_arm_bar;
@@ -3323,7 +3062,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 61, 4, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 57, 4, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_lc_fault_reason);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_lc_fault_reason;
@@ -3332,7 +3071,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 61, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 57, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_lc_fault_reason, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_lc_fault_reason;
@@ -3345,7 +3084,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 62, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 58, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_lc_shadow, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_lc_shadow;
@@ -3358,7 +3097,7 @@ void tick_screen_accel() {
         }
     }
     {
-        bool new_val = evalBooleanProperty(flowState, 63, 3, "Failed to evaluate Hidden flag");
+        bool new_val = evalBooleanProperty(flowState, 59, 3, "Failed to evaluate Hidden flag");
         bool cur_val = lv_obj_has_flag(objects.accel_slip_warn, LV_OBJ_FLAG_HIDDEN);
         if (new_val != cur_val) {
             tick_value_change_obj = objects.accel_slip_warn;
@@ -3371,7 +3110,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 64, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 60, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_speed);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_speed;
@@ -3380,7 +3119,7 @@ void tick_screen_accel() {
         }
     }
     {
-        const char *new_val = evalTextProperty(flowState, 65, 3, "Failed to evaluate Text in Label widget");
+        const char *new_val = evalTextProperty(flowState, 61, 3, "Failed to evaluate Text in Label widget");
         const char *cur_val = lv_label_get_text(objects.accel_slip);
         if (strcmp(new_val, cur_val) != 0) {
             tick_value_change_obj = objects.accel_slip;
@@ -4951,10 +4690,6 @@ void change_color_theme(uint32_t theme_index) {
         if (objects.vcu_state) lv_obj_set_style_text_color(objects.vcu_state, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.inv_state) lv_obj_set_style_text_color(objects.inv_state, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.pdm_11) lv_obj_set_style_text_color(objects.pdm_11, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.inverter_temp_10) lv_obj_set_style_text_color(objects.inverter_temp_10, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.pdm_13) lv_obj_set_style_text_color(objects.pdm_13, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.wheel_fl_3) lv_obj_set_style_text_color(objects.wheel_fl_3, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.wheel_fl_4) lv_obj_set_style_text_color(objects.wheel_fl_4, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.lap_number) lv_obj_set_style_text_color(objects.lap_number, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.obj2) lv_obj_set_style_text_color(objects.obj2, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.obj2) lv_obj_set_style_border_color(objects.obj2, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -5017,10 +4752,6 @@ void change_color_theme(uint32_t theme_index) {
         if (objects.skidpad_vcu_state) lv_obj_set_style_text_color(objects.skidpad_vcu_state, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.skidpad_inv_state) lv_obj_set_style_text_color(objects.skidpad_inv_state, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.skidpad_pdm_11) lv_obj_set_style_text_color(objects.skidpad_pdm_11, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.skidpad_inverter_temp_10) lv_obj_set_style_text_color(objects.skidpad_inverter_temp_10, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.skidpad_pdm_13) lv_obj_set_style_text_color(objects.skidpad_pdm_13, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.skidpad_wheel_fl_3) lv_obj_set_style_text_color(objects.skidpad_wheel_fl_3, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.skidpad_wheel_fl_4) lv_obj_set_style_text_color(objects.skidpad_wheel_fl_4, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.skidpad_lap_number) lv_obj_set_style_text_color(objects.skidpad_lap_number, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.obj16) lv_obj_set_style_text_color(objects.obj16, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.obj16) lv_obj_set_style_border_color(objects.obj16, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -5083,10 +4814,6 @@ void change_color_theme(uint32_t theme_index) {
         if (objects.accel_vcu_state) lv_obj_set_style_text_color(objects.accel_vcu_state, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.accel_inv_state) lv_obj_set_style_text_color(objects.accel_inv_state, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.accel_pdm_11) lv_obj_set_style_text_color(objects.accel_pdm_11, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.accel_inverter_temp_10) lv_obj_set_style_text_color(objects.accel_inverter_temp_10, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.accel_pdm_13) lv_obj_set_style_text_color(objects.accel_pdm_13, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.accel_wheel_fl_3) lv_obj_set_style_text_color(objects.accel_wheel_fl_3, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
-        if (objects.accel_wheel_fl_4) lv_obj_set_style_text_color(objects.accel_wheel_fl_4, lv_color_hex(theme_colors[theme_index][0]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.obj30) lv_obj_set_style_text_color(objects.obj30, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.obj30) lv_obj_set_style_border_color(objects.obj30, lv_color_hex(theme_colors[theme_index][1]), LV_PART_MAIN | LV_STATE_DEFAULT);
         if (objects.accel_inverter_on) lv_obj_set_style_bg_color(objects.accel_inverter_on, lv_color_hex(theme_colors[theme_index][2]), LV_PART_MAIN | LV_STATE_DEFAULT);

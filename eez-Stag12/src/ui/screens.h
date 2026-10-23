@@ -34,10 +34,6 @@ typedef struct _objects_t {
     lv_obj_t *pdm_11;
     lv_obj_t *apps;
     lv_obj_t *bps;
-    lv_obj_t *inverter_temp_10;
-    lv_obj_t *pdm_13;
-    lv_obj_t *wheel_fl_3;
-    lv_obj_t *wheel_fl_4;
     lv_obj_t *obj1;
     lv_obj_t *lap_number;
     lv_obj_t *obj2;
@@ -91,10 +87,6 @@ typedef struct _objects_t {
     lv_obj_t *skidpad_pdm_11;
     lv_obj_t *skidpad_apps;
     lv_obj_t *skidpad_bps;
-    lv_obj_t *skidpad_inverter_temp_10;
-    lv_obj_t *skidpad_pdm_13;
-    lv_obj_t *skidpad_wheel_fl_3;
-    lv_obj_t *skidpad_wheel_fl_4;
     lv_obj_t *obj15;
     lv_obj_t *skidpad_lap_number;
     lv_obj_t *obj16;
@@ -148,10 +140,6 @@ typedef struct _objects_t {
     lv_obj_t *accel_pdm_11;
     lv_obj_t *accel_apps;
     lv_obj_t *accel_bps;
-    lv_obj_t *accel_inverter_temp_10;
-    lv_obj_t *accel_pdm_13;
-    lv_obj_t *accel_wheel_fl_3;
-    lv_obj_t *accel_wheel_fl_4;
     lv_obj_t *obj29;
     lv_obj_t *obj30;
     lv_obj_t *accel_inverter_on;
