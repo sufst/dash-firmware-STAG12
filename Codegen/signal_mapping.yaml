@@ -6,6 +6,7 @@ CAN_T:
     vcu_current_mode: "vcu_current_mode"
     vcu_requested_mode: "vcu_requested_mode"
   VCU_Launch_Ctrl:
+    _timeout_ms: 500  # VCU sends it every cycle; quiet longer than this -> "No_Data"
     vcu_lc_state: "vcu_lc_state"
     vcu_lc_fault: "vcu_lc_fault"
     vcu_lc_shadow_mode: "vcu_lc_shadow_mode"

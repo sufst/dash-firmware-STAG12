@@ -24,6 +24,15 @@ static int32_t g_vcu_lc_fault = 0;
 static bool g_vcu_lc_shadow_mode = false;
 static bool g_vcu_lc_stationary = false;
 static int32_t g_vcu_lc_arm_progress = 0;
+static TickType_t g_vcu_launch_ctrl_rx_tick = 0;
+static bool g_vcu_launch_ctrl_seen = false;
+
+/* true once VCU_Launch_Ctrl has arrived within the last 500 ms */
+static bool vcu_launch_ctrl_fresh(void)
+{
+    return g_vcu_launch_ctrl_seen &&
+           (xTaskGetTickCount() - g_vcu_launch_ctrl_rx_tick) < pdMS_TO_TICKS(500);
+}
 static double g_bms_pack_inst_voltage = 0.0;
 static double g_bms_pack_current = 0.0;
 static double g_pdm_input_10_voltage = 0.0;
@@ -172,7 +181,13 @@ const char * get_var_vcu_lc_state(void)
 
     taskENTER_CRITICAL();
     value = g_vcu_lc_state;
+    bool fresh = vcu_launch_ctrl_fresh();
     taskEXIT_CRITICAL();
+
+    if (!fresh)
+    {
+        return "No_Data";
+    }
     switch (value)
     {
     case 0: return "Off";
@@ -196,7 +211,13 @@ const char * get_var_vcu_lc_fault(void)
 
     taskENTER_CRITICAL();
     value = g_vcu_lc_fault;
+    bool fresh = vcu_launch_ctrl_fresh();
     taskEXIT_CRITICAL();
+
+    if (!fresh)
+    {
+        return "No_Data";
+    }
     switch (value)
     {
     case 0: return "None";
@@ -221,7 +242,13 @@ bool get_var_vcu_lc_shadow_mode(void)
 
     taskENTER_CRITICAL();
     value = g_vcu_lc_shadow_mode;
+    bool fresh = vcu_launch_ctrl_fresh();
     taskEXIT_CRITICAL();
+
+    if (!fresh)
+    {
+        return false;
+    }
     return value;
 }
 
@@ -237,7 +264,13 @@ bool get_var_vcu_lc_stationary(void)
 
     taskENTER_CRITICAL();
     value = g_vcu_lc_stationary;
+    bool fresh = vcu_launch_ctrl_fresh();
     taskEXIT_CRITICAL();
+
+    if (!fresh)
+    {
+        return false;
+    }
     return value;
 }
 
@@ -253,7 +286,13 @@ int32_t get_var_vcu_lc_arm_progress(void)
 
     taskENTER_CRITICAL();
     value = g_vcu_lc_arm_progress;
+    bool fresh = vcu_launch_ctrl_fresh();
     taskEXIT_CRITICAL();
+
+    if (!fresh)
+    {
+        return 0;
+    }
     return value;
 }
 
@@ -699,6 +738,8 @@ void can_t_handle_rx_message(uint32_t id, const uint8_t *data, uint8_t length)
             g_vcu_lc_shadow_mode = (bool)can_t_vcu_launch_ctrl_vcu_lc_shadow_mode_decode(payload.vcu_lc_shadow_mode);
             g_vcu_lc_stationary = (bool)can_t_vcu_launch_ctrl_vcu_lc_stationary_decode(payload.vcu_lc_stationary);
             g_vcu_lc_arm_progress = (int32_t)can_t_vcu_launch_ctrl_vcu_lc_arm_progress_decode(payload.vcu_lc_arm_progress);
+            g_vcu_launch_ctrl_rx_tick = xTaskGetTickCount();
+            g_vcu_launch_ctrl_seen = true;
             taskEXIT_CRITICAL();
         }
         break;

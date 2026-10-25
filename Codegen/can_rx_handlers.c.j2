@@ -19,6 +19,17 @@
         {%- for sig in msg.signals %}
 static {{ sig.backing_c_type }} g_{{ sig.flat_name }} = {{ sig.zero_literal }};
         {%- endfor %}
+        {%- if msg.timeout_ms %}
+static TickType_t g_{{ msg.name | lower }}_rx_tick = 0;
+static bool g_{{ msg.name | lower }}_seen = false;
+
+/* true once {{ msg.name }} has arrived within the last {{ msg.timeout_ms }} ms */
+static bool {{ msg.name | lower }}_fresh(void)
+{
+    return g_{{ msg.name | lower }}_seen &&
+           (xTaskGetTickCount() - g_{{ msg.name | lower }}_rx_tick) < pdMS_TO_TICKS({{ msg.timeout_ms }});
+}
+        {%- endif %}
     {%- endfor %}
 {% endfor %}
 
@@ -36,7 +47,21 @@ static {{ sig.backing_c_type }} g_{{ sig.flat_name }} = {{ sig.zero_literal }};
 
     taskENTER_CRITICAL();
     value = g_{{ sig.flat_name }};
+{%- if msg.timeout_ms %}
+    bool fresh = {{ msg.name | lower }}_fresh();
+{%- endif %}
     taskEXIT_CRITICAL();
+{%- if msg.timeout_ms %}
+
+    if (!fresh)
+    {
+{%- if sig.choices %}
+        return "No_Data";
+{%- else %}
+        return {{ sig.zero_literal }};
+{%- endif %}
+    }
+{%- endif %}
 
 {%- if sig.choices %}
     switch (value)
@@ -89,6 +114,10 @@ void {{ bus.name | lower }}_handle_rx_message(uint32_t id, const uint8_t *data, 
             g_{{ sig.flat_name }} = ({{ sig.backing_c_type }}){{ bus.name | lower }}_{{ msg.name | lower }}_{{ sig.name | lower }}_decode(payload.{{ sig.name | lower }});
             {%- endif %}
             {%- endfor %}
+            {%- if msg.timeout_ms %}
+            g_{{ msg.name | lower }}_rx_tick = xTaskGetTickCount();
+            g_{{ msg.name | lower }}_seen = true;
+            {%- endif %}
             taskEXIT_CRITICAL();
         }
         break;

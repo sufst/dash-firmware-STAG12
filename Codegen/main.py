@@ -169,8 +169,11 @@ def build_resolved_buses(yaml_data, databases):
         db = databases[bus_name]
         bus_entry = {"name": bus_name, "messages": []}
         for msg_name, signals in messages.items():
-            msg_entry = {"name": msg_name, "signals": []}
+            # optional "_timeout_ms": getters report no data once the message goes quiet
+            msg_entry = {"name": msg_name, "signals": [], "timeout_ms": signals.get("_timeout_ms")}
             for sig_name, path in signals.items():
+                if sig_name.startswith("_"):
+                    continue
                 cantools_signal = find_signal(db, msg_name, sig_name)
                 classification = classify_signal_type(cantools_signal)
                 msg_entry["signals"].append({
